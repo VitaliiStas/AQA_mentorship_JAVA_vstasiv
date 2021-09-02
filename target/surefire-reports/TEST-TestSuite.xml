@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="27.9" tests="3" errors="0" skipped="0" failures="3">
+  <properties>
+    <property name="java.specification.version" value="15"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1251"/>
+    <property name="java.class.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Kiev"/>
+    <property name="user.country.format" value="UA"/>
+    <property name="maven.conf" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\../conf"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="maven.home" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\.."/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\vitalii.stasiv"/>
+    <property name="user.language" value="en"/>
+    <property name="sun.stderr.encoding" value="cp866"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2020-09-15"/>
+    <property name="java.home" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="sun.stdout.encoding" value="cp866"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="15+36-1562"/>
+    <property name="user.name" value="vitalii.stasiv"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1251"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\VITALI~1.STA\AppData\Local\Temp\"/>
+    <property name="java.version" value="15"/>
+    <property name="user.dir" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.language.format" value="uk"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\Program Files\Git\cmd;C:\Users\vitalii.stasiv\scoop\shims;C:\Users\vitalii.stasiv\AppData\Local\Microsoft\WindowsApps;C:\Users\vitalii.stasiv\DesktopAQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\bin;;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="15+36-1562"/>
+    <property name="classworlds.conf" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\..\bin\m2.conf"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="library.jansi.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\..\lib\jansi-native"/>
+    <property name="java.class.version" value="59.0"/>
+  </properties>
+  <testcase name="singIn" classname="org.eleks.gmail.vstasiv.Tests" time="2.945">
+    <failure message="Expecting a stackmap frame at branch target 57&#10;Exception Details:&#10;  Location:&#10;    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic&#10;  Reason:&#10;    Expected stackmap frame at this location.&#10;  Bytecode:&#10;    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052&#10;    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a&#10;    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00&#10;    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600&#10;    0000040: 562c bfb8 004e b600 59b1               &#10;  Exception Handler Table:&#10;    bci [9, 57] =&gt; handler: 57&#10;" type="java.lang.VerifyError">java.lang.VerifyError: 
+Expecting a stackmap frame at branch target 57
+Exception Details:
+  Location:
+    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
+  Reason:
+    Expected stackmap frame at this location.
+  Bytecode:
+    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
+    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
+    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
+    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
+    0000040: 562c bfb8 004e b600 59b1               
+  Exception Handler Table:
+    bci [9, 57] => handler: 57
+
+	at org.eleks.gmail.vstasiv.Tests.singIn(Tests.java:11)
+</failure>
+    <system-out><![CDATA[[INFO ] 2021-08-30 22:07:47.952 [main] BaseTest - Browser is opened
+]]></system-out>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[DelegatingClassLoader@54ffa561] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@54ffa561] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@1416ff46] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@1416ff46] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@5ba1b62e] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@5ba1b62e] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@2baf72d5] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@2baf72d5] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@5b742bc8] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@5b742bc8] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@935d3f9] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@935d3f9] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@38856d6e] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@38856d6e] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@72406594] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@72406594] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 48478
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+серп. 30, 2021 10:07:47 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+[DelegatingClassLoader@4946f93b] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@4946f93b] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+серп. 30, 2021 10:07:47 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 92, so returning the closest version found: 91
+серп. 30, 2021 10:07:47 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Found CDP implementation for version 92 of 91
+[DelegatingClassLoader@5aa7bb86] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@5aa7bb86] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+AspectJ Internal Error: unable to add stackmap attributes. null
+]]></system-err>
+  </testcase>
+  <testcase name="goToMailPage" classname="org.eleks.gmail.vstasiv.Tests" time="2.597">
+    <failure message="Expecting a stackmap frame at branch target 57&#10;Exception Details:&#10;  Location:&#10;    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic&#10;  Reason:&#10;    Expected stackmap frame at this location.&#10;  Bytecode:&#10;    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052&#10;    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a&#10;    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00&#10;    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600&#10;    0000040: 562c bfb8 004e b600 59b1               &#10;  Exception Handler Table:&#10;    bci [9, 57] =&gt; handler: 57&#10;" type="java.lang.VerifyError">java.lang.VerifyError: 
+Expecting a stackmap frame at branch target 57
+Exception Details:
+  Location:
+    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
+  Reason:
+    Expected stackmap frame at this location.
+  Bytecode:
+    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
+    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
+    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
+    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
+    0000040: 562c bfb8 004e b600 59b1               
+  Exception Handler Table:
+    bci [9, 57] => handler: 57
+
+	at org.eleks.gmail.vstasiv.Tests.goToMailPage(Tests.java:16)
+</failure>
+    <system-out><![CDATA[[INFO ] 2021-08-30 22:07:53.597 [main] BaseTest - Browser is closed
+[INFO ] 2021-08-30 22:07:55.187 [main] BaseTest - Browser is opened
+]]></system-out>
+    <system-err><![CDATA[серп. 30, 2021 10:07:52 ПП org.openqa.selenium.remote.http.WebSocket$Listener onError
+WARNING: Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:253)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+
+Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 37927
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+серп. 30, 2021 10:07:55 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+серп. 30, 2021 10:07:55 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 92, so returning the closest version found: 91
+серп. 30, 2021 10:07:55 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Found CDP implementation for version 92 of 91
+[DelegatingClassLoader@2e962cec] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@2e962cec] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@5bd11ad6] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@5bd11ad6] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+]]></system-err>
+  </testcase>
+  <testcase name="sendAndCheckEmailTest" classname="org.eleks.gmail.vstasiv.Tests" time="2.82">
+    <failure message="Expecting a stackmap frame at branch target 57&#10;Exception Details:&#10;  Location:&#10;    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic&#10;  Reason:&#10;    Expected stackmap frame at this location.&#10;  Bytecode:&#10;    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052&#10;    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a&#10;    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00&#10;    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600&#10;    0000040: 562c bfb8 004e b600 59b1               &#10;  Exception Handler Table:&#10;    bci [9, 57] =&gt; handler: 57&#10;" type="java.lang.VerifyError">java.lang.VerifyError: 
+Expecting a stackmap frame at branch target 57
+Exception Details:
+  Location:
+    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
+  Reason:
+    Expected stackmap frame at this location.
+  Bytecode:
+    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
+    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
+    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
+    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
+    0000040: 562c bfb8 004e b600 59b1               
+  Exception Handler Table:
+    bci [9, 57] => handler: 57
+
+	at org.eleks.gmail.vstasiv.Tests.sendAndCheckEmailTest(Tests.java:22)
+</failure>
+    <system-out><![CDATA[[INFO ] 2021-08-30 22:07:59.962 [main] BaseTest - Browser is closed
+[INFO ] 2021-08-30 22:08:01.550 [main] BaseTest - Browser is opened
+]]></system-out>
+    <system-err><![CDATA[Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 42552
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+серп. 30, 2021 10:08:01 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+серп. 30, 2021 10:08:01 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 92, so returning the closest version found: 91
+серп. 30, 2021 10:08:01 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Found CDP implementation for version 92 of 91
+[DelegatingClassLoader@7798de95] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@7798de95] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@474f69d] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@474f69d] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@649a76c1] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+[DelegatingClassLoader@649a76c1] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+]]></system-err>
+  </testcase>
+</testsuite>

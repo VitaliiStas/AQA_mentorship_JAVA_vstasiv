@@ -1,0 +1,61 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 27.9 s <<< FAILURE! - in TestSuite
+singIn(org.eleks.gmail.vstasiv.Tests)  Time elapsed: 2.945 s  <<< FAILURE!
+java.lang.VerifyError: 
+Expecting a stackmap frame at branch target 57
+Exception Details:
+  Location:
+    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
+  Reason:
+    Expected stackmap frame at this location.
+  Bytecode:
+    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
+    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
+    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
+    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
+    0000040: 562c bfb8 004e b600 59b1               
+  Exception Handler Table:
+    bci [9, 57] => handler: 57
+
+	at org.eleks.gmail.vstasiv.Tests.singIn(Tests.java:11)
+
+goToMailPage(org.eleks.gmail.vstasiv.Tests)  Time elapsed: 2.597 s  <<< FAILURE!
+java.lang.VerifyError: 
+Expecting a stackmap frame at branch target 57
+Exception Details:
+  Location:
+    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
+  Reason:
+    Expected stackmap frame at this location.
+  Bytecode:
+    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
+    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
+    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
+    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
+    0000040: 562c bfb8 004e b600 59b1               
+  Exception Handler Table:
+    bci [9, 57] => handler: 57
+
+	at org.eleks.gmail.vstasiv.Tests.goToMailPage(Tests.java:16)
+
+sendAndCheckEmailTest(org.eleks.gmail.vstasiv.Tests)  Time elapsed: 2.82 s  <<< FAILURE!
+java.lang.VerifyError: 
+Expecting a stackmap frame at branch target 57
+Exception Details:
+  Location:
+    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
+  Reason:
+    Expected stackmap frame at this location.
+  Bytecode:
+    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
+    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
+    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
+    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
+    0000040: 562c bfb8 004e b600 59b1               
+  Exception Handler Table:
+    bci [9, 57] => handler: 57
+
+	at org.eleks.gmail.vstasiv.Tests.sendAndCheckEmailTest(Tests.java:22)
+
