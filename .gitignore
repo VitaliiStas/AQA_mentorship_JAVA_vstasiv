@@ -1,5 +1,6 @@
 allure-results/
 *.log
+*.json
 logs/
 logs/log4j2-test-automation.log
 
