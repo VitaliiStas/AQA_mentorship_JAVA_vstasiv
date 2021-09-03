@@ -1,5 +1,0 @@
-[INFO ] 2021-09-03 10:56:55.788 [main] BaseTest - Browser is opened
-[INFO ] 2021-09-03 10:57:03.623 [main] BasePage - Element is present on the page: class org.Eleks.Gmail.po.HomePage
-[INFO ] 2021-09-03 10:57:03.623 [main] BasePage - Correct page for class: class org.Eleks.Gmail.po.HomePage opened
-[INFO ] 2021-09-03 10:57:03.624 [main] LoginBO - Login successfully
-[INFO ] 2021-09-03 10:57:04.295 [main] BaseTest - Browser is closed
