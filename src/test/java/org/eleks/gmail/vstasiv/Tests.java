@@ -16,6 +16,11 @@ public class Tests extends BaseTest {
         LoginBO.login();
     }
 
+    @Test(priority = 1)
+    public void singInFailed() {
+        LoginBO.loginFailed();
+    }
+
     @Test(priority = 2)
     public void goToMailPage() {
         LoginBO.login();

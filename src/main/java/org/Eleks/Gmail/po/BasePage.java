@@ -1,9 +1,11 @@
 package org.Eleks.Gmail.po;
 
 //import io.qameta.allure.Step;
+
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
+import org.Eleks.Gmail.listeners.TestListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -104,6 +106,7 @@ public class BasePage {
             LOGGER.warn("Element is present on the page: " + getClass());
         }
     }
+
     private void checkElementOnPage(WebElement element) {
         //if "menu" button is present on the current - that's true
         if (!(element.isDisplayed())) {
@@ -117,11 +120,12 @@ public class BasePage {
         checkUrl();
         checkElementOnPage();
     }
+
     @Step("Check if correct page is opened")
     public void verifyIsOpen(WebElement elementForCheck) {
         checkUrl();
         checkElementOnPage(elementForCheck);
-        LOGGER.info("Correct page for class: "+ getClass()+" opened");
+        LOGGER.info("Correct page for class: " + getClass() + " opened");
     }
 
     public void clickOnElement(WebElement element) {
@@ -129,6 +133,7 @@ public class BasePage {
 //        pauseSec(5);
         element.click();
     }
+
     public void clickOnElement(WebElement element, String attribute, String value) {
         //use if need to check if element is available if not do it available by clicking on it
         waitForElement(element, 2);
@@ -147,12 +152,22 @@ public class BasePage {
         webDriver.switchTo().frame(getSideBarFrame());
 //        getSideBarFrame().click();
     }
+
     public void switchToTab(Integer tabNum) {
         pauseSec(2);
         ArrayList<String> openedTabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(openedTabs.get(tabNum));
     }
-
+@Step("Check if error message is displayed on the page")
+    public void checkErrorMessageIsDisplayed(WebElement element) {
+//        Assert.assertNotNull(element,"Error message: " +element.getText() + " is absent on the: "+this.webDriver.getTitle() + " page");
+        if (!element.isDisplayed()) {
+            LOGGER.warn("Error message is not displayed : " + element.getText());
+            TestListener testListener = new TestListener();
+            testListener.saveScreenshot();
+        } else if (element.isDisplayed())
+            LOGGER.info("Proper massage is displayed : " + element.getText());
+        }
 
 }
 

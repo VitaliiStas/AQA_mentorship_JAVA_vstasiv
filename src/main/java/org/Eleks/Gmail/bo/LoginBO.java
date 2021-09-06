@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class LoginBO {
     private static final Logger LOGGER = LogManager.getLogger(LoginBO.class);
-
+    //Sing in  with correct credentials
     public static void login() {
         User user = UserFactory.getUser();
         LoginPage loginPage = new LoginPage();
@@ -19,6 +19,11 @@ public class LoginBO {
         homePage.verifyIsOpen(homePage.getProfileImageForCheck());
         //        homePage.verifyIsOpen();
         LOGGER.info("Login successfully");
-
+    }
+    //Sing in  with incorrect credentials
+    public static void loginFailed() {
+        User user = UserFactory.getUser();
+        LoginPage loginPage = new LoginPage();
+        HomePage homePage = loginPage.loginFailed(user.getUserName(), user.getPassword());
     }
 }

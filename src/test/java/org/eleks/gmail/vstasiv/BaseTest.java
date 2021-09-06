@@ -24,11 +24,11 @@ public class BaseTest extends DriverFactory {
     }
 
 
-    @AfterMethod
-    @Step("Close the browser")
-    public void quitTest() {
-        getWebDriver().quit();
-        LOGGER.info("Browser is closed",BaseTest.class);
-    }
+//    @AfterMethod
+//    @Step("Close the browser")
+//    public void quitTest() {
+//        getWebDriver().quit();
+//        LOGGER.info("Browser is closed",BaseTest.class);
+//    }
 
 }
