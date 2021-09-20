@@ -27,6 +27,8 @@ public class EmailSendPageBO {
     public static void checkEmailDeleting() {
         EmailPage emailPage = new EmailPage();
         String deleteEmailTime = emailPage.getDeleteEmailTime();
+        //type number email for deleting
+        emailPage.setEmailNumForDelete(4);
         emailPage.deleteEmail();
         String latestEmailTime = emailPage.getLatestEmailTime();
         emailPage.checkIfEmailIsDeleted(latestEmailTime, deleteEmailTime);

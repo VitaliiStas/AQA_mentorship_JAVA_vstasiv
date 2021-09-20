@@ -2,7 +2,6 @@ package org.Eleks.Gmail.po;
 
 //import io.qameta.allure.Step;
 
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.listeners.TestListener;
@@ -67,10 +66,16 @@ public class BasePage {
 //        this.getClass()
     }
 
+    public WebElement getWebElementByXpath(String elementXpath) {
+        waitForElement(webDriver.findElement(By.xpath("/html/body")), 10);
+        WebElement webElement = webDriver.findElement(By.xpath(elementXpath));
+        return webElement;
+    }
+
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
 //        new WebDriverWait(webDriver, timeForWaitInSec).until(ExpectedConditions.visibilityOf(webElement));
-        new WebDriverWait(webDriver, timeForWaitInSec).ignoring(StaleElementReferenceException.class,TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webElement));
+        new WebDriverWait(webDriver, timeForWaitInSec).ignoring(StaleElementReferenceException.class, TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     //For pause
@@ -158,7 +163,8 @@ public class BasePage {
         ArrayList<String> openedTabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(openedTabs.get(tabNum));
     }
-@Step("Check if error message is displayed on the page")
+
+    @Step("Check if error message is displayed on the page")
     public void checkErrorMessageIsDisplayed(WebElement element) {
 //        Assert.assertNotNull(element,"Error message: " +element.getText() + " is absent on the: "+this.webDriver.getTitle() + " page");
         if (!element.isDisplayed()) {
@@ -167,7 +173,7 @@ public class BasePage {
             testListener.saveScreenshot();
         } else if (element.isDisplayed())
             LOGGER.info("Proper massage is displayed : " + element.getText());
-        }
+    }
 
 }
 

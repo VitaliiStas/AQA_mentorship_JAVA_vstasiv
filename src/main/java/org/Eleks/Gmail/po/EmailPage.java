@@ -9,18 +9,27 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class EmailPage extends MailSendPage {
+    private String emailXpath= "//tr//td//span[@title]";
+    private Integer emailNumForDelete = 0;
+
     @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
     private WebElement receivedEmailBody;
-    @FindBy(xpath = "//*[@role='toolbar']/li[@data-tooltip='Delete']")
+//    @FindBy(xpath = "//*[@role='toolbar']/li[@data-tooltip='Delete']")
+    @FindBy(xpath = "//div[@role='button' and @data-tooltip='Delete']")
     private WebElement deleteEmailButton;
+    @FindBy(xpath = "//tr//td//span[@title]")
+    private WebElement emailDataElement;
 
-    private By emailDate = By.xpath("//td//span[@title]");
-    WebElement emailForDelete = webDriver.findElement(emailDate);
+    private By emailDataXpath = By.xpath(emailXpath);
+//    WebElement emailForDelete = webDriver.findElement(By.xpath("//tr[3]//td//span[@title]"));
+
 
     private Actions action = new Actions(webDriver);
     private static final Logger LOGGER = LogManager.getLogger(EmailPage.class);
@@ -38,23 +47,30 @@ public class EmailPage extends MailSendPage {
 
     @Step("Check email sorting")
     public void checkEmailOrder() {
-//        waitForElement(webDriver.findElement(emailDate), 5);
         ArrayList<String> defOrderEmailList = new ArrayList<>();
-        List<WebElement> emailsList = webDriver.findElements(emailDate);
+        waitForElement(emailDataElement,10);
+        List<WebElement> emailsList = webDriver.findElements(emailDataXpath);
         for (WebElement date : emailsList) {
-            defOrderEmailList.add(date.getAttribute("title").substring(5, 11));
-
+            defOrderEmailList.add(convertDate(date.getAttribute("title")));
         }
         ArrayList<String> sortedList = new ArrayList<>(defOrderEmailList);
         Collections.sort(sortedList, Collections.reverseOrder());
-        Assert.assertEquals(sortedList, (defOrderEmailList));
+        Assert.assertEquals(sortedList, defOrderEmailList,
+                "Email Sorting is incorrect");
+    }
+
+    public String getEmailDateTime(WebElement element) {
+        String emailDate = element.getAttribute("title");
+        return emailDate;
     }
 
 
-    public String emailDate(WebElement element) {
-        String emailDate = element.getAttribute("title");
-//        return dateEmailForDelete;
-        return emailDate;
+
+    public String convertDate(String date) {
+        //take gmail date in format "EEEE, MMM d, yyyy, HH:mm a" to the "yyyy-MM-dd HH:mm"
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String convertedDate = sdf.format(new Date(date));
+        return convertedDate;
     }
 
     @Step("Check if email is deleted")
@@ -64,21 +80,41 @@ public class EmailPage extends MailSendPage {
 
     }
 
+    public void setEmailNumForDelete(Integer emailNumForDelete) {
+        this.emailNumForDelete = emailNumForDelete;
+    }
+
+    public Integer getEmailNumForDelete() {
+        return emailNumForDelete;
+    }
+
+    public WebElement getEmailForDelete(){
+        //use the selected email num for delete proper email
+        String xpathForEmailDeleting = String.valueOf(new StringBuffer("//tr//td//span[@title]").insert(4,String.format("[%s]",Integer.toString(getEmailNumForDelete()))));
+        WebElement emailForDelete = getWebElementByXpath("//tr[3]//td//span[@title]");
+        return emailForDelete;
+    }
+
     @Step("Delete the latest email")
     public void deleteEmail() {
-        action.moveToElement(emailForDelete).build().perform();
+
+//        action.moveToElement(emailForDelete).contextClick().build().perform();
+
+        action.contextClick(getEmailForDelete()).build().perform();
+        waitForElement(deleteEmailButton,10);
+        action.moveToElement(deleteEmailButton).build().perform();
         deleteEmailButton.click();
-        action.moveToElement(webDriver.findElement(By.xpath("/html/body"))).build().perform();
-        waitForElement(webDriver.findElement(emailDate),10);
+//        action.moveToElement(getWebElementByXpath("/html/body")).build().perform();
+//        waitForElement(emailDataElement,10);
 
     }
 
     public String getDeleteEmailTime() {
-        String deleteEmailTime = emailDate(emailForDelete);
+        String deleteEmailTime = getEmailDateTime(getEmailForDelete());
         return deleteEmailTime;
     }
     public String getLatestEmailTime() {
-        String latestEmailTime = emailDate(webDriver.findElement(emailDate));
+        String latestEmailTime = getEmailDateTime(emailDataElement);
         return latestEmailTime;
     }
 }
