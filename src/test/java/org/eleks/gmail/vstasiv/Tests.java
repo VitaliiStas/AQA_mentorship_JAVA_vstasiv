@@ -16,7 +16,6 @@ public class Tests extends BaseTest {
     @Test(priority = 4)
     public void singInTest() {
         LoginBO.login();
-        Assert.fail();
     }
 
     @Test(priority = 1)

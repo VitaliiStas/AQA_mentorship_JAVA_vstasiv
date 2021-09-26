@@ -16,14 +16,25 @@ import java.util.Date;
 import java.util.List;
 
 public class EmailPage extends MailSendPage {
+
+
     private String emailXpath = "//tr//td//span[@title]";
     private Integer emailNumForDelete = 0;
+    private String emailSubjectForDelete = "";
+    private String subjectOnEmailPageXpath = "//span[@class='bog']/span";
 
     @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
     private WebElement receivedEmailBody;
-    //    @FindBy(xpath = "//*[@role='toolbar']/li[@data-tooltip='Delete']")
+
+    @FindBy(xpath = "//div[@class='ha']/h2")
+    private WebElement receivedSubjectBody;
+
+    @FindBy(xpath = "//span[@class='bog']/span")
+    private WebElement subjectOnEmailPage;
+
     @FindBy(xpath = "//div[@role='button' and @data-tooltip='Delete']")
     private WebElement deleteEmailButton;
+
     @FindBy(xpath = "//tr//td//span[@title]")
     private WebElement emailDataElement;
 
@@ -37,11 +48,21 @@ public class EmailPage extends MailSendPage {
     }
 
     @Step("Check received email")
-    public void checkEmail(String testEmailText) {
+//    public void checkEmail(String testEmailText) {
+//        waitForElement(receivedEmailBody, 10);
+//        Assert.assertEquals(receivedEmailBody.getText(), testEmailText,
+//                "Email body isn't correct");
+//        waitForElement(receivedEmailBody, 10);
+//    }
+
+    public void checkEmail(String testEmailText, String subjectForCheck) {
         waitForElement(receivedEmailBody, 10);
-        Assert.assertEquals(receivedEmailBody.getText(), testEmailText,
-                "Email body isn't correct");
-        waitForElement(receivedEmailBody, 10);
+        if (!receivedEmailBody.getText().equals(testEmailText)) {
+            LOGGER.warn("Received email body is incorrect");
+        } else if (!receivedSubjectBody.getText().equals(subjectForCheck)) ;
+        {
+            LOGGER.warn("Received email subject is incorrect");
+        }
     }
 
     @Step("Check email sorting")
@@ -63,7 +84,7 @@ public class EmailPage extends MailSendPage {
         return emailDate;
     }
 
-
+    //todo change to local date time
     public String convertDate(String date) {
         //take gmail date in format "EEEE, MMM d, yyyy, HH:mm a" to the "yyyy-MM-dd HH:mm"
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -71,18 +92,37 @@ public class EmailPage extends MailSendPage {
         return convertedDate;
     }
 
+    @Step("check If Email Is Deleted By Subject")
+    public void checkIfEmailIsDeletedBySubject (String subjectForDeleting) {
+        action.moveToElement(getWebElementByXpath("/html/body"));
+        List<WebElement> subjectList = webDriver.findElements(By.xpath(subjectOnEmailPageXpath));
+        List<String> subjectTextList = new ArrayList<>();
+        waitForElement(emailDataElement, 10);
+
+        for (WebElement element : subjectList) {
+            if (element.getText().equals(emailSubjectForDelete)) {
+                Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
+
+            }
+
+        }
+
+
+    }
+
     @Step("Check if email is deleted")
     public void checkIfEmailIsDeleted(String latestEmailTime, String deleteEmailTime) {
         Assert.assertNotEquals(latestEmailTime, deleteEmailTime,
                 "The latest email is not deleted");
-
     }
+
 
     public void setEmailNumForDelete(Integer emailNumForDelete) {
         this.emailNumForDelete = emailNumForDelete;
     }
 
     public Integer getEmailNumForDelete() {
+
         return emailNumForDelete;
     }
 
@@ -93,14 +133,38 @@ public class EmailPage extends MailSendPage {
         return emailForDelete;
     }
 
-    @Step("Delete the latest email")
-    public void deleteEmail() {
+    public void setEmailSubjectForDelete(String emailSubjectForDelete) {
+        this.emailSubjectForDelete = emailSubjectForDelete;
+    }
 
+    public WebElement getEmailSubjectForDelete() {
+        WebElement emailForDelete = null;
+        List<WebElement> subjectList = webDriver.findElements(By.xpath(subjectOnEmailPageXpath));
+        waitForElement(emailDataElement, 10);
+
+        for (WebElement element : subjectList) {
+            if (element.getText().equals(emailSubjectForDelete)) {
+                emailForDelete = element;
+            }
+        }
+        return emailForDelete;
+    }
+
+    @Step("Delete the selected email")
+    public void deleteEmail() {
         action.contextClick(getEmailForDelete()).build().perform();
         waitForElement(deleteEmailButton, 10);
         action.moveToElement(deleteEmailButton).build().perform();
         deleteEmailButton.click();
 
+    }
+
+    @Step("Delete the selected email By Subject")
+    public void deleteEmailBySubject() {
+        action.contextClick(getEmailSubjectForDelete()).build().perform();
+        waitForElement(deleteEmailButton, 10);
+        action.moveToElement(deleteEmailButton).build().perform();
+        deleteEmailButton.click();
 
     }
 
