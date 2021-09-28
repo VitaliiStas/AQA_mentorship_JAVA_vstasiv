@@ -15,8 +15,9 @@ public class EmailSendPageBO {
         emailPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         emailPage.sendEmail(UserFactory.getProperties("testEmailText"), UserFactory.getProperties("emailAddress"));
         emailPage.goToEmailPage();
-
-        emailPage.checkEmail(UserFactory.getProperties("testEmailText"),mailSendPage.emailSubject);
+//for default email checking
+//        emailPage.checkEmail(UserFactory.getProperties("testEmailText"),mailSendPage.emailSubject);
+        emailPage.checkEmail(emailPage.emailBodyForCheck, mailSendPage.emailSubject);
 
         emailPage.verifyIsOpen(MailSendPage.getMailCreateButtonForCheck());
     }

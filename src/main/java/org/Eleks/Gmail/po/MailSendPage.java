@@ -11,6 +11,7 @@ import org.testng.Assert;
 public class MailSendPage extends BasePage {
 
     public String emailSubject = "";
+    public String emailBodyForCheck = "";
 
     @FindBy(xpath = "//div[@class='T-I T-I-KE L3']")
     private static WebElement mailCreateButton;
@@ -47,6 +48,7 @@ public class MailSendPage extends BasePage {
         return randomString;
     }
 
+
     @Step("Send test email")
     public void sendEmail(String testEmailText, String emailAddress) {
         goToEmailSendForm();
@@ -54,10 +56,21 @@ public class MailSendPage extends BasePage {
         sendToEmail.sendKeys(emailAddress);
         emailSubject = subjectOfMessage.getAttribute("aria-label") + " " + generateRandomString();
         subjectOfMessage.sendKeys(emailSubject);
-        bodyOfMessage.sendKeys(testEmailText);
+        //for verification of message body
+        emailBodyForCheck=generateRandomString();
+        bodyOfMessage.sendKeys(emailBodyForCheck);
         sendButton.click();
-
     }
+//    @Step("Send test email")
+//    public void sendEmail(String testEmailText, String emailAddress) {
+//        goToEmailSendForm();
+//        waitForElement(sendToEmail, 10);
+//        sendToEmail.sendKeys(emailAddress);
+//        emailSubject = subjectOfMessage.getAttribute("aria-label") + " " + generateRandomString();
+//        subjectOfMessage.sendKeys(emailSubject);
+//        bodyOfMessage.sendKeys(testEmailText);
+//        sendButton.click();
+//    }
 
     @Step("Go to email page")
     public void goToEmailPage() {

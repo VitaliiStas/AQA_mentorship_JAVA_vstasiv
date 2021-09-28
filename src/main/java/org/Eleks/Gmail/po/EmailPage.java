@@ -10,10 +10,10 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 
 public class EmailPage extends MailSendPage {
 
@@ -66,18 +66,42 @@ public class EmailPage extends MailSendPage {
     }
 
     @Step("Check email sorting")
+//    public void checkEmailOrder() {
+//        ArrayList<String> defOrderEmailList = new ArrayList<>();
+//        waitForElement(emailDataElement, 10);
+//        List<WebElement> emailsList = webDriver.findElements(emailDataXpath);
+//        for (WebElement date : emailsList) {
+//            defOrderEmailList.add(convertDate(date.getAttribute("title")));
+//        }
+//        ArrayList<String> sortedList = new ArrayList<>(defOrderEmailList);
+//        Collections.sort(sortedList, Collections.reverseOrder());
+//        Assert.assertEquals(sortedList, defOrderEmailList,
+//                "Email Sorting is incorrect");
+//    }
     public void checkEmailOrder() {
-        ArrayList<String> defOrderEmailList = new ArrayList<>();
+        ArrayList<LocalDateTime> defOrderEmailList = new ArrayList<>();
         waitForElement(emailDataElement, 10);
         List<WebElement> emailsList = webDriver.findElements(emailDataXpath);
         for (WebElement date : emailsList) {
-            defOrderEmailList.add(convertDate(date.getAttribute("title")));
+            defOrderEmailList.add(parseDateTimeFromTitle(date.getAttribute("title")));
         }
-        ArrayList<String> sortedList = new ArrayList<>(defOrderEmailList);
-        Collections.sort(sortedList, Collections.reverseOrder());
+        ArrayList<LocalDateTime> sortedList = new ArrayList<>(defOrderEmailList);
+        Collections.sort(sortedList,
+                Collections.reverseOrder());
         Assert.assertEquals(sortedList, defOrderEmailList,
                 "Email Sorting is incorrect");
     }
+
+
+
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.parse("Sun, Sep 26, 2021, 4:00 PM",DateTimeFormatter
+                .ofPattern("E, MMM d, y, h:mm a",Locale.getDefault()));
+
+        System.out.println(dateTime);
+
+    }
+
 
     public String getEmailDateTime(WebElement element) {
         String emailDate = element.getAttribute("title");
@@ -92,8 +116,16 @@ public class EmailPage extends MailSendPage {
         return convertedDate;
     }
 
+    //'Sun, Sep 26, 2021, 4:00 PM'
+    // чому формат часу міняєтьсяб через Locale
+    protected LocalDateTime parseDateTimeFromTitle(String dateTimeFromTitle) {
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeFromTitle,
+                DateTimeFormatter.ofPattern("E, MMM d, y, h:mm a", Locale.US));
+        return dateTime;
+    }
+
     @Step("check If Email Is Deleted By Subject")
-    public void checkIfEmailIsDeletedBySubject (String subjectForDeleting) {
+    public void checkIfEmailIsDeletedBySubject(String subjectForDeleting) {
         action.moveToElement(getWebElementByXpath("/html/body"));
         List<WebElement> subjectList = webDriver.findElements(By.xpath(subjectOnEmailPageXpath));
         List<String> subjectTextList = new ArrayList<>();
@@ -102,12 +134,8 @@ public class EmailPage extends MailSendPage {
         for (WebElement element : subjectList) {
             if (element.getText().equals(emailSubjectForDelete)) {
                 Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
-
             }
-
         }
-
-
     }
 
     @Step("Check if email is deleted")
