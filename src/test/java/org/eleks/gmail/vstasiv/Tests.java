@@ -13,37 +13,37 @@ import org.testng.annotations.Test;
 @Listeners(TestListener.class)
 public class Tests extends BaseTest {
 
-    @Test(priority = 4)
+    @Test
     public void singInTest() {
         LoginBO.login();
     }
 
-    @Test(priority = 1)
+    @Test
     public void singInFailedTest() {
         LoginBO.loginFailed();
     }
 
-    @Test(priority = 2)
+    @Test
     public void goToMailPageTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
     }
 
-    @Test(priority = 3)
+    @Test
     public void sendAndCheckEmailTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
         EmailSendPageBO.sendAndCheckEmail();
     }
 
-    @Test(priority = 3)
+    @Test
     public void sortingEmailsOnEmailPageTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
         EmailSendPageBO.checkSortingEmailsOnEmailPage();
     }
 
-    @Test(priority = 4)
+    @Test
     public void emailDeletingTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
