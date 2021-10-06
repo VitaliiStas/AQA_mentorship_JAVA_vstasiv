@@ -58,7 +58,7 @@ public class EmailPage extends MailSendPage {
             LOGGER.warn("Received email body or subject is incorrect");
         } else if (!getListOfSendToOrCC().equals(subjectForCheck)) ;
         {
-            LOGGER.warn("Received emails is incorrect");
+            LOGGER.info("Received emails is correct");
         }
     }
 

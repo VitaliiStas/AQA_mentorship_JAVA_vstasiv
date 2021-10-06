@@ -68,14 +68,14 @@ public class BasePage {
 
     public WebElement getWebElementByXpath(String elementXpath) {
         waitForElement(webDriver.findElement(By.xpath("/html/body")), 10);
-        WebElement webElement = webDriver.findElement(By.xpath(elementXpath));
-        return webElement;
+        return webDriver.findElement(By.xpath(elementXpath));
     }
 
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
 //        new WebDriverWait(webDriver, timeForWaitInSec).until(ExpectedConditions.visibilityOf(webElement));
-        new WebDriverWait(webDriver, timeForWaitInSec).ignoring(StaleElementReferenceException.class, TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webElement));
+        new WebDriverWait(webDriver, timeForWaitInSec).ignoring(StaleElementReferenceException.class,
+                TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     //For pause

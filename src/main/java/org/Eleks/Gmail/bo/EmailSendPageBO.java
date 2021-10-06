@@ -6,11 +6,13 @@ import org.Eleks.Gmail.po.EmailPage;
 import org.Eleks.Gmail.po.MailSendPage;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class EmailSendPageBO {
-    protected static List<String> sendToListOrCC = Arrays.asList("tt8397519+1@gmail.com", "tt8397519+2@gmail.com", "tt8397519+3@gmail.com");
+    protected static List<String> sendToListOrCC = Arrays.asList(
+            "tt8397519+1@gmail.com", "tt8397519+2@gmail.com", "tt8397519+3@gmail.com");
 
 
     public static void sendAndCheckEmail() {
@@ -20,8 +22,12 @@ public class EmailSendPageBO {
         mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         mailSendPage.goToEmailPage();
         mailSendPage.verifyIsOpen(MailSendPage.getMailCreateButtonForCheck());
-        mailSendPage.sendEmail(emailPage.generateRandomString(), sendToListOrCC);
-        emailPage.checkEmail(emailPage.emailBodyForCheck, mailSendPage.emailSubject,sendToListOrCC);
+        mailSendPage.sendEmail(emailPage.generateRandomString(),
+                sendToListOrCC, "src/main/resources/testImage.jpg");
+        emailPage.downloadFile();
+        MailSendPage.filesComparing(emailPage.getAbsolutePath("src/main/resources/testImage.jpg")
+                ,"C:\\Users\\vitalii.stasiv\\Downloads\\testImage.jpg");
+        emailPage.checkEmail(emailPage.emailBodyForCheck, mailSendPage.emailSubject, sendToListOrCC);
     }
 //    public static void sendAndCheckEmail() {
 //
@@ -37,8 +43,6 @@ public class EmailSendPageBO {
 //
 //        mailSendPage.verifyIsOpen(MailSendPage.getMailCreateButtonForCheck());
 //    }
-
-
 
 
     public static void checkSortingEmailsOnEmailPage() {
@@ -58,8 +62,8 @@ public class EmailSendPageBO {
     public static void checkEmailDeleting() {
         EmailPage emailPage = new EmailPage();
         //type number email for deleting
-        emailPage.setEmailSubjectForDelete("Subject KxPAjjkPfaVu");
+        emailPage.setEmailSubjectForDelete("Subject JyvGLHyrbJqW");
         emailPage.deleteEmailBySubject();
-        emailPage.checkIfEmailIsDeletedBySubject("Subject KxPAjjkPfaVu");
+        emailPage.checkIfEmailIsDeletedBySubject(String.valueOf(new MailSendPage().emailSubject));
     }
 }

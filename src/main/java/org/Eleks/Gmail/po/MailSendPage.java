@@ -1,6 +1,7 @@
 package org.Eleks.Gmail.po;
 
 
+import io.opentelemetry.sdk.resources.Resource;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -12,10 +13,20 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.List;
 
 
 public class MailSendPage extends BasePage {
@@ -23,10 +34,13 @@ public class MailSendPage extends BasePage {
     public String emailSubject = "";
     public String emailBodyForCheck = "";
     private Integer emailNumForDelete = 0;
-    private String emailXpath = "//tr//td//span[@title]";
     private String emailSubjectForDelete = "";
-    private String subjectOnEmailPageXpath = "//span[@class='bog']/span";
+    private final String emailXpath = "//tr//td//span[@title]";
+    private final String subjectOnEmailPageXpath = "//span[@class='bog']/span";
+    private final Actions action = new Actions(webDriver);
+    private static final Logger LOGGER = LogManager.getLogger(EmailPage.class);
 
+    private final By emailDataXpath = By.xpath(emailXpath);
 
     @FindBy(xpath = "//div[@class='T-I T-I-KE L3']")
     private static WebElement mailCreateButton;
@@ -55,6 +69,12 @@ public class MailSendPage extends BasePage {
     @FindBy(xpath = "//span[@class='bog']/span")
     private WebElement subjectOnEmailPage;
 
+    @FindBy(xpath = "//input[@type='file']")
+    private WebElement addFile;
+
+    @FindBy(xpath = "//div[@role='button' and @data-tooltip='Download']")
+    private WebElement downloadFile;
+
 
     public MailSendPage() {
     }
@@ -63,21 +83,22 @@ public class MailSendPage extends BasePage {
         return mailCreateButton;
     }
 
-
-    public void goToEmailSendForm() {
-        waitForElement(mailCreateButton, 10);
-        mailCreateButton.click();
+    public static String generateRandomString() {
+        return RandomStringUtils.randomAlphabetic(12);
     }
 
-    public String generateRandomString() {
-        String randomString = RandomStringUtils.randomAlphabetic(12);
-        return randomString;
+    public String getAbsolutePath(String relativePath) {
+        String absolutePath = FileSystems.getDefault().getPath(relativePath).normalize().toAbsolutePath().toString();
+        return absolutePath;
     }
 
+    public void downloadFile() {
+        downloadFile.click();
+    }
 
-    @Step("Send test email")
+    @Step("Send test email with attachment")
     //send email with random body and subject and CC
-    public void sendEmail(String testEmailText, List<String> sendToOrCC) {
+    public void sendEmail(String testEmailText, List<String> sendToOrCC, String pathToFile) {
         goToEmailSendForm();
         waitForElement(sendToEmail, 10);
         for (String emails : sendToOrCC) {
@@ -89,6 +110,7 @@ public class MailSendPage extends BasePage {
         //for verification of message body
         emailBodyForCheck = generateRandomString();
         bodyOfMessage.sendKeys(emailBodyForCheck);
+        attachFile(pathToFile);
         sendButton.click();
     }
 
@@ -127,7 +149,7 @@ public class MailSendPage extends BasePage {
     }
 
 
-    @Step("Check email sorting")
+    //    @Step("Check email sorting")
 //    public void checkEmailOrder() {
 //        ArrayList<String> defOrderEmailList = new ArrayList<>();
 //        waitForElement(emailDataElement, 10);
@@ -140,36 +162,51 @@ public class MailSendPage extends BasePage {
 //        Assert.assertEquals(sortedList, defOrderEmailList,
 //                "Email Sorting is incorrect");
 //    }
+
+    protected static Path getPathToFile(String pathToFile) {
+        Path path = Paths.get(pathToFile);
+        return path;
+    }
+
+
+    public static boolean filesComparing(String pathToFile1, String pathToFile2)  {
+        Path path1 = getPathToFile(pathToFile1);
+        Path path2 = getPathToFile(pathToFile2);
+        boolean isEqual = false;
+        try (BufferedInputStream fis1 = new BufferedInputStream(new FileInputStream(path1.toFile()));
+             BufferedInputStream fis2 = new BufferedInputStream(new FileInputStream(path2.toFile()))) {
+
+            if (fis1.equals(fis2)) {
+                isEqual = true;
+                LOGGER.info("Files are the same");
+            }else {
+                LOGGER.warn("The files are different");
+                Assert.fail("The files are different");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isEqual;
+    }
+
+
+    //todo винести в  ВО
+    @Step("Check email sorting")
     public void checkEmailOrder() {
         ArrayList<LocalDateTime> defOrderEmailList = new ArrayList<>();
         waitForElement(emailDataElement, 10);
         List<WebElement> emailsList = webDriver.findElements(emailDataXpath);
         for (WebElement date : emailsList) {
-            defOrderEmailList.add(parseDateTimeFromTitle(date.getAttribute("title")));
+            defOrderEmailList.add(parseDateTime(date.getAttribute("title")));
         }
         ArrayList<LocalDateTime> sortedList = new ArrayList<>(defOrderEmailList);
-        Collections.sort(sortedList,
-                Collections.reverseOrder());
+        sortedList.sort(Collections.reverseOrder());
         Assert.assertEquals(sortedList, defOrderEmailList,
                 "Email Sorting is incorrect");
+
     }
-
-
-    public String getEmailDateTime(WebElement element) {
-        String emailDate = element.getAttribute("title");
-        return emailDate;
-    }
-
-    //todo change to local date time
-    public String convertDate(String date) {
-        //take gmail date in format "EEEE, MMM d, yyyy, HH:mm a" to the "yyyy-MM-dd HH:mm"
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String convertedDate = sdf.format(new Date(date));
-        return convertedDate;
-    }
-
-    //'Sun, Sep 26, 2021, 4:00 PM'
-    // чому формат часу міняєтьсяб через Locale
 
 
     @Step("check If Email Is Deleted By Subject")
@@ -197,34 +234,6 @@ public class MailSendPage extends BasePage {
         this.emailNumForDelete = emailNumForDelete;
     }
 
-    public Integer getEmailNumForDelete() {
-
-        return emailNumForDelete;
-    }
-
-    public WebElement getEmailForDelete() {
-        //use the selected email num for delete proper email
-        String xpathForEmailDeleting = String.valueOf(new StringBuffer("//tr//td//span[@title]").insert(4, String.format("[%s]", Integer.toString(getEmailNumForDelete()))));
-        WebElement emailForDelete = getWebElementByXpath("//tr[3]//td//span[@title]");
-        return emailForDelete;
-    }
-
-    public void setEmailSubjectForDelete(String emailSubjectForDelete) {
-        this.emailSubjectForDelete = emailSubjectForDelete;
-    }
-
-    public WebElement getEmailSubjectForDelete() {
-        WebElement emailForDelete = null;
-        List<WebElement> subjectList = webDriver.findElements(By.xpath(subjectOnEmailPageXpath));
-        waitForElement(emailDataElement, 10);
-
-        for (WebElement element : subjectList) {
-            if (element.getText().equals(emailSubjectForDelete)) {
-                emailForDelete = element;
-            }
-        }
-        return emailForDelete;
-    }
 
     @Step("Delete the selected email")
     public void deleteEmail() {
@@ -244,26 +253,72 @@ public class MailSendPage extends BasePage {
 
     }
 
+
     public String getDeleteEmailTime() {
-        String deleteEmailTime = getEmailDateTime(getEmailForDelete());
-        return deleteEmailTime;
+        return getEmailDateTime(getEmailForDelete());
     }
 
     public String getLatestEmailTime() {
-        String latestEmailTime = getEmailDateTime(emailDataElement);
-        return latestEmailTime;
+        return getEmailDateTime(emailDataElement);
     }
 
-    protected LocalDateTime parseDateTimeFromTitle(String dateTimeFromTitle) {
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeFromTitle,
+    protected LocalDateTime parseDateTime(String dateTimeFromTitle) {
+//parseDateTimeFromTitle
+        return LocalDateTime.parse(dateTimeFromTitle,
                 DateTimeFormatter.ofPattern("E, MMM d, y, h:mm a", Locale.US));
-        return dateTime;
     }
 
-    private Actions action = new Actions(webDriver);
-    private static final Logger LOGGER = LogManager.getLogger(EmailPage.class);
+    protected String getEmailDateTime(WebElement element) {
+        return element.getAttribute("title");
+    }
 
-    private By emailDataXpath = By.xpath(emailXpath);
+    //todo change to local date time
+    protected String convertDate(String date) {
+        //take gmail date in format "EEEE, MMM d, yyyy, HH:mm a" to the "yyyy-MM-dd HH:mm"
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return sdf.format(new Date(date));
+    }
+
+    protected WebElement getEmailSubjectForDelete() {
+        WebElement emailForDelete = null;
+        List<WebElement> subjectList = webDriver.findElements(By.xpath(subjectOnEmailPageXpath));
+        waitForElement(emailDataElement, 10);
+
+        for (WebElement element : subjectList) {
+            if (element.getText().equals(emailSubjectForDelete)) {
+                emailForDelete = element;
+            }
+        }
+        return emailForDelete;
+    }
+
+    protected Integer getEmailNumForDelete() {
+
+        return emailNumForDelete;
+    }
+
+    protected WebElement getEmailForDelete() {
+        //use the selected email num for delete proper email
+        String xpathForEmailDeleting = String.valueOf(new StringBuffer("//tr//td//span[@title]").insert(4,
+                String.format("[%s]", Integer.toString(getEmailNumForDelete()))));
+        return getWebElementByXpath("//tr[3]//td//span[@title]");
+    }
+
+    public void setEmailSubjectForDelete(String emailSubjectForDelete) {
+        this.emailSubjectForDelete = emailSubjectForDelete;
+    }
+
+    @Step("Attach test file")
+    protected void attachFile(String relativePathToFile) {
+//        attach test file
+//        waitForElement(addFile, 10);
+        addFile.sendKeys(getAbsolutePath(relativePathToFile));
+    }
+
+    protected void goToEmailSendForm() {
+        waitForElement(mailCreateButton, 10);
+        mailCreateButton.click();
+    }
 
 }
 
