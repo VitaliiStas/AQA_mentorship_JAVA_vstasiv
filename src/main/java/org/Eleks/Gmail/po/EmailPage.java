@@ -52,13 +52,17 @@ public class EmailPage extends MailSendPage {
     //Check received email with random Body, subject, emails
     @Step("Check received email")
     public void checkEmail(String testEmailText,String subjectForCheck,List<String> listSentToEmails) {
+//        pauseSec(2);
         waitForElement(receivedEmailBody, 10);
-
-        if (!receivedEmailBody.getText().equals(testEmailText)||!receivedSubjectBody.getText().equals(subjectForCheck)) {
-            LOGGER.warn("Received email body or subject is incorrect");
-        } else if (!getListOfSendToOrCC().equals(subjectForCheck)) ;
+        if (!receivedEmailBody.getText().equals(testEmailText)) {
+            LOGGER.warn("Received email body is incorrect");
+        }else if(!receivedSubjectBody.getText().equals(subjectForCheck)){
+            LOGGER.warn("Received email subject is incorrect");
+        } else if (!getListOfSendToOrCC().equals(subjectForCheck))
         {
-            LOGGER.info("Received emails is correct");
+            LOGGER.warn("CC email is incorrect");
+        }else {
+            LOGGER.info("message is correct");
         }
     }
 
