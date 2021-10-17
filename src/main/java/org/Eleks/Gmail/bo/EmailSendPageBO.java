@@ -29,6 +29,22 @@ public class EmailSendPageBO {
     private String pathToFile;
     private String pathToDownloadedFile;
 
+
+
+    protected static List<String> sendToListOrCC = Arrays.asList(
+            "tt8397519@gmail.com"
+            , "tt8397519+1@gmail.com"
+            , "tt8397519+2@gmail.com"
+            , "tt8397519+3@gmail.com");
+
+    private final EmailPage emailPage = new EmailPage();
+    private final MailSendPage mailSendPage = new MailSendPage();
+    private final Actions action = new Actions(DriverFactory.getWebDriver());
+    private static final ThreadLocal<EmailSendPageBO> FOR_TEST = new ThreadLocal<>();
+    public static EmailSendPageBO getForTest() {
+          return FOR_TEST.get();
+    }
+
     public String getTestEmailText() {
         return testEmailText;
     }
@@ -47,25 +63,6 @@ public class EmailSendPageBO {
 
     public String getPathToDownloadedFile() {
         return pathToDownloadedFile;
-    }
-
-    protected static List<String> sendToListOrCC = Arrays.asList(
-            "tt8397519@gmail.com"
-            , "tt8397519+1@gmail.com"
-            , "tt8397519+2@gmail.com"
-            , "tt8397519+3@gmail.com");
-
-    private final EmailPage emailPage = new EmailPage();
-    private final MailSendPage mailSendPage = new MailSendPage();
-    private final Actions action = new Actions(DriverFactory.getWebDriver());
-
-
-    // TODO: 15.10.2021
-    //неможе бути статік бо буде спільний для всіх тестів і перешкоджатиме паралельному запуску тестів
-    private static final ThreadLocal<EmailSendPageBO> FOR_TEST = new ThreadLocal<>();
-
-    public static EmailSendPageBO getForTest() {
-          return FOR_TEST.get();
     }
 
 
@@ -89,33 +86,7 @@ public class EmailSendPageBO {
                 , sendToListOrCC);
     }
 
-    private void sendEmailWithBuilder() {
 
-        getForTest().mailSendPage
-                .goToEmailSendForm();
-        getForTest().mailSendPage
-                .waitForElement(getForTest().mailSendPage
-                        .getSendToEmail(), 10);
-        for (String emails : getForTest().sendToOrCC) {
-            getForTest().mailSendPage
-                    .getSendToEmail()
-                    .sendKeys(emails);
-            getForTest().mailSendPage
-                    .getSendToEmail()
-                    .sendKeys(Keys.ENTER);
-        }
-        getForTest().mailSendPage.emailSubject = getForTest().getTestEmailSubject();
-        getForTest().mailSendPage
-                .getSubjectOfMessage()
-                .sendKeys(getForTest().mailSendPage.getEmailSubject());
-        getForTest().mailSendPage.getBodyOfMessage()
-                .sendKeys(getForTest().getTestEmailText());
-        getForTest().mailSendPage
-                .attachFile(getForTest().pathToFile);
-        getForTest().mailSendPage
-                .getSendButton()
-                .click();
-    }
 
     public static void sendAndCheckEmailWithBuilder() {
         FOR_TEST.set(createAnObjectForTest());
@@ -159,7 +130,7 @@ public class EmailSendPageBO {
     public EmailSendPageBO() {
 
     }
-
+    @Step("Check if email deleted")
     public static void checkEmailDeleting() {
         EmailPage emailPage = new EmailPage();
         DateTimeHelper dateTimeHelper = new DateTimeHelper();
@@ -170,16 +141,36 @@ public class EmailSendPageBO {
         String latestEmailTime = dateTimeHelper.getLatestEmailTime();
         emailPage.checkIfEmailIsDeleted(latestEmailTime, deleteEmailTime);
     }
+    @Step("Check email sending with builder")
+    private void sendEmailWithBuilder() {
+        getForTest().mailSendPage
+                .goToEmailSendForm();
+        getForTest().mailSendPage
+                .waitForElement(getForTest().mailSendPage
+                        .getSendToEmail(), 10);
+        for (String emails : getForTest().sendToOrCC) {
+            getForTest().mailSendPage
+                    .getSendToEmail()
+                    .sendKeys(emails);
+            getForTest().mailSendPage
+                    .getSendToEmail()
+                    .sendKeys(Keys.ENTER);
+        }
+        getForTest().mailSendPage.emailSubject = getForTest().getTestEmailSubject();
+        getForTest().mailSendPage
+                .getSubjectOfMessage()
+                .sendKeys(getForTest().mailSendPage.getEmailSubject());
+        getForTest().mailSendPage.getBodyOfMessage()
+                .sendKeys(getForTest().getTestEmailText());
+        getForTest().mailSendPage
+                .attachFile(getForTest().pathToFile);
+        getForTest().mailSendPage
+                .getSendButton()
+                .click();
+    }
 
     private void checkEmailDeletingWithSubject() {
         EmailPage emailPage = new EmailPage();
-//        Subject QxwTszekQsTj
-//        Subject jgKrCweDWWdt
-//        Subject HLPjHjEWoLwk
-//        Subject lhxdzVWmBtaK
-//        Subject DnqVbSYpUjAR
-//        Subject XmmeXVrJWZRt
-
         emailPage.setEmailSubjectForDelete(getForTest().getTestEmailSubject());
         emailPage.deleteEmailBySubject();
         new EmailSendPageBO()
@@ -198,7 +189,6 @@ public class EmailSendPageBO {
     }
 
 
-    //todo винести в  ВО
     @Step("Check email sorting")
     private void checkEmailOrder() {
         ArrayList<LocalDateTime> defOrderEmailList = new ArrayList<>();
