@@ -1,6 +1,5 @@
 package org.Eleks.Gmail.po;
 
-//import io.qameta.allure.Step;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
@@ -14,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -74,7 +74,7 @@ public class BasePage {
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
 //        new WebDriverWait(webDriver, timeForWaitInSec).until(ExpectedConditions.visibilityOf(webElement));
-        new WebDriverWait(webDriver, timeForWaitInSec).ignoring(StaleElementReferenceException.class,
+        new WebDriverWait(webDriver, Duration.ofSeconds(timeForWaitInSec)).ignoring(StaleElementReferenceException.class,
                 TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
@@ -160,7 +160,7 @@ public class BasePage {
 
     public void switchToTab(Integer tabNum) {
         pauseSec(2);
-        ArrayList<String> openedTabs = new ArrayList<String>(webDriver.getWindowHandles());
+        ArrayList<String> openedTabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(openedTabs.get(tabNum));
     }
 

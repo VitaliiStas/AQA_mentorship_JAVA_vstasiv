@@ -7,9 +7,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class EmailPage extends MailSendPage {
@@ -20,14 +23,18 @@ public class EmailPage extends MailSendPage {
     @FindBy(xpath = "//div[@class='ha']/h2")
     private WebElement receivedSubjectBody;
 
-    private Actions action = new Actions(webDriver);
+    @FindBy(xpath = "//div[@role='button' and @aria-label='Show details']")
+    private WebElement showDetails;
 
-    private String sendToOrCCXpaths = "//tr//td//span[@class='gI']//span[@email]";
+    @FindBy(xpath = "//div[@class='iw ajw']")
+    private WebElement frameCC;
+
+
+    private final String sendToOrCCXpaths = "//span[@translate ]/span[@email and @class='g2']";
 
     private static final Logger LOGGER = LogManager.getLogger(EmailPage.class);
 
-    public EmailPage() {
-    }
+
 
     //    @Step("Check received email")
 //    public void checkEmail(String testEmailText) {
@@ -51,28 +58,22 @@ public class EmailPage extends MailSendPage {
 
     //Check received email with random Body, subject, emails
     @Step("Check received email")
-    public void checkEmail(String testEmailText,String subjectForCheck,List<String> listSentToEmails) {
+    public void checkEmail(String testEmailText, String actualSubjectForCheck, List<String> listSentToEmails) {
 //        pauseSec(2);
         waitForElement(receivedEmailBody, 10);
-        if (!receivedEmailBody.getText().equals(testEmailText)) {
-            LOGGER.warn("Received email body is incorrect");
-        }else if(!receivedSubjectBody.getText().equals(subjectForCheck)){
-            LOGGER.warn("Received email subject is incorrect");
-        } else if (!getListOfSendToOrCC().equals(subjectForCheck))
-        {
-            LOGGER.warn("CC email is incorrect");
-        }else {
-            LOGGER.info("message is correct");
-        }
+        Assert.assertEquals(receivedEmailBody.getText(),testEmailText,"Received email BODY is incorrect");
+        Assert.assertEquals(actualSubjectForCheck,receivedSubjectBody.getText(),"Received email subject is incorrect");
+        Assert.assertEquals(getListOfSendToOrCC(),listSentToEmails,"CC email is incorrect");
+        LOGGER.info("message is correct");
+
     }
 
-
     protected List<String> getListOfSendToOrCC() {
-        ArrayList<String> listOfSendToOrCC = new ArrayList<>();
         waitForElement(receivedSubjectBody, 10);
+        ArrayList<String> listOfSendToOrCC = new ArrayList<>();
         List<WebElement> listOfSendToOrCCWebElements = webDriver.findElements(By.xpath(sendToOrCCXpaths));
-        for (WebElement date : listOfSendToOrCCWebElements) {
-            listOfSendToOrCC.add(date.getAttribute("email"));
+        for (WebElement cc : listOfSendToOrCCWebElements) {
+            listOfSendToOrCC.add(cc.getAttribute("email"));
         }
         return listOfSendToOrCC;
     }

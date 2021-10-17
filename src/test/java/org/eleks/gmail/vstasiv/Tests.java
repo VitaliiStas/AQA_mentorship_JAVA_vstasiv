@@ -4,9 +4,8 @@ package org.eleks.gmail.vstasiv;
 import org.Eleks.Gmail.bo.LoginBO;
 import org.Eleks.Gmail.bo.EmailSendPageBO;
 import org.Eleks.Gmail.listeners.TestListener;
-import org.Eleks.Gmail.po.EmailPage;
 import org.Eleks.Gmail.po.HomePage;
-import org.testng.Assert;
+import org.Eleks.Gmail.po.MailSendPage;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -37,6 +36,13 @@ public class Tests extends BaseTest {
     }
 
     @Test
+    public void sendAndCheckEmailWithBuilderTest() {
+        LoginBO.login();
+        HomePage.goToMailSendPage();
+        EmailSendPageBO.sendAndCheckEmailWithBuilder();
+    }
+
+    @Test
     public void sortingEmailsOnEmailPageTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
@@ -48,5 +54,11 @@ public class Tests extends BaseTest {
         LoginBO.login();
         HomePage.goToMailSendPage();
         EmailSendPageBO.checkEmailDeleting();
+    }
+    @Test
+    public void emailDeletingTestWithSubject() {
+        LoginBO.login();
+        HomePage.goToMailSendPage();
+        EmailSendPageBO.sendAndCheckEmailWithBuilder();
     }
 }

@@ -16,7 +16,7 @@ public class LoginBO {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login(user.getUserName(), user.getPassword());
 
-        homePage.verifyIsOpen(homePage.getProfileImageForCheck());
+        homePage.verifyIsOpen(BasePage.getProfileImageForCheck());
         //        homePage.verifyIsOpen();
         LOGGER.info("Login successfully");
     }
