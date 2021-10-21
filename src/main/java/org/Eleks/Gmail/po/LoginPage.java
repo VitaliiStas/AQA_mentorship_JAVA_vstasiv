@@ -19,6 +19,12 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@type ='password']")
     private WebElement passwordField;
 
+    @FindBy(xpath = "//div[@jsname='B34EJ']")
+    private WebElement incorrectEmailMessage;
+
+    @FindBy(xpath = "//div[@jsname='B34EJ']/span[@jsslot]")
+    private WebElement incorrectPasswordMessage;
+
     private static final Logger LOGGER = LogManager.getLogger(LoginBO.class);
 
 
@@ -47,6 +53,32 @@ public class LoginPage extends BasePage {
     public HomePage login(String userName, String password) {
         typeUsername(userName);
         typePassword(password);
+        return new HomePage();
+    }
+
+    @Step("Type false user name")
+    public LoginPage typeFalseUsername(String userName) {
+        typeUsername("Incorrect user name");
+        waitForElement(incorrectEmailMessage, 5);
+        checkErrorMessageIsDisplayed(incorrectEmailMessage);
+        emailField.clear();
+        inputData(emailField, userName);
+        return this;
+    }
+
+    @Step("Type false password name")
+    public LoginPage typeFalsePassword(String password) {
+        typePassword("Incorrect password");
+        waitForElement(incorrectPasswordMessage, 5);
+        checkErrorMessageIsDisplayed(incorrectPasswordMessage);
+        passwordField.clear();
+//        inputData(passwordField, password);
+        return this;
+    }
+
+    public HomePage loginFailed(String userName, String password) {
+        typeFalseUsername(userName);
+        typeFalsePassword(password);
         return new HomePage();
     }
 
