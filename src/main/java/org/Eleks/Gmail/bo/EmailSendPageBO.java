@@ -3,13 +3,11 @@ package org.Eleks.Gmail.bo;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.factories.UserFactory;
-import org.Eleks.Gmail.po.BasePage;
 import org.Eleks.Gmail.po.DateTimeHelper;
 import org.Eleks.Gmail.po.EmailPage;
 import org.Eleks.Gmail.po.MailSendPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -40,10 +38,8 @@ public class EmailSendPageBO {
     private final EmailPage emailPage = new EmailPage();
     private final MailSendPage mailSendPage = new MailSendPage();
     private final Actions action = new Actions(DriverFactory.getWebDriver());
-    private static final ThreadLocal<EmailSendPageBO> FOR_TEST = new ThreadLocal<>();
-    public static EmailSendPageBO getForTest() {
-          return FOR_TEST.get();
-    }
+    
+
 
     public String getTestEmailText() {
         return testEmailText;
@@ -66,7 +62,7 @@ public class EmailSendPageBO {
     }
 
 
-    public static void sendAndCheckEmail() {
+    public void sendAndCheckEmail() {
         EmailSendPageBO test = new EmailSendPageBO();
         EmailPage emailPage = new EmailPage();
         test.mailSendPage
@@ -88,20 +84,19 @@ public class EmailSendPageBO {
 
 
 
-    public static void sendAndCheckEmailWithBuilder() {
-        FOR_TEST.set(createAnObjectForTest());
-        EmailSendPageBO emailSendPageBO = new EmailSendPageBO();
-        emailSendPageBO.getForTest().mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
-        emailSendPageBO.getForTest().sendEmailWithBuilder();
-        emailSendPageBO.getForTest().mailSendPage
+    public  void sendAndCheckEmailWithBuilder() {
+//        EmailSendPageBO emailSendPageBO = new EmailSendPageBO();
+        mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
+        sendEmailWithBuilder();
+        mailSendPage
                 .goToEmailPage();
-        emailSendPageBO.getForTest().mailSendPage
+        mailSendPage
                 .downloadFile();
-        filesComparing(emailSendPageBO.getForTest().getPathToFile()
-                , emailSendPageBO.getForTest().getPathToDownloadedFile());
-        emailSendPageBO.getForTest().emailPage.checkEmail(emailSendPageBO.getForTest().getTestEmailText()
-                , emailSendPageBO.getForTest().getTestEmailSubject()
-                , emailSendPageBO.getForTest().getSendToOrCC());
+        filesComparing(getPathToFile()
+                , getPathToDownloadedFile());
+        emailPage.checkEmail(getTestEmailText()
+                , getTestEmailSubject()
+                , getSendToOrCC());
 
     }
 
@@ -109,7 +104,6 @@ public class EmailSendPageBO {
         new EmailSendPageBO().checkEmailOrder();
     }
 
-    //todo винести в  ВО
     @Step("check If Email Is Deleted By Subject")
     public void checkIfEmailIsDeletedBySubject() {
         action.moveToElement(mailSendPage.getWebElementByXpath("/html/body"));
@@ -143,41 +137,42 @@ public class EmailSendPageBO {
     }
     @Step("Check email sending with builder")
     private void sendEmailWithBuilder() {
-        getForTest().mailSendPage
+        mailSendPage
                 .goToEmailSendForm();
-        getForTest().mailSendPage
-                .waitForElement(getForTest().mailSendPage
+        mailSendPage
+                .waitForElement(mailSendPage
                         .getSendToEmail(), 10);
-        for (String emails : getForTest().sendToOrCC) {
-            getForTest().mailSendPage
+        for (String emails : sendToOrCC) {
+            mailSendPage
                     .getSendToEmail()
                     .sendKeys(emails);
-            getForTest().mailSendPage
+            mailSendPage
                     .getSendToEmail()
                     .sendKeys(Keys.ENTER);
         }
-        getForTest().mailSendPage.emailSubject = getForTest().getTestEmailSubject();
-        getForTest().mailSendPage
+        mailSendPage.emailSubject = getTestEmailSubject();
+        mailSendPage
                 .getSubjectOfMessage()
-                .sendKeys(getForTest().mailSendPage.getEmailSubject());
-        getForTest().mailSendPage.getBodyOfMessage()
-                .sendKeys(getForTest().getTestEmailText());
-        getForTest().mailSendPage
-                .attachFile(getForTest().pathToFile);
-        getForTest().mailSendPage
+                .sendKeys(mailSendPage.getEmailSubject());
+        mailSendPage.getBodyOfMessage()
+                .sendKeys(getTestEmailText());
+        mailSendPage
+                .attachFile(pathToFile);
+        mailSendPage
                 .getSendButton()
                 .click();
     }
 
-    private void checkEmailDeletingWithSubject() {
+    public void checkEmailDeletingWithSubject() {
         EmailPage emailPage = new EmailPage();
-        emailPage.setEmailSubjectForDelete(getForTest().getTestEmailSubject());
+        sendEmailWithBuilder();
+        emailPage.setEmailSubjectForDeleteText(getTestEmailSubject());
         emailPage.deleteEmailBySubject();
         new EmailSendPageBO()
                 .checkIfEmailIsDeletedBySubject();
     }
 
-    private static void filesComparing(String pathToFile1, String pathToFile2) {
+    private  void filesComparing(String pathToFile1, String pathToFile2) {
         File expectedFile = new File(MailSendPage.getPathToFile(pathToFile1));
         File actualFile = new File(MailSendPage.getPathToFile(pathToFile2));
         try {
@@ -206,7 +201,6 @@ public class EmailSendPageBO {
 
     }
 
-    //todo винести в  ВО
     @Step("Send test email with attachment")
     //send email with random body and subject and CC
     private void sendEmail(List<String> sendToOrCC) {
@@ -228,7 +222,7 @@ public class EmailSendPageBO {
         mailSendPage.getSendButton().click();
     }
 
-    private static EmailSendPageBO createAnObjectForTest() {
+    public static EmailSendPageBO create() {
         return new Builder()
                 .setSendToOrCC(sendToListOrCC)
                 .setPathToFile("src/main/resources/testImage.jpg")

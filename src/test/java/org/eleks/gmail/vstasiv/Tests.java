@@ -32,14 +32,14 @@ public class Tests extends BaseTest {
     public void sendAndCheckEmailTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
-        EmailSendPageBO.sendAndCheckEmail();
+        EmailSendPageBO.create().sendAndCheckEmail();
     }
 
     @Test
     public void sendAndCheckEmailWithBuilderTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
-        EmailSendPageBO.sendAndCheckEmailWithBuilder();
+        EmailSendPageBO.create().sendAndCheckEmailWithBuilder();
     }
 
     @Test
@@ -59,6 +59,6 @@ public class Tests extends BaseTest {
     public void emailDeletingTestWithSubject() {
         LoginBO.login();
         HomePage.goToMailSendPage();
-        EmailSendPageBO.sendAndCheckEmailWithBuilder();
+        EmailSendPageBO.create().checkEmailDeletingWithSubject();
     }
 }

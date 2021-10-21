@@ -175,5 +175,7 @@ public class BasePage {
             LOGGER.info("Proper massage is displayed : " + element.getText());
     }
 
+
+
 }
 
