@@ -64,7 +64,8 @@ public class MailSendPage extends BasePage {
     @FindBy(xpath = "//div[@role='button' and @data-tooltip='Download']")
     private WebElement downloadFile;
 
-    public MailSendPage() {}
+    public MailSendPage() {
+    }
 
     public WebElement getBodyOfMessage() {
         return bodyOfMessage;
@@ -115,7 +116,6 @@ public class MailSendPage extends BasePage {
     }
 
 
-
     public void setEmailNumForDelete(int emailNumForDelete) {
         this.emailNumForDelete = emailNumForDelete;
     }
@@ -138,19 +138,17 @@ public class MailSendPage extends BasePage {
     }
 
 
+    //    todo шукати по тексту, чи можна якось використати трай-кеч щоб шукати елемент, типу якщо немає то ловить ексепшон і тест успішний?
+//
     @Step("check If Email Is Deleted By Subject")
-//    todo шукати по тексту
-
     public void checkIfEmailIsDeletedBySubject(String subject) {
-
-//        setEmailSubjectForDelete("nclXsapqDkno");
         action.moveToElement(getWebElementByXpath("/html/body"));
-        List<WebElement> subjectList = webDriver.findElements(By.xpath(subjectOnEmailPageXpath));
-        List<String> subjectTextList = new ArrayList<>();
-        waitForElement(emailDataElement, 10);
+        List<WebElement> subjectList = DriverFactory.getWebDriver()
+                .findElements(By.xpath(getSubjectOnEmailPageXpath()));
+        waitForElement(getEmailDataElement(), 10);
 
         for (WebElement element : subjectList) {
-            if (element.getText().equals(getEmailSubjectElement(subject).getText())) {
+            if (element.getText().equals(subject)) {
                 Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
             }
         }
@@ -198,14 +196,10 @@ public class MailSendPage extends BasePage {
 
     }
 
-//        todo шукати по тексту
+    //        todo шукати по тексту
     public WebElement getEmailSubjectElement(String subject) {
         return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='"+subject+"']")));
-    }
-
-    protected int getEmailNumForDelete() {
-        return emailNumForDelete;
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")));
     }
 
     protected WebElement getEmailForDelete() {

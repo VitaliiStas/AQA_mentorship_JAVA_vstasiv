@@ -101,23 +101,6 @@ public class EmailSendPageBO {
         new EmailSendPageBO().checkEmailOrder();
     }
 
-    @Step("check If Email Is Deleted By Subject")
-    public void checkIfEmailIsDeletedBySubject(String subject) {
-        action.moveToElement(mailSendPage.getWebElementByXpath("/html/body"));
-        List<WebElement> subjectList = DriverFactory.getWebDriver()
-                .findElements(By.xpath(new MailSendPage()
-                        .getSubjectOnEmailPageXpath()));
-        mailSendPage
-                .waitForElement(new MailSendPage()
-                        .getEmailDataElement(), 10);
-
-        for (WebElement element : subjectList) {
-            if (element.getText().equals(subject)) {
-                Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
-            }
-        }
-    }
-
     public EmailSendPageBO() {
 
     }
@@ -163,13 +146,9 @@ public class EmailSendPageBO {
     }
 
     public void checkEmailDeletingWithSubject() {
-//        EmailPage emailPage = new EmailPage();
         sendEmailWithBuilder();
-//        In this please can specify the email subject for delete
-
-//        emailPage.setEmailSubjectForDeleteText(getTestEmailSubject());
         emailPage.deleteEmailBySubject(getTestEmailSubject());
-        checkIfEmailIsDeletedBySubject(getTestEmailSubject());
+        mailSendPage.checkIfEmailIsDeletedBySubject(getTestEmailSubject());
     }
 
     private void filesComparing(String pathToFile1, String pathToFile2) {
