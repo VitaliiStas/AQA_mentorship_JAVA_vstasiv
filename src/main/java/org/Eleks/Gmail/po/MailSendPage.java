@@ -24,10 +24,9 @@ public class MailSendPage extends BasePage {
     public String emailSubject = "";
     private final Actions action = new Actions(webDriver);
     private String emailBodyForCheck = "";
-    private Integer emailNumForDelete = 0;
-    private String emailSubjectForDeleteText = "";
+    private int emailNumForDelete = 3;
     private final String emailXpath = "//tr//td//span[@title]";
-    private final String subjectOnEmailPageXpath = "//span[@class='bog']/span";
+    private final String subjectOnEmailPageXpath = "//span[@class='bog']/span[@class='bqe']";
 
     private final By emailDataXpath = By.xpath(emailXpath);
 
@@ -65,8 +64,7 @@ public class MailSendPage extends BasePage {
     @FindBy(xpath = "//div[@role='button' and @data-tooltip='Download']")
     private WebElement downloadFile;
 
-    public MailSendPage() {
-    }
+    public MailSendPage() {}
 
     public WebElement getBodyOfMessage() {
         return bodyOfMessage;
@@ -92,10 +90,6 @@ public class MailSendPage extends BasePage {
         return sendToEmail;
     }
 
-    public String getEmailSubjectForDeleteText() {
-        return emailSubjectForDeleteText;
-    }
-
     public String getSubjectOnEmailPageXpath() {
         return subjectOnEmailPageXpath;
     }
@@ -106,10 +100,6 @@ public class MailSendPage extends BasePage {
 
     public WebElement getEmailDataElement() {
         return emailDataElement;
-    }
-
-    public static WebElement getMailCreateButtonForCheck() {
-        return mailCreateButton;
     }
 
     public static String generateRandomString() {
@@ -124,11 +114,9 @@ public class MailSendPage extends BasePage {
         this.emailBodyForCheck = emailBodyForCheck;
     }
 
-    public void setEmailSubjectForDeleteText(String emailSubjectForDeleteText) {
-        this.emailSubjectForDeleteText = emailSubjectForDeleteText;
-    }
 
-    public void setEmailNumForDelete(Integer emailNumForDelete) {
+
+    public void setEmailNumForDelete(int emailNumForDelete) {
         this.emailNumForDelete = emailNumForDelete;
     }
 
@@ -136,33 +124,6 @@ public class MailSendPage extends BasePage {
         waitForElement(downloadFile, 10);
         downloadFile.click();
     }
-
-
-//    @Step("Send test email")
-//    //send email with random body and subject
-//    public void sendEmail(String testEmailText, String emailAddress) {
-//        goToEmailSendForm();
-//        waitForElement(sendToEmail, 10);
-//        sendToEmail.sendKeys(emailAddress);
-//        emailSubject = subjectOfMessage.getAttribute("aria-label") + " " + generateRandomString();
-//        subjectOfMessage.sendKeys(emailSubject);
-//        //for verification of message body
-//        emailBodyForCheck = generateRandomString();
-//        bodyOfMessage.sendKeys(emailBodyForCheck);
-//        sendButton.click();
-//    }
-
-    //send deff email
-//    @Step("Send test email")
-//    public void sendEmail(String testEmailText, String emailAddress) {
-//        goToEmailSendForm();
-//        waitForElement(sendToEmail, 10);
-//        sendToEmail.sendKeys(emailAddress);
-//        emailSubject = subjectOfMessage.getAttribute("aria-label") + " " + generateRandomString();
-//        subjectOfMessage.sendKeys(emailSubject);
-//        bodyOfMessage.sendKeys(testEmailText);
-//        sendButton.click();
-//    }
 
     @Step("Go to email page")
     public void goToEmailPage() {
@@ -172,28 +133,15 @@ public class MailSendPage extends BasePage {
         new EmailPage();
     }
 
-
-    //    @Step("Check email sorting")
-//    public void checkEmailOrder() {
-//        ArrayList<String> defOrderEmailList = new ArrayList<>();
-//        waitForElement(emailDataElement, 10);
-//        List<WebElement> emailsList = webDriver.findElements(emailDataXpath);
-//        for (WebElement date : emailsList) {
-//            defOrderEmailList.add(convertDate(date.getAttribute("title")));
-//        }
-//        ArrayList<String> sortedList = new ArrayList<>(defOrderEmailList);
-//        Collections.sort(sortedList, Collections.reverseOrder());
-//        Assert.assertEquals(sortedList, defOrderEmailList,
-//                "Email Sorting is incorrect");
-//    }
-
     public static String getPathToFile(String pathToFile) {
         return String.valueOf(Paths.get(pathToFile));
     }
 
 
     @Step("check If Email Is Deleted By Subject")
-    public void checkIfEmailIsDeletedBySubject() {
+//    todo шукати по тексту
+
+    public void checkIfEmailIsDeletedBySubject(String subject) {
 
 //        setEmailSubjectForDelete("nclXsapqDkno");
         action.moveToElement(getWebElementByXpath("/html/body"));
@@ -202,7 +150,7 @@ public class MailSendPage extends BasePage {
         waitForElement(emailDataElement, 10);
 
         for (WebElement element : subjectList) {
-            if (element.getText().equals(getEmailSubjectElement().getText())) {
+            if (element.getText().equals(getEmailSubjectElement(subject).getText())) {
                 Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
             }
         }
@@ -238,8 +186,8 @@ public class MailSendPage extends BasePage {
     }
 
     @Step("Delete the selected email By Subject")
-    public void deleteEmailBySubject() {
-        action.contextClick(getEmailSubjectElement())
+    public void deleteEmailBySubject(String subject) {
+        action.contextClick(getEmailSubjectElement(subject))
                 .build()
                 .perform();
         waitForElement(deleteEmailButton, 10);
@@ -250,29 +198,22 @@ public class MailSendPage extends BasePage {
 
     }
 
-    int index;
-
-    public WebElement getEmailSubjectElement() {
-//        todo wait until область видимості index?????????????????????????
-        List<WebElement> subjectList = new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(20))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy((By.xpath(getSubjectOnEmailPageXpath()))));
-        for (WebElement element : subjectList) {
-            if (element.getText().equals(emailSubjectForDeleteText)) {
-                index = subjectList.indexOf(element);
-            }
-        }
-        return subjectList.get(index);
+//        todo шукати по тексту
+    public WebElement getEmailSubjectElement(String subject) {
+        return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='"+subject+"']")));
     }
 
-    protected Integer getEmailNumForDelete() {
+    protected int getEmailNumForDelete() {
         return emailNumForDelete;
     }
 
     protected WebElement getEmailForDelete() {
         //use the selected email num for delete proper email
-        String xpathForEmailDeleting = String.valueOf(new StringBuffer("//tr//td//span[@title]").insert(4,
-                String.format("[%s]", Integer.toString(getEmailNumForDelete()))));
-        return getWebElementByXpath("//tr[3]//td//span[@title]");
+        String xpathForEmailDeleting = String.valueOf(new StringBuffer("//tr//td//span[@title]")
+                .insert(4, String.format("[%s]", emailNumForDelete)));
+        return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathForEmailDeleting)));
     }
 
 

@@ -28,7 +28,6 @@ public class EmailSendPageBO {
     private String pathToDownloadedFile;
 
 
-
     protected static List<String> sendToListOrCC = Arrays.asList(
             "tt8397519@gmail.com"
             , "tt8397519+1@gmail.com"
@@ -38,7 +37,6 @@ public class EmailSendPageBO {
     private final EmailPage emailPage = new EmailPage();
     private final MailSendPage mailSendPage = new MailSendPage();
     private final Actions action = new Actions(DriverFactory.getWebDriver());
-    
 
 
     public String getTestEmailText() {
@@ -83,8 +81,7 @@ public class EmailSendPageBO {
     }
 
 
-
-    public  void sendAndCheckEmailWithBuilder() {
+    public void sendAndCheckEmailWithBuilder() {
 //        EmailSendPageBO emailSendPageBO = new EmailSendPageBO();
         mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         sendEmailWithBuilder();
@@ -105,7 +102,7 @@ public class EmailSendPageBO {
     }
 
     @Step("check If Email Is Deleted By Subject")
-    public void checkIfEmailIsDeletedBySubject() {
+    public void checkIfEmailIsDeletedBySubject(String subject) {
         action.moveToElement(mailSendPage.getWebElementByXpath("/html/body"));
         List<WebElement> subjectList = DriverFactory.getWebDriver()
                 .findElements(By.xpath(new MailSendPage()
@@ -115,7 +112,7 @@ public class EmailSendPageBO {
                         .getEmailDataElement(), 10);
 
         for (WebElement element : subjectList) {
-            if (element.getText().equals(new MailSendPage().getEmailSubjectForDeleteText())) {
+            if (element.getText().equals(subject)) {
                 Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
             }
         }
@@ -124,17 +121,19 @@ public class EmailSendPageBO {
     public EmailSendPageBO() {
 
     }
+
     @Step("Check if email deleted")
     public static void checkEmailDeleting() {
         EmailPage emailPage = new EmailPage();
+        emailPage.setEmailNumForDelete(3);
         DateTimeHelper dateTimeHelper = new DateTimeHelper();
         String deleteEmailTime = dateTimeHelper.getDeleteEmailTime();
         //type number email for deleting
-        emailPage.setEmailNumForDelete(4);
-        emailPage.deleteEmail();
         String latestEmailTime = dateTimeHelper.getLatestEmailTime();
+        emailPage.deleteEmail();
         emailPage.checkIfEmailIsDeleted(latestEmailTime, deleteEmailTime);
     }
+
     @Step("Check email sending with builder")
     private void sendEmailWithBuilder() {
         mailSendPage
@@ -166,13 +165,14 @@ public class EmailSendPageBO {
     public void checkEmailDeletingWithSubject() {
 //        EmailPage emailPage = new EmailPage();
         sendEmailWithBuilder();
-        emailPage.setEmailSubjectForDeleteText(getTestEmailSubject());
-        emailPage.deleteEmailBySubject();
-        new EmailSendPageBO()
-                .checkIfEmailIsDeletedBySubject();
+//        In this please can specify the email subject for delete
+
+//        emailPage.setEmailSubjectForDeleteText(getTestEmailSubject());
+        emailPage.deleteEmailBySubject(getTestEmailSubject());
+        checkIfEmailIsDeletedBySubject(getTestEmailSubject());
     }
 
-    private  void filesComparing(String pathToFile1, String pathToFile2) {
+    private void filesComparing(String pathToFile1, String pathToFile2) {
         File expectedFile = new File(MailSendPage.getPathToFile(pathToFile1));
         File actualFile = new File(MailSendPage.getPathToFile(pathToFile2));
         try {
