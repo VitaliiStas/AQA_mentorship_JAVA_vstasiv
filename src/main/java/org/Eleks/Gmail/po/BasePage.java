@@ -75,7 +75,7 @@ public class BasePage {
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
 //        new WebDriverWait(webDriver, timeForWaitInSec).until(ExpectedConditions.visibilityOf(webElement));
         new WebDriverWait(webDriver, Duration.ofSeconds(timeForWaitInSec)).ignoring(StaleElementReferenceException.class,
-                TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webElement));
+                TimeoutException.class).until(ExpectedConditions.visibilityOf(webElement));
     }
 
     //For pause

@@ -164,7 +164,7 @@ public class EmailSendPageBO {
     }
 
     public void checkEmailDeletingWithSubject() {
-        EmailPage emailPage = new EmailPage();
+//        EmailPage emailPage = new EmailPage();
         sendEmailWithBuilder();
         emailPage.setEmailSubjectForDeleteText(getTestEmailSubject());
         emailPage.deleteEmailBySubject();
