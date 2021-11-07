@@ -15,8 +15,6 @@ import org.testng.Assert;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MailSendPage extends BasePage {
@@ -139,19 +137,14 @@ public class MailSendPage extends BasePage {
 
 
     //    todo шукати по тексту, чи можна якось використати трай-кеч щоб шукати елемент, типу якщо немає то ловить ексепшон і тест успішний?
-//
     @Step("check If Email Is Deleted By Subject")
     public void checkIfEmailIsDeletedBySubject(String subject) {
-        action.moveToElement(getWebElementByXpath("/html/body"));
-        List<WebElement> subjectList = DriverFactory.getWebDriver()
-                .findElements(By.xpath(getSubjectOnEmailPageXpath()));
-        waitForElement(getEmailDataElement(), 10);
-
-        for (WebElement element : subjectList) {
-            if (element.getText().equals(subject)) {
-                Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
-            }
-        }
+       Assert.assertTrue((new WebDriverWait(DriverFactory.getWebDriver(),
+               Duration.ofSeconds(10))
+               .until(ExpectedConditions
+                       .invisibilityOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")))),
+               "Email deleting by SUBJECT failed!!!! " +
+                       "email didn't DELETED or the email with the similar title is present");
     }
 
     @Step("Check if email is deleted")
