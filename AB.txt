@@ -1,4 +1,8 @@
 A
+<<<<<<< HEAD
+xxxxxxxxxxxxxxxxxxxxxxxx
+=======
 bBC
+>>>>>>> a560760f42f4343e143454fe9dd6067777abb149
 C
 ссcc
