@@ -1,6 +1,7 @@
 package org.Eleks.Gmail.bo;
 
 import io.qameta.allure.Step;
+import org.Eleks.Gmail.api.SendEmailByApi;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.factories.UserFactory;
 import org.Eleks.Gmail.po.DateTimeHelper;
@@ -28,7 +29,6 @@ public class EmailSendPageBO {
     private String pathToDownloadedFile;
 
 
-
     protected static List<String> sendToListOrCC = Arrays.asList(
             "tt8397519@gmail.com"
             , "tt8397519+1@gmail.com"
@@ -38,8 +38,7 @@ public class EmailSendPageBO {
     private final EmailPage emailPage = new EmailPage();
     private final MailSendPage mailSendPage = new MailSendPage();
     private final Actions action = new Actions(DriverFactory.getWebDriver());
-    
-
+    private final SendEmailByApi sendEmailByApi = new SendEmailByApi();
 
     public String getTestEmailText() {
         return testEmailText;
@@ -63,28 +62,27 @@ public class EmailSendPageBO {
 
 
     public void sendAndCheckEmail() {
-        EmailSendPageBO test = new EmailSendPageBO();
-        EmailPage emailPage = new EmailPage();
-        test.mailSendPage
+//        EmailSendPageBO test = new EmailSendPageBO();
+//        EmailPage emailPage = new EmailPage();
+        mailSendPage
                 .setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
-        test.sendEmail(sendToListOrCC);
-        test.mailSendPage
+        sendEmail(sendToListOrCC);
+        mailSendPage
                 .goToEmailPage();
-        test.mailSendPage
+        mailSendPage
                 .verifyIsOpen();
-        test.mailSendPage
+        mailSendPage
                 .downloadFile();
-        filesComparing(test.mailSendPage
+        filesComparing(mailSendPage
                         .getAbsolutePath("src/main/resources/testImage.jpg")
                 , "C:\\Users\\vitalii.stasiv\\Downloads\\testImage.jpg");
-        emailPage.checkEmail(test.mailSendPage
-                        .getEmailBodyForCheck(), test.mailSendPage.emailSubject
+        emailPage.checkEmail(mailSendPage
+                        .getEmailBodyForCheck(), mailSendPage.emailSubject
                 , sendToListOrCC);
     }
 
 
-
-    public  void sendAndCheckEmailWithBuilder() {
+    public void sendAndCheckEmailWithBuilder() {
 //        EmailSendPageBO emailSendPageBO = new EmailSendPageBO();
         mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         sendEmailWithBuilder();
@@ -100,41 +98,36 @@ public class EmailSendPageBO {
 
     }
 
+    public void sendAndCheckEmailApi() {
+        sendEmailApi();
+    }
+
+    private void sendEmailApi() {
+        sendEmailByApi.sendEmailByApi(sendToListOrCC.get(1)
+                , "API_"+getTestEmailSubject()
+                , "API_"+getTestEmailText());
+    }
+
     public static void checkSortingEmailsOnEmailPage() {
         new EmailSendPageBO().checkEmailOrder();
     }
 
-    @Step("check If Email Is Deleted By Subject")
-    public void checkIfEmailIsDeletedBySubject() {
-        action.moveToElement(mailSendPage.getWebElementByXpath("/html/body"));
-        List<WebElement> subjectList = DriverFactory.getWebDriver()
-                .findElements(By.xpath(new MailSendPage()
-                        .getSubjectOnEmailPageXpath()));
-        mailSendPage
-                .waitForElement(new MailSendPage()
-                        .getEmailDataElement(), 10);
-
-        for (WebElement element : subjectList) {
-            if (element.getText().equals(new MailSendPage().getEmailSubjectForDeleteText())) {
-                Assert.fail("Email deleting by SUBJECT failed!!!! \n email didn't DELETED or the email with the similar title is present");
-            }
-        }
-    }
-
     public EmailSendPageBO() {
-
     }
+
+
     @Step("Check if email deleted")
     public static void checkEmailDeleting() {
         EmailPage emailPage = new EmailPage();
+        emailPage.setEmailNumForDelete(3);
         DateTimeHelper dateTimeHelper = new DateTimeHelper();
         String deleteEmailTime = dateTimeHelper.getDeleteEmailTime();
         //type number email for deleting
-        emailPage.setEmailNumForDelete(4);
-        emailPage.deleteEmail();
         String latestEmailTime = dateTimeHelper.getLatestEmailTime();
+        emailPage.deleteEmail();
         emailPage.checkIfEmailIsDeleted(latestEmailTime, deleteEmailTime);
     }
+
     @Step("Check email sending with builder")
     private void sendEmailWithBuilder() {
         mailSendPage
@@ -164,15 +157,12 @@ public class EmailSendPageBO {
     }
 
     public void checkEmailDeletingWithSubject() {
-        EmailPage emailPage = new EmailPage();
         sendEmailWithBuilder();
-        emailPage.setEmailSubjectForDeleteText(getTestEmailSubject());
-        emailPage.deleteEmailBySubject();
-        new EmailSendPageBO()
-                .checkIfEmailIsDeletedBySubject();
+        emailPage.deleteEmailBySubject(getTestEmailSubject());
+        mailSendPage.checkIfEmailIsDeletedBySubject(getTestEmailSubject());
     }
 
-    private  void filesComparing(String pathToFile1, String pathToFile2) {
+    private void filesComparing(String pathToFile1, String pathToFile2) {
         File expectedFile = new File(MailSendPage.getPathToFile(pathToFile1));
         File actualFile = new File(MailSendPage.getPathToFile(pathToFile2));
         try {
@@ -221,6 +211,9 @@ public class EmailSendPageBO {
         mailSendPage.attachFile("src/main/resources/testImage.jpg");
         mailSendPage.getSendButton().click();
     }
+
+
+
 
     public static EmailSendPageBO create() {
         return new Builder()

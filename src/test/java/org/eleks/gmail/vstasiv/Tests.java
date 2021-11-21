@@ -5,7 +5,6 @@ import org.Eleks.Gmail.bo.LoginBO;
 import org.Eleks.Gmail.bo.EmailSendPageBO;
 import org.Eleks.Gmail.listeners.TestListener;
 import org.Eleks.Gmail.po.HomePage;
-import org.Eleks.Gmail.po.MailSendPage;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -55,10 +54,17 @@ public class Tests extends BaseTest {
         HomePage.goToMailSendPage();
         EmailSendPageBO.checkEmailDeleting();
     }
+
     @Test
     public void emailDeletingTestWithSubject() {
         LoginBO.login();
         HomePage.goToMailSendPage();
         EmailSendPageBO.create().checkEmailDeletingWithSubject();
     }
+
+    @Test
+    public void sendEmailApiTest() {
+        EmailSendPageBO.create().sendAndCheckEmailApi();
+    }
+
 }
