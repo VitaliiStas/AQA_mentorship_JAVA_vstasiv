@@ -1,6 +1,7 @@
 package org.Eleks.Gmail.bo;
 
 import io.qameta.allure.Step;
+import org.Eleks.Gmail.api.SendEmailByApi;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.factories.UserFactory;
 import org.Eleks.Gmail.po.DateTimeHelper;
@@ -37,7 +38,7 @@ public class EmailSendPageBO {
     private final EmailPage emailPage = new EmailPage();
     private final MailSendPage mailSendPage = new MailSendPage();
     private final Actions action = new Actions(DriverFactory.getWebDriver());
-
+    private final SendEmailByApi sendEmailByApi = new SendEmailByApi();
 
     public String getTestEmailText() {
         return testEmailText;
@@ -61,22 +62,22 @@ public class EmailSendPageBO {
 
 
     public void sendAndCheckEmail() {
-        EmailSendPageBO test = new EmailSendPageBO();
-        EmailPage emailPage = new EmailPage();
-        test.mailSendPage
+//        EmailSendPageBO test = new EmailSendPageBO();
+//        EmailPage emailPage = new EmailPage();
+        mailSendPage
                 .setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
-        test.sendEmail(sendToListOrCC);
-        test.mailSendPage
+        sendEmail(sendToListOrCC);
+        mailSendPage
                 .goToEmailPage();
-        test.mailSendPage
+        mailSendPage
                 .verifyIsOpen();
-        test.mailSendPage
+        mailSendPage
                 .downloadFile();
-        filesComparing(test.mailSendPage
+        filesComparing(mailSendPage
                         .getAbsolutePath("src/main/resources/testImage.jpg")
                 , "C:\\Users\\vitalii.stasiv\\Downloads\\testImage.jpg");
-        emailPage.checkEmail(test.mailSendPage
-                        .getEmailBodyForCheck(), test.mailSendPage.emailSubject
+        emailPage.checkEmail(mailSendPage
+                        .getEmailBodyForCheck(), mailSendPage.emailSubject
                 , sendToListOrCC);
     }
 
@@ -97,13 +98,23 @@ public class EmailSendPageBO {
 
     }
 
+    public void sendAndCheckEmailApi() {
+        sendEmailApi();
+    }
+
+    private void sendEmailApi() {
+        sendEmailByApi.sendEmailByApi(sendToListOrCC.get(1)
+                , "API_"+getTestEmailSubject()
+                , "API_"+getTestEmailText());
+    }
+
     public static void checkSortingEmailsOnEmailPage() {
         new EmailSendPageBO().checkEmailOrder();
     }
 
     public EmailSendPageBO() {
-
     }
+
 
     @Step("Check if email deleted")
     public static void checkEmailDeleting() {
@@ -200,6 +211,9 @@ public class EmailSendPageBO {
         mailSendPage.attachFile("src/main/resources/testImage.jpg");
         mailSendPage.getSendButton().click();
     }
+
+
+
 
     public static EmailSendPageBO create() {
         return new Builder()

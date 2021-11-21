@@ -22,12 +22,12 @@ public class BaseTest extends DriverFactory {
         webDriver.manage().window().maximize();
         getWebDriver().get(UserFactory.getProperties("testURL2"));
     }
-    @AfterMethod
-    @Step("Close the browser")
-    public void quitTest() {
-        getWebDriver().quit();
-        LOGGER.info("Browser is closed",BaseTest.class);
-    }
+//    @AfterMethod
+//    @Step("Close the browser")
+//    public void quitTest() {
+//        getWebDriver().quit();
+//        LOGGER.info("Browser is closed",BaseTest.class);
+//    }
 
 
 

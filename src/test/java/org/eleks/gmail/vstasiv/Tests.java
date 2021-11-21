@@ -54,10 +54,17 @@ public class Tests extends BaseTest {
         HomePage.goToMailSendPage();
         EmailSendPageBO.checkEmailDeleting();
     }
+
     @Test
     public void emailDeletingTestWithSubject() {
         LoginBO.login();
         HomePage.goToMailSendPage();
         EmailSendPageBO.create().checkEmailDeletingWithSubject();
     }
+
+    @Test
+    public void sendEmailApiTest() {
+        EmailSendPageBO.create().sendAndCheckEmailApi();
+    }
+
 }
