@@ -229,7 +229,7 @@ public class EmailSendPageBO {
     private void checkEmailApi(String expectedTestEmailText, String expectedSubjectForCheck) {
         checkCondition(getTestEmailText(),expectedTestEmailText,"Received email BODY is incorrect");
         checkCondition(getTestEmailSubject(),expectedSubjectForCheck,"Received email subject is incorrect");
-        LOGGER.info("message is correct");
+        LOGGER.info("message is correct!!");
     }
 
     private void checkCondition(String actualCondition, String expectedCondition, String failureMessage){
