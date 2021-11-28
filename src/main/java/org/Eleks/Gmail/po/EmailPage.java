@@ -20,10 +20,7 @@ import java.util.Set;
 public class EmailPage extends MailSendPage {
     //Current Received Email Page
 
-    @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
-    private WebElement receivedEmailBody;
-    @FindBy(xpath = "//div[@class='ha']/h2")
-    private WebElement receivedSubjectBody;
+
 
 
 
@@ -36,12 +33,17 @@ public class EmailPage extends MailSendPage {
 
     private final String sendToOrCCXpaths = "//span[@translate ]/span[@email and @class='g2']";
 
+//    @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
+//    private WebElement receivedEmailBody;
+    @FindBy(xpath = "//div[@class='ha']/h2")
+    private WebElement receivedSubjectBody;
+
     public WebElement getReceivedSubjectBody() {
         return receivedSubjectBody;
     }
-    public WebElement getReceivedEmailBody() {
-        return receivedEmailBody;
-    }
+//    public WebElement getReceivedEmailBody() {
+//        return receivedEmailBody;
+//    }
 
 
 
