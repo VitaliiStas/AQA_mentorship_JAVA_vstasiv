@@ -15,6 +15,7 @@ import org.testng.Assert;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.concurrent.TimeoutException;
 
 
 public class MailSendPage extends BasePage {
@@ -125,9 +126,13 @@ public class MailSendPage extends BasePage {
 
     @Step("Go to email page")
     public void goToEmailPage() {
-        pauseSec(1);
-        waitForElement(lastEmailFromTable, 10);
-        lastEmailFromTable.click();
+//        pauseSec(1);
+//        waitForElement(lastEmailFromTable, 10);
+//        lastEmailFromTable.click();
+//        new EmailPage();
+        new WebDriverWait(webDriver, Duration.ofSeconds(20))
+                .until(ExpectedConditions.elementToBeClickable(lastEmailFromTable)).click();
+        System.out.println("Element was clicked");
         new EmailPage();
     }
 
