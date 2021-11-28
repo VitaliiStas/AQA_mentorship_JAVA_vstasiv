@@ -62,8 +62,7 @@ public class EmailSendPageBO {
 
 
     public void sendAndCheckEmail() {
-//        EmailSendPageBO test = new EmailSendPageBO();
-//        EmailPage emailPage = new EmailPage();
+
         mailSendPage
                 .setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         sendEmail(sendToListOrCC);
@@ -83,7 +82,6 @@ public class EmailSendPageBO {
 
 
     public void sendAndCheckEmailWithBuilder() {
-//        EmailSendPageBO emailSendPageBO = new EmailSendPageBO();
         mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         sendEmailWithBuilder();
         mailSendPage
@@ -117,8 +115,8 @@ public class EmailSendPageBO {
 
 
     @Step("Check if email deleted")
-    public static void checkEmailDeleting() {
-        EmailPage emailPage = new EmailPage();
+    public  void checkEmailDeleting() {
+//        EmailPage emailPage = new EmailPage();
         emailPage.setEmailNumForDelete(3);
         DateTimeHelper dateTimeHelper = new DateTimeHelper();
         String deleteEmailTime = dateTimeHelper.getDeleteEmailTime();

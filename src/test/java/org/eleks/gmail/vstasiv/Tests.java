@@ -52,7 +52,7 @@ public class Tests extends BaseTest {
     public void emailDeletingTest() {
         LoginBO.login();
         HomePage.goToMailSendPage();
-        EmailSendPageBO.checkEmailDeleting();
+        EmailSendPageBO.create().checkEmailDeleting();
     }
 
     @Test
