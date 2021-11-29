@@ -220,15 +220,25 @@ public class EmailSendPageBO {
 
     @Step("Check received email")
     private void checkEmail(String expectedTestEmailText, String expectedSubjectForCheck, List<String> expectedListSentToEmails) {
-        checkCondition(getTestEmailText(),expectedTestEmailText,"Received email BODY is incorrect");
-        checkCondition(getTestEmailSubject(),expectedSubjectForCheck,"Received email subject is incorrect");
-        Assert.assertEquals(getSendToOrCC(),expectedListSentToEmails,"CC email is incorrect");
+        checkCondition(getTestEmailText()
+                ,expectedTestEmailText
+                ,"Received email BODY is incorrect");
+        checkCondition(getTestEmailSubject()
+                ,expectedSubjectForCheck
+                ,"Received email subject is incorrect");
+        Assert.assertEquals(getSendToOrCC()
+                ,expectedListSentToEmails
+                ,"CC email is incorrect");
         LOGGER.info("message is correct");
     }
 
     private void checkEmailApi(String expectedTestEmailText, String expectedSubjectForCheck) {
-        checkCondition(getTestEmailText(),expectedTestEmailText,"Received email BODY is incorrect");
-        checkCondition(getTestEmailSubject(),expectedSubjectForCheck,"Received email subject is incorrect");
+        checkCondition(getTestEmailText()
+                ,expectedTestEmailText
+                ,"Received email BODY is incorrect");
+        checkCondition(getTestEmailSubject()
+                ,expectedSubjectForCheck
+                ,"Received email subject is incorrect");
         LOGGER.info("message is correct!!");
     }
 
