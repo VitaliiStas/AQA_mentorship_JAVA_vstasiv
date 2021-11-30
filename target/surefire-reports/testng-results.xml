@@ -1,265 +1,273 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="0" failed="3" skipped="0">
+<testng-results retried="3" ignored="0" total="7" passed="3" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-08-30T22:07:42 EEST" name="Surefire suite" finished-at="2021-08-30T22:08:06 EEST" duration-ms="24252">
+  <suite started-at="2021-11-30T19:45:41 EET" name="All Test Suite" finished-at="2021-11-30T19:46:59 EET" duration-ms="78220">
     <groups>
     </groups>
-    <test started-at="2021-08-30T22:07:42 EEST" name="Surefire test" finished-at="2021-08-30T22:08:06 EEST" duration-ms="24252">
-      <class name="org.eleks.gmail.vstasiv.Tests">
-        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:07:42 EEST" name="setUpTest" finished-at="2021-08-30T22:07:49 EEST" duration-ms="7048" status="PASS">
+    <test started-at="2021-11-30T19:45:41 EET" name="C:/Users/vitalii.stasiv/Desktop/AQA_mentorship/Project" finished-at="2021-11-30T19:46:59 EET" duration-ms="78220">
+      <class name="org.eleks.gmail.vstasiv.Tests2">
+        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:45:41 EET" name="setUpTest" finished-at="2021-11-30T19:45:49 EET" duration-ms="7376" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpTest -->
-        <test-method signature="singIn()[pri:1, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:07:49 EEST" name="singIn" finished-at="2021-08-30T22:07:52 EEST" duration-ms="2980" status="FAIL">
-          <exception class="java.lang.VerifyError">
+        <test-method signature="goToMailPageTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:45:49 EET" name="goToMailPageTest" finished-at="2021-11-30T19:45:58 EET" duration-ms="8800" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- goToMailPageTest -->
+        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:45:58 EET" name="quitTest" finished-at="2021-11-30T19:45:59 EET" duration-ms="737" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitTest -->
+        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:45:59 EET" name="setUpTest" finished-at="2021-11-30T19:46:02 EET" duration-ms="3574" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpTest -->
+        <test-method signature="sendEmailApiTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:02 EET" name="sendEmailApiTest" finished-at="2021-11-30T19:46:05 EET" duration-ms="3071" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sendEmailApiTest -->
+        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:05 EET" name="quitTest" finished-at="2021-11-30T19:46:06 EET" duration-ms="747" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitTest -->
+        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:06 EET" name="setUpTest" finished-at="2021-11-30T19:46:09 EET" duration-ms="3388" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpTest -->
+        <test-method signature="singInFailedTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:09 EET" name="singInFailedTest" finished-at="2021-11-30T19:46:14 EET" duration-ms="4365" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- singInFailedTest -->
+        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:14 EET" name="quitTest" finished-at="2021-11-30T19:46:15 EET" duration-ms="764" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitTest -->
+        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:15 EET" name="setUpTest" finished-at="2021-11-30T19:46:18 EET" duration-ms="3638" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpTest -->
+        <test-method retried="true" signature="singInTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:18 EET" name="singInTest" finished-at="2021-11-30T19:46:25 EET" duration-ms="6807" status="SKIP">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-]]>
+              <![CDATA[null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.VerifyError: Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-
-at org.Eleks.Gmail.po.LoginPage.login(LoginPage.java:47)
-at org.Eleks.Gmail.bo.LoginBO.login(LoginBO.java:17)
-at org.eleks.gmail.vstasiv.Tests.singIn(Tests.java:11)
+              <![CDATA[java.lang.AssertionError: null
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.fail(Assert.java:106)
+at org.eleks.gmail.vstasiv.Tests2.singInTest(Tests2.java:18)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
 at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
 at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:770)
-at org.testng.TestRunner.run(TestRunner.java:591)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
-at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
 at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
 at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
-at org.testng.TestNG.runSuites(TestNG.java:1032)
-at org.testng.TestNG.run(TestNG.java:1000)
-at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:135)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:193)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:94)
-at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:146)
-at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:386)
-at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:323)
-at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:143)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:284)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:119)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:428)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:562)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.VerifyError -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- singIn -->
-        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:07:52 EEST" name="quitTest" finished-at="2021-08-30T22:07:53 EEST" duration-ms="836" status="PASS">
+        </test-method> <!-- singInTest -->
+        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:25 EET" name="quitTest" finished-at="2021-11-30T19:46:26 EET" duration-ms="746" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitTest -->
-        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:07:53 EEST" name="setUpTest" finished-at="2021-08-30T22:07:56 EEST" duration-ms="3020" status="PASS">
+        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:26 EET" name="setUpTest" finished-at="2021-11-30T19:46:29 EET" duration-ms="3392" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpTest -->
-        <test-method signature="goToMailPage()[pri:2, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:07:56 EEST" name="goToMailPage" finished-at="2021-08-30T22:07:59 EEST" duration-ms="2496" status="FAIL">
-          <exception class="java.lang.VerifyError">
+        <test-method retried="true" signature="singInTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:29 EET" name="singInTest" finished-at="2021-11-30T19:46:36 EET" duration-ms="6571" status="SKIP">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-]]>
+              <![CDATA[null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.VerifyError: Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-
-at org.Eleks.Gmail.po.LoginPage.login(LoginPage.java:47)
-at org.Eleks.Gmail.bo.LoginBO.login(LoginBO.java:17)
-at org.eleks.gmail.vstasiv.Tests.goToMailPage(Tests.java:16)
+              <![CDATA[java.lang.AssertionError: null
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.fail(Assert.java:106)
+at org.eleks.gmail.vstasiv.Tests2.singInTest(Tests2.java:18)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:213)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
 at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:770)
-at org.testng.TestRunner.run(TestRunner.java:591)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
-at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
 at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
 at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
-at org.testng.TestNG.runSuites(TestNG.java:1032)
-at org.testng.TestNG.run(TestNG.java:1000)
-at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:135)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:193)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:94)
-at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:146)
-at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:386)
-at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:323)
-at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:143)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:284)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:119)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:428)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:562)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.VerifyError -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- goToMailPage -->
-        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:07:59 EEST" name="quitTest" finished-at="2021-08-30T22:07:59 EEST" duration-ms="820" status="PASS">
+        </test-method> <!-- singInTest -->
+        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:36 EET" name="quitTest" finished-at="2021-11-30T19:46:36 EET" duration-ms="737" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitTest -->
-        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:07:59 EEST" name="setUpTest" finished-at="2021-08-30T22:08:02 EEST" duration-ms="2988" status="PASS">
+        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:36 EET" name="setUpTest" finished-at="2021-11-30T19:46:40 EET" duration-ms="3350" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpTest -->
-        <test-method signature="sendAndCheckEmailTest()[pri:3, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:08:02 EEST" name="sendAndCheckEmailTest" finished-at="2021-08-30T22:08:05 EEST" duration-ms="2828" status="FAIL">
-          <exception class="java.lang.VerifyError">
+        <test-method retried="true" signature="singInTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:40 EET" name="singInTest" finished-at="2021-11-30T19:46:47 EET" duration-ms="6837" status="SKIP">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-]]>
+              <![CDATA[null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.VerifyError: Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-
-at org.Eleks.Gmail.po.LoginPage.login(LoginPage.java:47)
-at org.Eleks.Gmail.bo.LoginBO.login(LoginBO.java:17)
-at org.eleks.gmail.vstasiv.Tests.sendAndCheckEmailTest(Tests.java:22)
+              <![CDATA[java.lang.AssertionError: null
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.fail(Assert.java:106)
+at org.eleks.gmail.vstasiv.Tests2.singInTest(Tests2.java:18)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:213)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
 at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:770)
-at org.testng.TestRunner.run(TestRunner.java:591)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
-at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
 at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
 at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
-at org.testng.TestNG.runSuites(TestNG.java:1032)
-at org.testng.TestNG.run(TestNG.java:1000)
-at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:135)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:193)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:94)
-at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:146)
-at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:386)
-at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:323)
-at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:143)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:284)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:119)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:428)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:562)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.VerifyError -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- sendAndCheckEmailTest -->
-        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests@782ac148]" started-at="2021-08-30T22:08:05 EEST" name="quitTest" finished-at="2021-08-30T22:08:06 EEST" duration-ms="801" status="PASS">
+        </test-method> <!-- singInTest -->
+        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:47 EET" name="quitTest" finished-at="2021-11-30T19:46:47 EET" duration-ms="738" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitTest -->
-      </class> <!-- org.eleks.gmail.vstasiv.Tests -->
-    </test> <!-- Surefire test -->
-  </suite> <!-- Surefire suite -->
+        <test-method is-config="true" signature="setUpTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:47 EET" name="setUpTest" finished-at="2021-11-30T19:46:51 EET" duration-ms="3348" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpTest -->
+        <test-method signature="singInTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:51 EET" name="singInTest" finished-at="2021-11-30T19:46:58 EET" duration-ms="7371" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: null
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.fail(Assert.java:106)
+at org.eleks.gmail.vstasiv.Tests2.singInTest(Tests2.java:18)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:213)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:284)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:119)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:428)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:562)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- singInTest -->
+        <test-method is-config="true" signature="quitTest()[pri:0, instance:org.eleks.gmail.vstasiv.Tests2@2954f6ab]" started-at="2021-11-30T19:46:59 EET" name="quitTest" finished-at="2021-11-30T19:46:59 EET" duration-ms="701" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitTest -->
+      </class> <!-- org.eleks.gmail.vstasiv.Tests2 -->
+    </test> <!-- C:/Users/vitalii.stasiv/Desktop/AQA_mentorship/Project -->
+  </suite> <!-- All Test Suite -->
 </testng-results>

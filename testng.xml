@@ -2,9 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
 <!--  для паралельного виконання тест кейсів thread-count="2" parallel="methods"  <test thread-count="2" parallel="methods" verbose="2" preserve-order="true" name="C:/Users/vitalii.stasiv/Desktop/AQA_mentorship/Project">-->
+    <listeners>
+        <listener class-name="org.Eleks.Gmail.listeners.AnnotationTransformer"/>
+    </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/vitalii.stasiv/Desktop/AQA_mentorship/Project">
         <classes>
-            <class name="org.eleks.gmail.vstasiv.Tests"></class>
+<!--            <class name="org.eleks.gmail.vstasiv.Tests"></class>-->
             <class name="org.eleks.gmail.vstasiv.Tests2"></class>
         </classes>
     </test>

@@ -1,5 +1,5 @@
 package org.Eleks.Gmail.listeners;
-
+// todo з малої букви _
 import io.qameta.allure.Attachment;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.po.BasePage;
@@ -9,7 +9,7 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class TestListener extends BasePage implements ITestListener{
+public class TestListener  implements ITestListener{
 
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] saveScreenshot() {
@@ -28,9 +28,6 @@ public class TestListener extends BasePage implements ITestListener{
         System.out.println("test pass");
     }
 
-
-    private int count = 0;
-    private static int maxTry = 2;
 
 
 }

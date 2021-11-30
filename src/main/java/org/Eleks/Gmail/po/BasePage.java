@@ -166,9 +166,9 @@ public class BasePage {
     public void checkErrorMessageIsDisplayed(WebElement element) {
 //        Assert.assertNotNull(element,"Error message: " +element.getText() + " is absent on the: "+this.webDriver.getTitle() + " page");
         if (!element.isDisplayed()) {
-            LOGGER.warn("Error message is not displayed : " + element.getText());
-            TestListener testListener = new TestListener();
-            testListener.saveScreenshot();
+           Assert.fail("Error message is not displayed : " + element.getText());
+//            TestListener testListener = new TestListener();
+//            testListener.saveScreenshot();
         } else if (element.isDisplayed())
             LOGGER.info("Proper massage is displayed : " + element.getText());
     }

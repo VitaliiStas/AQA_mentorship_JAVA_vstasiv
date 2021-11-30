@@ -4,12 +4,16 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.factories.UserFactory;
+import org.Eleks.Gmail.listeners.AnnotationTransformer;
+import org.Eleks.Gmail.listeners.Retry;
+import org.Eleks.Gmail.listeners.TestListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
-
+//@Listeners({TestListener.class, AnnotationTransformer.class})
+@Listeners(TestListener.class)
 public class BaseTest extends DriverFactory {
     private static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
 

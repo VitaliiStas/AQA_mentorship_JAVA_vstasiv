@@ -20,7 +20,7 @@ import java.util.concurrent.TimeoutException;
 
 public class MailSendPage extends BasePage {
     //Page With email table/List
-    public String emailSubject = "";
+//    private String emailSubject = "";
     private final Actions action = new Actions(webDriver);
     private String emailBodyForCheck = "";
     private int emailNumForDelete = 3;
@@ -69,14 +69,14 @@ public class MailSendPage extends BasePage {
     public WebElement getBodyOfMessage() {
         return bodyOfMessage;
     }
-
+//todo повинен бути метод клік сенд батон
     public WebElement getSendButton() {
         return sendButton;
     }
 
-    public String getEmailSubject() {
-        return emailSubject;
-    }
+//    public String getEmailSubject() {
+//        return emailSubject;
+//    }
 
     public WebElement getSubjectOfMessage() {
         return subjectOfMessage;
@@ -105,7 +105,7 @@ public class MailSendPage extends BasePage {
     public static String generateRandomString() {
         return RandomStringUtils.randomAlphabetic(12);
     }
-
+//todo перенести в інший клас
     public String getAbsolutePath(String relativePath) {
         return FileSystems.getDefault().getPath(relativePath).normalize().toAbsolutePath().toString();
     }
@@ -125,7 +125,7 @@ public class MailSendPage extends BasePage {
     }
 
     @Step("Go to email page")
-    public void goToEmailPage() {
+    public EmailPage goToEmailPage() {
 //        pauseSec(1);
 //        waitForElement(lastEmailFromTable, 10);
 //        lastEmailFromTable.click();
@@ -133,7 +133,7 @@ public class MailSendPage extends BasePage {
         new WebDriverWait(webDriver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.elementToBeClickable(lastEmailFromTable)).click();
         System.out.println("Element was clicked");
-        new EmailPage();
+       return new EmailPage();
     }
 
     public static String getPathToFile(String pathToFile) {
@@ -167,6 +167,7 @@ public class MailSendPage extends BasePage {
     }
 
     public void goToEmailSendForm() {
+//        todo wait and click
         waitForElement(mailCreateButton, 10);
         mailCreateButton.click();
     }

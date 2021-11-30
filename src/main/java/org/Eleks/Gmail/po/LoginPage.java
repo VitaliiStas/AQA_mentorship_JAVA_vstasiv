@@ -55,10 +55,11 @@ public class LoginPage extends BasePage {
         typePassword(password);
         return new HomePage();
     }
-
+//todo розбити на методи veryfy incorrect email
     @Step("Type false user name")
     public LoginPage typeFalseUsername(String userName) {
         typeUsername("Incorrect user name");
+//        має бути один метод на вейт та чекання
         waitForElement(incorrectEmailMessage, 5);
         checkErrorMessageIsDisplayed(incorrectEmailMessage);
         emailField.clear();

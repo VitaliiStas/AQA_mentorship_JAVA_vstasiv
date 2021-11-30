@@ -70,8 +70,8 @@ public class SendEmailByApi {
     }
 
     public void sendEmailByApi(String sendTo
-            , String emailSubject
-            , String emailMessage) {
+            ,String emailSubject
+            ,String emailMessage) {
 
         // Setup mail server
         getProperties().put("mail.smtp.host", getSmtp());
