@@ -4,8 +4,7 @@ package org.Eleks.Gmail.po;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,19 +14,19 @@ import org.testng.Assert;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.concurrent.TimeoutException;
 
 
 public class MailSendPage extends BasePage {
-    //Page With email table/List
-//    private String emailSubject = "";
     private final Actions action = new Actions(webDriver);
-    private String emailBodyForCheck = "";
+
     private int emailNumForDelete = 3;
+
     private final String emailXpath = "//tr//td//span[@title]";
+    private final By emailDataXpath = By.xpath(emailXpath);
+
     private final String subjectOnEmailPageXpath = "//span[@class='bog']/span[@class='bqe']";
 
-    private final By emailDataXpath = By.xpath(emailXpath);
+
 
 
     @FindBy(xpath = "//div[@class='T-I T-I-KE L3']")
@@ -66,34 +65,37 @@ public class MailSendPage extends BasePage {
     public MailSendPage() {
     }
 
-    public WebElement getBodyOfMessage() {
-        return bodyOfMessage;
-    }
-//todo повинен бути метод клік сенд батон
-    public WebElement getSendButton() {
-        return sendButton;
+    public void typeEmailText(String emailText) {
+//        bodyOfMessage.sendKeys(emailText);
+        wait(bodyOfMessage,10).sendKeys(emailText);
     }
 
-//    public String getEmailSubject() {
-//        return emailSubject;
-//    }
-
-    public WebElement getSubjectOfMessage() {
-        return subjectOfMessage;
+    public void typeEmailSubject(String subject) {
+//        subjectOfMessage.sendKeys(subject);
+        wait(subjectOfMessage,10).sendKeys(subject);
     }
 
-    public String getEmailBodyForCheck() {
-        return emailBodyForCheck;
+    public void typeSendTo(String sendTo) {
+//        sendToEmail.sendKeys(sendTo);
+        wait(sendToEmail,10).sendKeys(sendTo);
     }
 
-    public WebElement getSendToEmail() {
-        return sendToEmail;
+    public void typeSendTo(Keys keys) {
+//        sendToEmail.sendKeys(keys);
+        wait(sendToEmail,10).sendKeys(keys);
     }
 
-    public String getSubjectOnEmailPageXpath() {
-        return subjectOnEmailPageXpath;
+
+    public void clickSendButton() {
+        wait(sendButton,10).click();
+    }
+    private WebElement wait (WebElement element, int waitTime){
+        return new WebDriverWait(webDriver, Duration.ofSeconds(waitTime))
+                .ignoring(StaleElementReferenceException.class,TimeoutException.class)
+                .until(ExpectedConditions.visibilityOf(element));
     }
 
+    //todo не інкапсульовано
     public By getEmailDataXpath() {
         return emailDataXpath;
     }
@@ -105,51 +107,38 @@ public class MailSendPage extends BasePage {
     public static String generateRandomString() {
         return RandomStringUtils.randomAlphabetic(12);
     }
-//todo перенести в інший клас
-    public String getAbsolutePath(String relativePath) {
-        return FileSystems.getDefault().getPath(relativePath).normalize().toAbsolutePath().toString();
-    }
-
-    public void setEmailBodyForCheck(String emailBodyForCheck) {
-        this.emailBodyForCheck = emailBodyForCheck;
-    }
-
 
     public void setEmailNumForDelete(int emailNumForDelete) {
         this.emailNumForDelete = emailNumForDelete;
     }
 
     public void downloadFile() {
-        waitForElement(downloadFile, 10);
-        downloadFile.click();
+        new WebDriverWait(webDriver, Duration.ofSeconds(20))
+                .ignoring(StaleElementReferenceException.class,
+                TimeoutException.class)
+                .until(ExpectedConditions.visibilityOf(downloadFile)).click();
     }
 
     @Step("Go to email page")
     public EmailPage goToEmailPage() {
-//        pauseSec(1);
-//        waitForElement(lastEmailFromTable, 10);
-//        lastEmailFromTable.click();
-//        new EmailPage();
         new WebDriverWait(webDriver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.elementToBeClickable(lastEmailFromTable)).click();
         System.out.println("Element was clicked");
-       return new EmailPage();
+        return new EmailPage();
     }
 
     public static String getPathToFile(String pathToFile) {
         return String.valueOf(Paths.get(pathToFile));
     }
 
-
-    //    todo шукати по тексту, чи можна якось використати трай-кеч щоб шукати елемент, типу якщо немає то ловить ексепшон і тест успішний?
     @Step("check If Email Is Deleted By Subject")
     public void checkIfEmailIsDeletedBySubject(String subject) {
-       Assert.assertTrue((new WebDriverWait(DriverFactory.getWebDriver(),
-               Duration.ofSeconds(10))
-               .until(ExpectedConditions
-                       .invisibilityOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")))),
-               "Email deleting by SUBJECT failed!!!! " +
-                       "email didn't DELETED or the email with the similar title is present");
+        Assert.assertTrue((new WebDriverWait(DriverFactory.getWebDriver(),
+                        Duration.ofSeconds(10))
+                        .until(ExpectedConditions
+                                .invisibilityOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")))),
+                "Email deleting by SUBJECT failed!!!! " +
+                        "email didn't DELETED or the email with the similar title is present");
     }
 
     @Step("Check if email is deleted")
@@ -161,15 +150,11 @@ public class MailSendPage extends BasePage {
 
     @Step("Attach test file")
     public void attachFile(String relativePathToFile) {
-//        attach test file
-//        waitForElement(addFile, 10);
         addFile.sendKeys(getAbsolutePath(relativePathToFile));
     }
 
     public void goToEmailSendForm() {
-//        todo wait and click
-        waitForElement(mailCreateButton, 10);
-        mailCreateButton.click();
+        wait(mailCreateButton,10).click();
     }
 
 
@@ -195,10 +180,10 @@ public class MailSendPage extends BasePage {
 
     }
 
-    //        todo шукати по тексту
     public WebElement getEmailSubjectElement(String subject) {
         return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")));
+                .until(ExpectedConditions
+                        .presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")));
     }
 
     protected WebElement getEmailForDelete() {

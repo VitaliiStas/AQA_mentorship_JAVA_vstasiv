@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.nio.file.FileSystems;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -39,12 +40,9 @@ public class BasePage {
     @FindBy(xpath = "//*/button/figure/img")
     private static WebElement profileImageForCheck;
 
+
     public static WebElement getProfileImageForCheck() {
         return profileImageForCheck;
-    }
-
-    public static WebElement getMenu() {
-        return menu;
     }
 
     public static WebElement getMailIcon() {
@@ -55,21 +53,12 @@ public class BasePage {
         return mailIconFrame;
     }
 
-    public static WebElement getSideBarFrame() {
-        return sideBarFrame;
-    }
 
 
     public BasePage() {
         this.webDriver = DriverFactory.getWebDriver();
         PageFactory.initElements(this.webDriver, this);
     }
-
-    public WebElement getWebElementByXpath(String elementXpath) {
-        waitForElement(webDriver.findElement(By.xpath("/html/body")), 10);
-        return webDriver.findElement(By.xpath(elementXpath));
-    }
-
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
         new WebDriverWait(webDriver, Duration.ofSeconds(timeForWaitInSec)).ignoring(StaleElementReferenceException.class,
@@ -100,6 +89,10 @@ public class BasePage {
                 "<<<<<<<<<<Web page URL mismatch(incorrect URL for the " + getClass() + ")>>>>>>>>>>>>");
 
     }
+    public String getAbsolutePath(String relativePath) {
+        return FileSystems.getDefault().getPath(relativePath).normalize().toAbsolutePath().toString();
+    }
+
 
     private void checkElementOnPage() {
         //if "menu" button is present on the current - that's true
@@ -150,30 +143,15 @@ public class BasePage {
         webDriver.switchTo().frame(servicesMenuFrame);
     }
 
-    public void goToSideBarMenu() {
-        //navigate to the gmail sidebar
-        webDriver.switchTo().frame(getSideBarFrame());
-//        getSideBarFrame().click();
-    }
-
     public void switchToTab(Integer tabNum) {
-        pauseSec(2);
         ArrayList<String> openedTabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(openedTabs.get(tabNum));
     }
 
     @Step("Check if error message is displayed on the page")
     public void checkErrorMessageIsDisplayed(WebElement element) {
-//        Assert.assertNotNull(element,"Error message: " +element.getText() + " is absent on the: "+this.webDriver.getTitle() + " page");
-        if (!element.isDisplayed()) {
-           Assert.fail("Error message is not displayed : " + element.getText());
-//            TestListener testListener = new TestListener();
-//            testListener.saveScreenshot();
-        } else if (element.isDisplayed())
-            LOGGER.info("Proper massage is displayed : " + element.getText());
+        Assert.assertTrue(element.isDisplayed(),"Error message is not displayed : " + element.getText());
     }
-
-
 
 }
 

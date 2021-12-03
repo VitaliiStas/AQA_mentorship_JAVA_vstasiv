@@ -7,8 +7,8 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/vitalii.stasiv/Desktop/AQA_mentorship/Project">
         <classes>
-<!--            <class name="org.eleks.gmail.vstasiv.Tests"></class>-->
-            <class name="org.eleks.gmail.vstasiv.Tests2"></class>
+            <class name="org.eleks.gmail.vstasiv.Tests"></class>
+<!--            <class name="org.eleks.gmail.vstasiv.Tests2"></class>-->
         </classes>
     </test>
 </suite>
