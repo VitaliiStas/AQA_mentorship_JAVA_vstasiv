@@ -38,19 +38,13 @@ public class EmailPage extends MailSendPage {
     @FindBy(xpath = "//div[@class='ha']/h2")
     private WebElement receivedSubjectBody;
 
-    public WebElement getReceivedSubjectBody() {
-        return receivedSubjectBody;
-    }
-//    public WebElement getReceivedEmailBody() {
-//        return receivedEmailBody;
-//    }
 
 
 
 
 
     public List<String> getListOfSendToOrCC() {
-        waitForElement(getReceivedSubjectBody(), 10);
+        waitForElement(receivedSubjectBody, 10);
         ArrayList<String> listOfSendToOrCC = new ArrayList<>();
         List<WebElement> listOfSendToOrCCWebElements = webDriver.findElements(By.xpath(sendToOrCCXpaths));
         for (WebElement cc : listOfSendToOrCCWebElements) {

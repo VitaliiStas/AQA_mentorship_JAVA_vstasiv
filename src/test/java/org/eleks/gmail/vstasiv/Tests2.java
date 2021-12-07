@@ -15,17 +15,19 @@ public class Tests2 extends BaseTest {
     @Test
     public void singInTest() {
         LoginBO.login();
-        Assert.fail();
     }
 
     @Test
     public void singInFailedTest() {
+        Assert.fail();
         LoginBO.loginFailed();
+
     }
 
     @Test
     public void goToMailPageTest() {
         LoginBO.login();
+        Assert.fail();
         HomePage.goToMailSendPage();
     }
 

@@ -26,32 +26,30 @@ public class BasePage {
     private static final Logger LOGGER = LogManager.getLogger(BasePage.class);
 
     @FindBy(xpath = "//*[@id='gbwa']/div/a")
-    private static WebElement menu;
+    private  WebElement menu;
 
     @FindBy(xpath = "//a[contains(@href,'https://mail.google.com/mail/')]")
-    private static WebElement mailIcon;
+    private  WebElement mailIcon;
 
     @FindBy(xpath = "//iframe[contains(@src,'https://ogs.google.com/u/0/')]")
-    private static WebElement mailIconFrame;
+    private  WebElement mailIconFrame;
 
     @FindBy(xpath = "//iframe[contains(@src,'https://hangouts.google.com/webchat/u')]")
-    private static WebElement sideBarFrame;
+    private  WebElement sideBarFrame;
 
     @FindBy(xpath = "//*/button/figure/img")
-    private static WebElement profileImageForCheck;
+    private  WebElement profileImageForCheck;
 
 
-    public static WebElement getProfileImageForCheck() {
-        return profileImageForCheck;
+
+
+    public  void clickOnMailIcon() {
+        clickOnElement(mailIcon);
     }
-
-    public static WebElement getMailIcon() {
-        return mailIcon;
-    }
-
-    public static WebElement getMailIconFrame() {
-        return mailIconFrame;
-    }
+//
+//    public static WebElement getMailIconFrame() {
+//        return mailIconFrame;
+//    }
 
 
 
@@ -89,44 +87,43 @@ public class BasePage {
                 "<<<<<<<<<<Web page URL mismatch(incorrect URL for the " + getClass() + ")>>>>>>>>>>>>");
 
     }
-    public String getAbsolutePath(String relativePath) {
-        return FileSystems.getDefault().getPath(relativePath).normalize().toAbsolutePath().toString();
-    }
 
 
+    @Step("Check if the 'MENU' present on the page")
     private void checkElementOnPage() {
         //if "menu" button is present on the current - that's true
-        if (!(menu.isDisplayed())) {
-            LOGGER.warn("!!!!!!!Element unavailable on the page: " + getClass());
-        } else {
-            LOGGER.warn("Element is present on the page: " + getClass());
-        }
-    }
+        Assert.assertTrue(menu.isDisplayed(),"!!!!!!!'MENU' unavailable on the page: " + getClass());
+            }
 
-    private void checkElementOnPage(WebElement element) {
+//todo assert fail
+private void checkIfTheSelectedElementIsPresent(WebElement element) {
         //if "menu" button is present on the current - that's true
-        if (!(element.isDisplayed())) {
-            LOGGER.warn("!!!!!!!Element unavailable on the page: " + getClass());
-        } else {
-            LOGGER.info("Element is present on the page: " + getClass());
-        }
+    Assert.assertTrue(element.isDisplayed(),"!!!!!!!'Element:'"+element+" unavailable on the page: " + getClass());
     }
 
+
+
+    //todo не інкапсульовано напизати метод veryfy is open
+    @Step("Check if correct page is opened")
     public void verifyIsOpen() {
         checkUrl();
         checkElementOnPage();
-    }
-
-    @Step("Check if correct page is opened")
-    public void verifyIsOpen(WebElement elementForCheck) {
-        checkUrl();
-        checkElementOnPage(elementForCheck);
         LOGGER.info("Correct page for class: " + getClass() + " opened");
     }
+    @Step("Check if profile image isDisplayed")
+    public void checkIfProfileImageIsPresent() {
+        checkIfTheSelectedElementIsPresent(profileImageForCheck);
+    }
+
+
+//    private void verifyIsOpen(WebElement elementForCheck) {
+//        checkUrl();
+//        checkIfTheSelectedElementIsPresent(elementForCheck);
+//        LOGGER.info("Correct page for class: " + getClass() + " opened");
+//    }
 
     public void clickOnElement(WebElement element) {
         waitForElement(element, 2);
-//        pauseSec(5);
         element.click();
     }
 
@@ -138,9 +135,9 @@ public class BasePage {
         }
     }
 
-    public void goToServicesMenu(WebElement servicesMenuFrame) {
+    public void goToServicesMenu() {
         //navigate to the gmail services menu which located in the frame
-        webDriver.switchTo().frame(servicesMenuFrame);
+        webDriver.switchTo().frame(mailIconFrame);
     }
 
     public void switchToTab(Integer tabNum) {

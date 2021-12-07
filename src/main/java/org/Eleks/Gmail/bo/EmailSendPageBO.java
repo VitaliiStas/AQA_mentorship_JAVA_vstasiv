@@ -11,9 +11,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +34,6 @@ public class EmailSendPageBO {
     private String pathToDownloadedFile;
 
 
-
     protected static List<String> sendToListOrCC = Arrays.asList(
             "tt8397519@gmail.com"
             , "tt8397519+1@gmail.com"
@@ -43,8 +47,9 @@ public class EmailSendPageBO {
 
     private static final Logger LOGGER = LogManager.getLogger(EmailPage.class);
 
-    public void sendAndCheckEmail() {
+    private final String emailXpath = "//tr//td//span[@title]";
 
+    public void sendAndCheckEmail() {
         mailSendPage
                 .setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         sendEmail(sendToListOrCC);
@@ -53,13 +58,11 @@ public class EmailSendPageBO {
         mailSendPage
                 .verifyIsOpen();
         mailSendPage
-                .downloadFile();
+                .clickDownloadButton();
         filesComparing(mailSendPage
                         .getAbsolutePath("src/main/resources/testImage.jpg")
                 , "C:\\Users\\vitalii.stasiv\\Downloads\\testImage.jpg");
-//        checkEmail(mailSendPage
-//                        .getEmailBodyForCheck(), mailSendPage.getEmailSubject()
-//                , sendToListOrCC);
+        checkEmail(testEmailText, testEmailSubject, sendToListOrCC);
     }
 
 
@@ -69,7 +72,7 @@ public class EmailSendPageBO {
         mailSendPage
                 .goToEmailPage();
         mailSendPage
-                .downloadFile();
+                .clickDownloadButton();
         filesComparing(pathToFile
                 , pathToDownloadedFile);
         checkEmail(testEmailText
@@ -84,8 +87,8 @@ public class EmailSendPageBO {
 
     private void sendEmailApi() {
         sendEmailByApi.sendEmailByApi(sendToListOrCC.get(1)
-                , "API_"+testEmailSubject
-                , "API_"+testEmailText);
+                , "API_" + testEmailSubject
+                , "API_" + testEmailText);
     }
 
     public static void checkSortingEmailsOnEmailPage() {
@@ -97,14 +100,13 @@ public class EmailSendPageBO {
 
 
     @Step("Check if email deleted")
-    public  void checkEmailDeleting() {
-//        EmailPage emailPage = new EmailPage();
-        emailPage.setEmailNumForDelete(3);
+    public void checkEmailDeleting() {
+        int deleteNum = 3;
         DateTimeHelper dateTimeHelper = new DateTimeHelper();
-        String deleteEmailTime = dateTimeHelper.getDeleteEmailTime();
+        String deleteEmailTime = dateTimeHelper.getDeleteEmailTime(deleteNum);
         //type number email for deleting
         String latestEmailTime = dateTimeHelper.getLatestEmailTime();
-        emailPage.deleteEmail();
+        emailPage.deleteEmail(deleteNum);
         emailPage.checkIfEmailIsDeleted(latestEmailTime, deleteEmailTime);
     }
 
@@ -112,9 +114,6 @@ public class EmailSendPageBO {
     private void sendEmailWithBuilder() {
         mailSendPage
                 .goToEmailSendForm();
-//        mailSendPage
-//                .waitForElement(mailSendPage
-//                        .typeSendTo(), 10);
         for (String emails : sendToOrCC) {
             mailSendPage
                     .typeSendTo(emails);
@@ -148,10 +147,10 @@ public class EmailSendPageBO {
     @Step("Check email sorting")
     private void checkEmailOrder() {
         ArrayList<LocalDateTime> defOrderEmailList = new ArrayList<>();
-        mailSendPage.waitForElement(new MailSendPage().getEmailDataElement(), 10);
+//        mailSendPage.waitForElement(DriverFactory.getWebDriver().findElement(By.xpath(emailXpath)), 10);
         List<WebElement> emailsList = DriverFactory
                 .getWebDriver()
-                .findElements(new MailSendPage().getEmailDataXpath());
+                .findElements(By.xpath(emailXpath));
         for (WebElement date : emailsList) {
             defOrderEmailList.add(DateTimeHelper.parseDateTime(date.getAttribute("title")));
         }
@@ -177,34 +176,68 @@ public class EmailSendPageBO {
         mailSendPage.clickSendButton();
     }
 
+
+
+    private void checkCondition(String actualCondition, String expectedCondition, String failureMessage) {
+        Assert.assertEquals(actualCondition, expectedCondition, failureMessage);
+    }
+
     @Step("Check received email")
+//    private void checkEmail(String expectedTestEmailText, String expectedSubjectForCheck, List<String> expectedListSentToEmails) {
+//        checkCondition(testEmailText,expectedTestEmailText,"Received email BODY is incorrect");
+//        checkCondition(testEmailSubject,expectedSubjectForCheck,"Received email subject is incorrect");
+//        Assert.assertEquals(sendToOrCC,expectedListSentToEmails,"CC email is incorrect");
+//        LOGGER.info("message is correct");
+//    }
     private void checkEmail(String expectedTestEmailText, String expectedSubjectForCheck, List<String> expectedListSentToEmails) {
-        checkCondition(testEmailText,expectedTestEmailText,"Received email BODY is incorrect");
-        checkCondition(testEmailSubject,expectedSubjectForCheck,"Received email subject is incorrect");
+
+        checkCondition(testEmailText,getWebElementByText(expectedTestEmailText).getText(),"Received email BODY is incorrect");
+        checkCondition(testEmailSubject,getWebElementByText(expectedSubjectForCheck).getText(),"Received email subject is incorrect");
         Assert.assertEquals(sendToOrCC,expectedListSentToEmails,"CC email is incorrect");
         LOGGER.info("message is correct");
+    }
+//    todo перевірити з (),спробувати з лістом і від фільтрувати isDisplayed
+    private WebElement getWebElementByText (String text) {
+        return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class,
+                TimeoutException.class).until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//*[text()='" + text + "'])[last()]")));
+//        return  DriverFactory.getWebDriver().findElement(By.xpath("//*[text()='" + text + "']"));
+    }
+//    private WebElement getSubjectByText (String text) {
+//        return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class,
+//                TimeoutException.class).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='" + text + "']")));
+////        return  DriverFactory.getWebDriver().findElement(By.xpath("//*[text()='" + text + "']"));
+//    }
+
+    //todo move to helper or class EmailBO
+    private String getAbsolutePath(String relativePath) {
+        return FileSystems.getDefault().getPath(relativePath).normalize().toAbsolutePath().toString();
+    }
+    private  String getPathToFile(String pathToFile) {
+        return String.valueOf(Paths.get(pathToFile));
+    }
+
+    @Step("Attach test file")
+    private void attachFile(String relativePathToFile) {
+        mailSendPage.typeAddFilePath(getAbsolutePath(relativePathToFile));
     }
 
     private void checkEmailApi(String expectedTestEmailText, String expectedSubjectForCheck) {
         checkCondition(testEmailText
-                ,expectedTestEmailText
-                ,"Received email BODY is incorrect");
+                , expectedTestEmailText
+                , "Received email BODY is incorrect");
         checkCondition(testEmailSubject
-                ,expectedSubjectForCheck
-                ,"Received email subject is incorrect");
+                , expectedSubjectForCheck
+                , "Received email subject is incorrect");
         LOGGER.info("message is correct!!");
     }
 
-    private void checkCondition(String actualCondition, String expectedCondition, String failureMessage){
-        Assert.assertEquals(actualCondition,expectedCondition,failureMessage);
-    }
 
     public static EmailSendPageBO create() {
         return new Builder()
                 .setSendToOrCC(sendToListOrCC)
                 .setPathToFile("src/main/resources/testImage.jpg")
                 .setPathToDownloadedFile("C:\\Users\\vitalii.stasiv\\Downloads\\testImage.jpg")
-                .setTestEmailText("Body_builder" + MailSendPage.generateRandomString())
+                .setTestEmailText("Body_builder " + MailSendPage.generateRandomString())
                 .setTestEmailSubject("Subject_builder " + MailSendPage.generateRandomString())
                 .build();
     }

@@ -19,14 +19,12 @@ import java.time.Duration;
 public class MailSendPage extends BasePage {
     private final Actions action = new Actions(webDriver);
 
-    private int emailNumForDelete = 3;
-
-    private final String emailXpath = "//tr//td//span[@title]";
-    private final By emailDataXpath = By.xpath(emailXpath);
+//    private int emailNumForDelete = 3;
+//todo
+//    private final String emailXpath = "//tr//td//span[@title]";
+//    private final By emailDataXpath = By.xpath(emailXpath);
 
     private final String subjectOnEmailPageXpath = "//span[@class='bog']/span[@class='bqe']";
-
-
 
 
     @FindBy(xpath = "//div[@class='T-I T-I-KE L3']")
@@ -67,69 +65,75 @@ public class MailSendPage extends BasePage {
 
     public void typeEmailText(String emailText) {
 //        bodyOfMessage.sendKeys(emailText);
-        wait(bodyOfMessage,10).sendKeys(emailText);
+        wait(bodyOfMessage, 10).sendKeys(emailText);
     }
 
     public void typeEmailSubject(String subject) {
 //        subjectOfMessage.sendKeys(subject);
-        wait(subjectOfMessage,10).sendKeys(subject);
+        wait(subjectOfMessage, 10).sendKeys(subject);
     }
 
     public void typeSendTo(String sendTo) {
 //        sendToEmail.sendKeys(sendTo);
-        wait(sendToEmail,10).sendKeys(sendTo);
+        wait(sendToEmail, 10).sendKeys(sendTo);
     }
 
     public void typeSendTo(Keys keys) {
 //        sendToEmail.sendKeys(keys);
-        wait(sendToEmail,10).sendKeys(keys);
+        wait(sendToEmail, 10).sendKeys(keys);
     }
 
 
     public void clickSendButton() {
-        wait(sendButton,10).click();
+        wait(sendButton, 10).click();
     }
-    private WebElement wait (WebElement element, int waitTime){
+
+    private WebElement wait(WebElement element, int waitTime) {
         return new WebDriverWait(webDriver, Duration.ofSeconds(waitTime))
-                .ignoring(StaleElementReferenceException.class,TimeoutException.class)
+                .ignoring(StaleElementReferenceException.class, TimeoutException.class)
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
     //todo не інкапсульовано
-    public By getEmailDataXpath() {
-        return emailDataXpath;
-    }
 
     public WebElement getEmailDataElement() {
         return emailDataElement;
     }
 
+//todo мувнути в BO
     public static String generateRandomString() {
         return RandomStringUtils.randomAlphabetic(12);
     }
-
-    public void setEmailNumForDelete(int emailNumForDelete) {
-        this.emailNumForDelete = emailNumForDelete;
-    }
-
-    public void downloadFile() {
+////todo delete
+//    public void setEmailNumForDelete(int emailNumForDelete) {
+//        this.emailNumForDelete = emailNumForDelete;
+//    }
+//todo rename click downloadfile
+    public void clickDownloadButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(20))
                 .ignoring(StaleElementReferenceException.class,
-                TimeoutException.class)
+                        TimeoutException.class)
                 .until(ExpectedConditions.visibilityOf(downloadFile)).click();
     }
 
     @Step("Go to email page")
     public EmailPage goToEmailPage() {
+        pauseSec(2);
         new WebDriverWait(webDriver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.elementToBeClickable(lastEmailFromTable)).click();
         System.out.println("Element was clicked");
         return new EmailPage();
     }
-
-    public static String getPathToFile(String pathToFile) {
-        return String.valueOf(Paths.get(pathToFile));
+    public EmailPage goToEmailPage(String text) {
+        pauseSec(2);
+        new WebDriverWait(webDriver, Duration.ofSeconds(20)).ignoring(StaleElementReferenceException.class,
+                TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webDriver.findElement(By.xpath("//ancestor::*[text()='"+text+"']//ancestor::tr")))).click();
+        System.out.println("Element was clicked");
+        return new EmailPage();
     }
+
+
+
 
     @Step("check If Email Is Deleted By Subject")
     public void checkIfEmailIsDeletedBySubject(String subject) {
@@ -148,19 +152,18 @@ public class MailSendPage extends BasePage {
     }
 
 
-    @Step("Attach test file")
-    public void attachFile(String relativePathToFile) {
-        addFile.sendKeys(getAbsolutePath(relativePathToFile));
+    public void typeAddFilePath(String path) {
+         addFile.sendKeys(path);
     }
 
     public void goToEmailSendForm() {
-        wait(mailCreateButton,10).click();
+        wait(mailCreateButton, 10).click();
     }
 
 
     @Step("Delete the selected email")
-    public void deleteEmail() {
-        action.contextClick(getEmailForDelete()).build().perform();
+    public void deleteEmail(int num) {
+        action.contextClick(getEmailForDelete(num)).build().perform();
         waitForElement(deleteEmailButton, 10);
         action.moveToElement(deleteEmailButton).build().perform();
         deleteEmailButton.click();
@@ -180,13 +183,13 @@ public class MailSendPage extends BasePage {
 
     }
 
-    public WebElement getEmailSubjectElement(String subject) {
+    private WebElement getEmailSubjectElement(String subject) {
         return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10))
                 .until(ExpectedConditions
                         .presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")));
     }
-
-    protected WebElement getEmailForDelete() {
+//todo fixe or remove
+    protected WebElement getEmailForDelete(int emailNumForDelete) {
         //use the selected email num for delete proper email
         String xpathForEmailDeleting = String.valueOf(new StringBuffer("//tr//td//span[@title]")
                 .insert(4, String.format("[%s]", emailNumForDelete)));

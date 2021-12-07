@@ -15,8 +15,8 @@ public class HomePage extends BasePage {
     public static void goToMailSendPage() {
 //      clickOnElement(menu, "aria-expanded", "true"); //menu is opened by default
         HomePage homePage = new HomePage();
-        homePage.goToServicesMenu(getMailIconFrame());
-        homePage.clickOnElement(getMailIcon());
+        homePage.goToServicesMenu();
+        homePage.clickOnMailIcon();
         homePage.switchToTab(1);
         new MailSendPage();
     }
