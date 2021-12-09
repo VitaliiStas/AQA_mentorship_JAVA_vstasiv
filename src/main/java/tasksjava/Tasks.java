@@ -115,6 +115,13 @@ public class Tasks {
         Thread t = Thread.currentThread(); // получаем главный поток
 //        t.sleep(10000);
         System.out.println(t);
+        Thread t1 = new Thread("Thread1");
+        Thread t2 = new Thread("Thread2");
+//        t.start();
+        t2.start();
+        System.out.println(t2.getName());
+        t1.join();
+        t2.join();
 
 
     }
