@@ -2,8 +2,8 @@ package org.Eleks.Gmail.po;
 
 
 import io.qameta.allure.Step;
+import org.Eleks.Gmail.bo.EmailSendPageBO;
 import org.Eleks.Gmail.factories.DriverFactory;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -11,24 +11,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
 import java.time.Duration;
 
 
 public class MailSendPage extends BasePage {
     private final Actions action = new Actions(webDriver);
 
-//    private int emailNumForDelete = 3;
-//todo
-//    private final String emailXpath = "//tr//td//span[@title]";
-//    private final By emailDataXpath = By.xpath(emailXpath);
 
     private final String subjectOnEmailPageXpath = "//span[@class='bog']/span[@class='bqe']";
 
 
     @FindBy(xpath = "//div[@class='T-I T-I-KE L3']")
-    private static WebElement mailCreateButton;
+    private  WebElement mailCreateButton;
 
     @FindBy(xpath = "//*[@class='vO' and @name='to']")
     private WebElement sendToEmail;
@@ -64,22 +58,18 @@ public class MailSendPage extends BasePage {
     }
 
     public void typeEmailText(String emailText) {
-//        bodyOfMessage.sendKeys(emailText);
         wait(bodyOfMessage, 10).sendKeys(emailText);
     }
 
     public void typeEmailSubject(String subject) {
-//        subjectOfMessage.sendKeys(subject);
         wait(subjectOfMessage, 10).sendKeys(subject);
     }
 
     public void typeSendTo(String sendTo) {
-//        sendToEmail.sendKeys(sendTo);
         wait(sendToEmail, 10).sendKeys(sendTo);
     }
 
     public void typeSendTo(Keys keys) {
-//        sendToEmail.sendKeys(keys);
         wait(sendToEmail, 10).sendKeys(keys);
     }
 
@@ -94,21 +84,12 @@ public class MailSendPage extends BasePage {
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
-    //todo не інкапсульовано
 
-    public WebElement getEmailDataElement() {
-        return emailDataElement;
+    public String getTimeOfEmailElement() {
+        return DateTimeHelper.getEmailDateTime(emailDataElement);
     }
 
-//todo мувнути в BO
-    public static String generateRandomString() {
-        return RandomStringUtils.randomAlphabetic(12);
-    }
-////todo delete
-//    public void setEmailNumForDelete(int emailNumForDelete) {
-//        this.emailNumForDelete = emailNumForDelete;
-//    }
-//todo rename click downloadfile
+
     public void clickDownloadButton() {
         new WebDriverWait(webDriver, Duration.ofSeconds(20))
                 .ignoring(StaleElementReferenceException.class,
@@ -116,21 +97,24 @@ public class MailSendPage extends BasePage {
                 .until(ExpectedConditions.visibilityOf(downloadFile)).click();
     }
 
+//    @Step("Go to email page")
+//    public EmailPage goToEmailPage() {
+//        pauseSec(2);
+//        new WebDriverWait(webDriver, Duration.ofSeconds(20))
+//                .until(ExpectedConditions.elementToBeClickable(lastEmailFromTable)).click();
+////        //table//tr[@role='row'][1]
+//        System.out.println("Element was clicked");
+//        return new EmailPage();
+//    }
     @Step("Go to email page")
-    public EmailPage goToEmailPage() {
-        pauseSec(2);
-        new WebDriverWait(webDriver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.elementToBeClickable(lastEmailFromTable)).click();
-        System.out.println("Element was clicked");
-        return new EmailPage();
-    }
     public EmailPage goToEmailPage(String text) {
-        pauseSec(2);
-        new WebDriverWait(webDriver, Duration.ofSeconds(20)).ignoring(StaleElementReferenceException.class,
-                TimeoutException.class).until(ExpectedConditions.elementToBeClickable(webDriver.findElement(By.xpath("//ancestor::*[text()='"+text+"']//ancestor::tr")))).click();
+//        pauseSec(2);
+        new WebDriverWait(webDriver, Duration.ofSeconds(10)).until(ExpectedConditions
+                .elementToBeClickable(By.xpath("//*[text()='"+text+"']//ancestor::tr"))).click();
         System.out.println("Element was clicked");
         return new EmailPage();
     }
+
 
 
 
@@ -188,13 +172,12 @@ public class MailSendPage extends BasePage {
                 .until(ExpectedConditions
                         .presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")));
     }
-//todo fixe or remove
     protected WebElement getEmailForDelete(int emailNumForDelete) {
         //use the selected email num for delete proper email
-        String xpathForEmailDeleting = String.valueOf(new StringBuffer("//tr//td//span[@title]")
-                .insert(4, String.format("[%s]", emailNumForDelete)));
-        return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathForEmailDeleting)));
+        return new WebDriverWait(webDriver,Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                        By.xpath(String.valueOf(new StringBuffer("//tr//td//span[@title]")
+                        .insert(4, String.format("[%s]", emailNumForDelete))))));
     }
 
 

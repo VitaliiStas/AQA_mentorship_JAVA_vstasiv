@@ -16,7 +16,6 @@ public class LoginBO {
         User user = UserFactory.getUser();
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login(user.getUserName(), user.getPassword());
-//todo переробити щоб сюди передавався результат перевірки
         homePage.checkIfProfileImageIsPresent();
         homePage.verifyIsOpen();
         LOGGER.info("Login successfully");

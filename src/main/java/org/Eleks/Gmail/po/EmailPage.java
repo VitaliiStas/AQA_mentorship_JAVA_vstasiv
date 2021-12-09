@@ -38,11 +38,6 @@ public class EmailPage extends MailSendPage {
     @FindBy(xpath = "//div[@class='ha']/h2")
     private WebElement receivedSubjectBody;
 
-
-
-
-
-
     public List<String> getListOfSendToOrCC() {
         waitForElement(receivedSubjectBody, 10);
         ArrayList<String> listOfSendToOrCC = new ArrayList<>();

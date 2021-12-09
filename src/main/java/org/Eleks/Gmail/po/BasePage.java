@@ -3,7 +3,6 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
-import org.Eleks.Gmail.listeners.TestListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -13,7 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.nio.file.FileSystems;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -26,31 +24,32 @@ public class BasePage {
     private static final Logger LOGGER = LogManager.getLogger(BasePage.class);
 
     @FindBy(xpath = "//*[@id='gbwa']/div/a")
-    private  WebElement menu;
+    private WebElement menu;
 
     @FindBy(xpath = "//a[contains(@href,'https://mail.google.com/mail/')]")
-    private  WebElement mailIcon;
+    private WebElement mailIcon;
 
     @FindBy(xpath = "//iframe[contains(@src,'https://ogs.google.com/u/0/')]")
-    private  WebElement mailIconFrame;
+    private WebElement mailIconFrame;
 
     @FindBy(xpath = "//iframe[contains(@src,'https://hangouts.google.com/webchat/u')]")
-    private  WebElement sideBarFrame;
+    private WebElement sideBarFrame;
 
-    @FindBy(xpath = "//*/button/figure/img")
-    private  WebElement profileImageForCheck;
+    //    @FindBy(xpath = "//*/button/figure/img")
+    @FindBy(xpath = "(//*/button/figure/img)[last()]")
+    private WebElement profileImageForCheck;
+//    todo delete
+    @FindBy(xpath = "")
+    private WebElement test;
 
 
-
-
-    public  void clickOnMailIcon() {
+    public void clickOnMailIcon() {
         clickOnElement(mailIcon);
     }
 //
 //    public static WebElement getMailIconFrame() {
 //        return mailIconFrame;
 //    }
-
 
 
     public BasePage() {
@@ -90,37 +89,33 @@ public class BasePage {
 
 
     @Step("Check if the 'MENU' present on the page")
-    private void checkElementOnPage() {
+    private void checkIfMenuPresent() {
         //if "menu" button is present on the current - that's true
-        Assert.assertTrue(menu.isDisplayed(),"!!!!!!!'MENU' unavailable on the page: " + getClass());
-            }
-
-//todo assert fail
-private void checkIfTheSelectedElementIsPresent(WebElement element) {
+        Assert.assertTrue(menu.isDisplayed(), "!!!!!!!'MENU' unavailable on the page: " + getClass());
+    }
+//todo протестити коли фейлиться коли нема елемента
+    private void checkIfTheSelectedElementIsPresent(WebElement element) {
         //if "menu" button is present on the current - that's true
-    Assert.assertTrue(element.isDisplayed(),"!!!!!!!'Element:'"+element+" unavailable on the page: " + getClass());
+        Assert.assertNotNull(new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                        .ignoring(StaleElementReferenceException.class, TimeoutException.class)
+                        .until(ExpectedConditions.visibilityOf(element))
+                , "!!!!!!!'Element:'" + element + " unavailable on the page: " + getClass());
     }
 
 
-
-    //todo не інкапсульовано напизати метод veryfy is open
     @Step("Check if correct page is opened")
     public void verifyIsOpen() {
         checkUrl();
-        checkElementOnPage();
+        checkIfMenuPresent();
         LOGGER.info("Correct page for class: " + getClass() + " opened");
     }
-    @Step("Check if profile image isDisplayed")
+
+    @Step("Check if profile image isDisplayed on home page")
     public void checkIfProfileImageIsPresent() {
         checkIfTheSelectedElementIsPresent(profileImageForCheck);
+//        checkIfTheSelectedElementIsPresent(test);
     }
 
-
-//    private void verifyIsOpen(WebElement elementForCheck) {
-//        checkUrl();
-//        checkIfTheSelectedElementIsPresent(elementForCheck);
-//        LOGGER.info("Correct page for class: " + getClass() + " opened");
-//    }
 
     public void clickOnElement(WebElement element) {
         waitForElement(element, 2);
@@ -147,7 +142,7 @@ private void checkIfTheSelectedElementIsPresent(WebElement element) {
 
     @Step("Check if error message is displayed on the page")
     public void checkErrorMessageIsDisplayed(WebElement element) {
-        Assert.assertTrue(element.isDisplayed(),"Error message is not displayed : " + element.getText());
+        Assert.assertTrue(element.isDisplayed(), "Error message is not displayed : " + element.getText());
     }
 
 }

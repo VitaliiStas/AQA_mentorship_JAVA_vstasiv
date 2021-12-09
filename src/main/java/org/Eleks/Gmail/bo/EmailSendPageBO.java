@@ -7,6 +7,7 @@ import org.Eleks.Gmail.factories.UserFactory;
 import org.Eleks.Gmail.po.DateTimeHelper;
 import org.Eleks.Gmail.po.EmailPage;
 import org.Eleks.Gmail.po.MailSendPage;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -54,13 +55,12 @@ public class EmailSendPageBO {
                 .setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         sendEmail(sendToListOrCC);
         mailSendPage
-                .goToEmailPage();
+                .goToEmailPage(testEmailSubject);
         mailSendPage
                 .verifyIsOpen();
         mailSendPage
                 .clickDownloadButton();
-        filesComparing(mailSendPage
-                        .getAbsolutePath("src/main/resources/testImage.jpg")
+        filesComparing(getAbsolutePath("src/main/resources/testImage.jpg")
                 , "C:\\Users\\vitalii.stasiv\\Downloads\\testImage.jpg");
         checkEmail(testEmailText, testEmailSubject, sendToListOrCC);
     }
@@ -70,7 +70,7 @@ public class EmailSendPageBO {
         mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
         sendEmailWithBuilder();
         mailSendPage
-                .goToEmailPage();
+                .goToEmailPage(testEmailSubject);
         mailSendPage
                 .clickDownloadButton();
         filesComparing(pathToFile
@@ -101,7 +101,7 @@ public class EmailSendPageBO {
 
     @Step("Check if email deleted")
     public void checkEmailDeleting() {
-        int deleteNum = 3;
+        int deleteNum = 4;
         DateTimeHelper dateTimeHelper = new DateTimeHelper();
         String deleteEmailTime = dateTimeHelper.getDeleteEmailTime(deleteNum);
         //type number email for deleting
@@ -122,7 +122,7 @@ public class EmailSendPageBO {
         }
         mailSendPage.typeEmailSubject(testEmailSubject);
         mailSendPage.typeEmailText(testEmailText);
-        mailSendPage.attachFile(pathToFile);
+        attachFile(pathToFile);
         mailSendPage.clickSendButton();
     }
 
@@ -133,8 +133,8 @@ public class EmailSendPageBO {
     }
 
     private void filesComparing(String pathToFile1, String pathToFile2) {
-        File expectedFile = new File(MailSendPage.getPathToFile(pathToFile1));
-        File actualFile = new File(MailSendPage.getPathToFile(pathToFile2));
+        File expectedFile = new File(getPathToFile(pathToFile1));
+        File actualFile = new File(getPathToFile(pathToFile2));
         try {
             Assert.assertEquals(expectedFile.createNewFile(), actualFile.createNewFile(), "The files are different");
 
@@ -172,7 +172,7 @@ public class EmailSendPageBO {
         }
         mailSendPage.typeEmailSubject(testEmailSubject);
         mailSendPage.typeEmailText(testEmailText);
-        mailSendPage.attachFile("src/main/resources/testImage.jpg");
+        attachFile("src/main/resources/testImage.jpg");
         mailSendPage.clickSendButton();
     }
 
@@ -196,7 +196,6 @@ public class EmailSendPageBO {
         Assert.assertEquals(sendToOrCC,expectedListSentToEmails,"CC email is incorrect");
         LOGGER.info("message is correct");
     }
-//    todo перевірити з (),спробувати з лістом і від фільтрувати isDisplayed
     private WebElement getWebElementByText (String text) {
         return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class,
                 TimeoutException.class).until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//*[text()='" + text + "'])[last()]")));
@@ -208,7 +207,11 @@ public class EmailSendPageBO {
 ////        return  DriverFactory.getWebDriver().findElement(By.xpath("//*[text()='" + text + "']"));
 //    }
 
-    //todo move to helper or class EmailBO
+
+    private static String generateRandomString() {
+        return RandomStringUtils.randomAlphabetic(12);
+    }
+
     private String getAbsolutePath(String relativePath) {
         return FileSystems.getDefault().getPath(relativePath).normalize().toAbsolutePath().toString();
     }
@@ -237,8 +240,8 @@ public class EmailSendPageBO {
                 .setSendToOrCC(sendToListOrCC)
                 .setPathToFile("src/main/resources/testImage.jpg")
                 .setPathToDownloadedFile("C:\\Users\\vitalii.stasiv\\Downloads\\testImage.jpg")
-                .setTestEmailText("Body_builder " + MailSendPage.generateRandomString())
-                .setTestEmailSubject("Subject_builder " + MailSendPage.generateRandomString())
+                .setTestEmailText("Body_builder " + generateRandomString())
+                .setTestEmailSubject("Subject_builder " + generateRandomString())
                 .build();
     }
 

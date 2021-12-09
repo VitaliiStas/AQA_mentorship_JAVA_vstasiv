@@ -2,7 +2,6 @@ package org.Eleks.Gmail.po;
 
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,7 +37,8 @@ public class DateTimeHelper extends MailSendPage {
     }
 
     public String getLatestEmailTime() {
-        return DateTimeHelper.getEmailDateTime(getEmailDataElement());
+//        return DateTimeHelper.getEmailDateTime(getEmailDataElement());
+        return new MailSendPage().getTimeOfEmailElement();
     }
 
 
