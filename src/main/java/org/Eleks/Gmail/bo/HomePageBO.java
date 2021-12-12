@@ -12,7 +12,6 @@ public class HomePageBO {
         homePage.goToServicesMenu();
         homePage.clickOnMailIcon();
         homePage.switchToTab(1);
-//        new MailSendPage();
      return new EmailSendPageBO();
     }
 

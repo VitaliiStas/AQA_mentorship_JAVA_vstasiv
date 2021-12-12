@@ -7,6 +7,7 @@ import org.Eleks.Gmail.factories.UserFactory;
 import org.Eleks.Gmail.po.DateTimeHelper;
 import org.Eleks.Gmail.po.EmailPage;
 import org.Eleks.Gmail.po.MailSendPage;
+import org.Eleks.Gmail.utils.PropertyUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,7 +53,7 @@ public class EmailSendPageBO {
 
     public void sendAndCheckEmail() {
         mailSendPage
-                .setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
+                .setExpectedUrl(PropertyUtils.getProperties("expectedUrlMailSendPage"));
         sendEmail(sendToListOrCC);
         mailSendPage
                 .goToEmailPage(testEmailSubject);
@@ -67,7 +68,7 @@ public class EmailSendPageBO {
 
 
     public void sendAndCheckEmailWithBuilder() {
-        mailSendPage.setExpectedUrl(UserFactory.getProperties("expectedUrlMailSendPage"));
+        mailSendPage.setExpectedUrl(PropertyUtils.getProperties("expectedUrlMailSendPage"));
         sendEmailWithBuilder();
         mailSendPage
                 .goToEmailPage(testEmailSubject);
