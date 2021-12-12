@@ -14,7 +14,7 @@ import org.testng.annotations.*;
 
 //@Listeners({TestListener.class, AnnotationTransformer.class})
 @Listeners(TestListener.class)
-public class BaseTest extends DriverFactory {
+public class BaseTest  {
     private static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
 
     @BeforeMethod
@@ -24,12 +24,12 @@ public class BaseTest extends DriverFactory {
         WebDriver webDriver = DriverFactory.setUpWebDriver(DriverFactory.Browsers.CHROME);
         LOGGER.info("Browser is opened",BaseTest.class);
         webDriver.manage().window().maximize();
-        getWebDriver().get(UserFactory.getProperties("testURL2"));
+        DriverFactory.getWebDriver().get(UserFactory.getProperties("testURL2"));
     }
     @AfterMethod
     @Step("Close the browser")
     public void quitTest() {
-        getWebDriver().quit();
+        DriverFactory.getWebDriver().quit();
         LOGGER.info("Browser is closed",BaseTest.class);
     }
 

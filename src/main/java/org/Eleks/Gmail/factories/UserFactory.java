@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class UserFactory {
-
+//todo розбити на два класи пуе проперті окремо(проперті ютіл) і гет юзер окремо
     private static String propertiesFileLocation = new String("src/main/resources/testData.properties");
 
     public static String getProperties(String property) {

@@ -26,9 +26,9 @@ public class Tests2 extends BaseTest {
 
     @Test
     public void goToMailPageTest() {
-        LoginBO.login();
+        LoginBO.login().goToMailSendPage();;
         Assert.fail();
-        HomePage.goToMailSendPage();
+
     }
 
     @Test

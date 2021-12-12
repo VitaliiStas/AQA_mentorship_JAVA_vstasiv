@@ -93,7 +93,7 @@ public class BasePage {
         //if "menu" button is present on the current - that's true
         Assert.assertTrue(menu.isDisplayed(), "!!!!!!!'MENU' unavailable on the page: " + getClass());
     }
-//todo протестити коли фейлиться коли нема елемента
+//todo протестити коли фейлиться коли нема елемента + протестити чи падає на асерті
     private void checkIfTheSelectedElementIsPresent(WebElement element) {
         //if "menu" button is present on the current - that's true
         Assert.assertNotNull(new WebDriverWait(webDriver, Duration.ofSeconds(10))

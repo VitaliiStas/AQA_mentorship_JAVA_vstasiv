@@ -11,14 +11,17 @@ import org.apache.logging.log4j.Logger;
 public class LoginBO {
     private static final Logger LOGGER = LogManager.getLogger(LoginBO.class);
 
+    // todo return homepageBO
     //Sing in  with correct credentials
-    public static void login() {
+//    public static HomePageBO login() {
+    public static HomePageBO login() {
         User user = UserFactory.getUser();
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login(user.getUserName(), user.getPassword());
         homePage.checkIfProfileImageIsPresent();
         homePage.verifyIsOpen();
         LOGGER.info("Login successfully");
+        return new HomePageBO();
     }
 
     //Sing in  with incorrect credentials

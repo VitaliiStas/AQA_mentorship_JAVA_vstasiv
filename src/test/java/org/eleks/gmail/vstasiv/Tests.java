@@ -4,7 +4,6 @@ package org.eleks.gmail.vstasiv;
 import org.Eleks.Gmail.bo.LoginBO;
 import org.Eleks.Gmail.bo.EmailSendPageBO;
 import org.Eleks.Gmail.listeners.TestListener;
-import org.Eleks.Gmail.po.HomePage;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -23,43 +22,54 @@ public class Tests extends BaseTest {
 
     @Test
     public void goToMailPageTest() {
-        LoginBO.login();
-        HomePage.goToMailSendPage();
+        LoginBO
+                .login()
+                .goToMailSendPage();
     }
 
     @Test
     public void sendAndCheckEmailTest() {
-        LoginBO.login();
-        HomePage.goToMailSendPage();
-        EmailSendPageBO.create().sendAndCheckEmail();
+        LoginBO
+                .login()
+                .goToMailSendPage()
+                .create()
+                .sendAndCheckEmail();
     }
 
     @Test
     public void sendAndCheckEmailWithBuilderTest() {
-        LoginBO.login();
-        HomePage.goToMailSendPage();
-        EmailSendPageBO.create().sendAndCheckEmailWithBuilder();
+        LoginBO
+                .login()
+                .goToMailSendPage()
+                .create()
+                .sendAndCheckEmailWithBuilder();
     }
 
     @Test
     public void sortingEmailsOnEmailPageTest() {
-        LoginBO.login();
-        HomePage.goToMailSendPage();
-        EmailSendPageBO.checkSortingEmailsOnEmailPage();
+        LoginBO
+                .login()
+                .goToMailSendPage()
+                .checkSortingEmailsOnEmailPage();
     }
 
     @Test
     public void emailDeletingTest() {
-        LoginBO.login();
-        HomePage.goToMailSendPage();
-        EmailSendPageBO.create().checkEmailDeleting();
+        LoginBO
+                .login()
+                .goToMailSendPage()
+                .create()
+                .checkEmailDeleting();
     }
 
     @Test
     public void emailDeletingTestWithSubject() {
-        LoginBO.login();
-        HomePage.goToMailSendPage();
-        EmailSendPageBO.create().checkEmailDeletingWithSubject();
+        LoginBO
+                .login()
+                .goToMailSendPage()
+                .create()
+                .checkEmailDeletingWithSubject();
+
     }
 
     @Test
