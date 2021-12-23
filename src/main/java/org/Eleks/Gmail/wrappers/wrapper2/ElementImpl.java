@@ -35,6 +35,31 @@ public class ElementImpl implements Element {
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void killAllHuman() {
+
+        Assert.assertFalse(webElement.isDisplayed(), "IT's alive!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@_@");
+
+    }
+
+
+    public void clickWrap() {
+//        webElement.click();
+        System.out.println("Custom click1");
+    }
+
+
+    public void submitWrap() {
+//        webElement.submit();
+        System.out.println("Custom submit1");
+    }
+
+
+    public void sendKeysWrap(CharSequence... keysToSend) {
+        System.out.println("Custom sendKeys1");
+//        webElement.sendKeys(keysToSend);
+    }
+
+
     @Override
     public void click() {
         webElement.click();

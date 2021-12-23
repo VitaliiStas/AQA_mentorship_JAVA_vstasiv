@@ -2,7 +2,6 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.bo.LoginBO;
-import org.Eleks.Gmail.wrappers.wrapper2.CustomWebElementWraper;
 import org.Eleks.Gmail.wrappers.wrapper2.Element;
 import org.Eleks.Gmail.wrappers.wrapper2.ElementImpl;
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +17,7 @@ public class LoginPage extends BasePage {
     private WebElement emailField;
 
     @FindBy(xpath = "//*[@id='identifierId']")
-    private CustomWebElementWraper emailField2;
+    private Element emailField2;
 
     @FindBy(xpath = "//input[@type ='password']")
     private WebElement passwordField;
@@ -44,8 +43,8 @@ public class LoginPage extends BasePage {
 //todo working wraper
     @Step("Type user name")
     public LoginPage typeUsername(String userName) {
-//        emailField2.clickWrap();
-//        emailField2.sendKeysWrap("asd");
+        emailField2.clickWrap();
+        emailField2.sendKeysWrap("asd");
 //        emailField2.killAllHuman();
 //        emailField2.click();
 //        emailField2.clickButton();
