@@ -1,9 +1,10 @@
 package org.Eleks.Gmail.po;
 
-import com.aventstack.extentreports.ExtentReports;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.bo.LoginBO;
+import org.Eleks.Gmail.wrappers.wrapper2.CustomWebElementWraper;
+import org.Eleks.Gmail.wrappers.wrapper2.Element;
+import org.Eleks.Gmail.wrappers.wrapper2.ElementImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -15,6 +16,9 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='identifierId']")
     private WebElement emailField;
+
+    @FindBy(xpath = "//*[@id='identifierId']")
+    private CustomWebElementWraper emailField2;
 
     @FindBy(xpath = "//input[@type ='password']")
     private WebElement passwordField;
@@ -37,9 +41,14 @@ public class LoginPage extends BasePage {
         field.sendKeys(nameOrPassword);
         field.sendKeys(Keys.ENTER);
     }
-
+//todo working wraper
     @Step("Type user name")
     public LoginPage typeUsername(String userName) {
+//        emailField2.clickWrap();
+//        emailField2.sendKeysWrap("asd");
+//        emailField2.killAllHuman();
+//        emailField2.click();
+//        emailField2.clickButton();
         inputData(emailField, userName);
         return this;
     }
@@ -55,7 +64,8 @@ public class LoginPage extends BasePage {
         typePassword(password);
         return new HomePage();
     }
-//todo розбити на методи veryfy incorrect email
+
+    //todo розбити на методи veryfy incorrect email
     @Step("Type false user name")
     public LoginPage typeFalseUsername(String userName) {
         typeUsername("Incorrect user name");

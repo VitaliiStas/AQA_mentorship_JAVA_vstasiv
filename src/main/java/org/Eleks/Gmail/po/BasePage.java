@@ -3,11 +3,13 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
+import org.Eleks.Gmail.wrappers.wrapper1.WebElementWraper;
+import org.Eleks.Gmail.wrappers.wrapper1.ElementFactory;
+import org.Eleks.Gmail.wrappers.wrapper2.ElementFactory2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -41,6 +43,10 @@ public class BasePage {
 //    todo delete
     @FindBy(xpath = "")
     private WebElement test;
+//todo wrapp element
+    public WebElementWraper wrapWebElement(WebElement webElement){
+        return new WebElementWraper(webElement);
+    }
 
 
     public void clickOnMailIcon() {
@@ -51,10 +57,13 @@ public class BasePage {
 //        return mailIconFrame;
 //    }
 
-
+//todo fix
     public BasePage() {
+//        init using @FindBy
         this.webDriver = DriverFactory.getWebDriver();
-        PageFactory.initElements(this.webDriver, this);
+//        PageFactory.initElements(this.webDriver, this);
+//        ElementFactory.initElements(this.webDriver, this);
+        ElementFactory2.initElements(this.webDriver, this);
     }
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
@@ -96,10 +105,15 @@ public class BasePage {
 //todo протестити коли фейлиться коли нема елемента + протестити чи падає на асерті
     private void checkIfTheSelectedElementIsPresent(WebElement element) {
         //if "menu" button is present on the current - that's true
-        Assert.assertNotNull(new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                        .ignoring(StaleElementReferenceException.class, TimeoutException.class)
-                        .until(ExpectedConditions.visibilityOf(element))
-                , "!!!!!!!'Element:'" + element + " unavailable on the page: " + getClass());
+
+        try {
+
+            new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                    .ignoring(StaleElementReferenceException.class, TimeoutException.class)
+                    .until(ExpectedConditions.visibilityOf(element));
+        } catch (NullPointerException | TimeoutException e) {
+            Assert.fail("!!!!!!!'Element:'" + element + " unavailable on the page: " + getClass());
+        }
     }
 
 

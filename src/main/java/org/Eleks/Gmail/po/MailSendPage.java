@@ -2,7 +2,6 @@ package org.Eleks.Gmail.po;
 
 
 import io.qameta.allure.Step;
-import org.Eleks.Gmail.bo.EmailSendPageBO;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -20,7 +19,6 @@ public class MailSendPage extends BasePage {
 
     private final String subjectOnEmailPageXpath = "//span[@class='bog']/span[@class='bqe']";
 
-
     @FindBy(xpath = "//div[@class='T-I T-I-KE L3']")
     private  WebElement mailCreateButton;
 
@@ -32,7 +30,7 @@ public class MailSendPage extends BasePage {
 
     @FindBy(xpath = "//input [@name='subjectbox' and @placeholder='Subject']")
     private WebElement subjectOfMessage;
-
+//todo delete
     @FindBy(xpath = "//div[@class='dC']//*[@role='button']")
     private WebElement sendButton;
 
@@ -76,6 +74,8 @@ public class MailSendPage extends BasePage {
 
     public void clickSendButton() {
         wait(sendButton, 10).click();
+//        new WebElementWraper(sendButton).clickSendButton();
+//        wrapWebElement(sendButton).clickSendButton();
     }
 
     private WebElement wait(WebElement element, int waitTime) {

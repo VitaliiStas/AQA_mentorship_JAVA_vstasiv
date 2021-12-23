@@ -77,4 +77,6 @@ public class Tests extends BaseTest {
         EmailSendPageBO.create().sendAndCheckEmailApi();
     }
 
+
+
 }
