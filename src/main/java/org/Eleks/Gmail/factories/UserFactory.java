@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class UserFactory {
-//todo розбити на два класи пуе проперті окремо(проперті ютіл) і гет юзер окремо
 
     public static User getUser() {
         User user = new User();

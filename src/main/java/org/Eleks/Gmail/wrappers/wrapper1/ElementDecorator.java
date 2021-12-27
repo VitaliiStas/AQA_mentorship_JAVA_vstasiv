@@ -20,6 +20,7 @@ import java.util.List;
 public class ElementDecorator implements FieldDecorator {
 
 /* factory to use when generating ElementLocator. */
+//protected ElementLocatorFactory factory;
 protected ElementLocatorFactory factory;
 
     /* Constructor for an ElementLocatorFactory. */

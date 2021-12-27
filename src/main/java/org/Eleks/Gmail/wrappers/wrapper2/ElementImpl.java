@@ -1,7 +1,10 @@
 package org.Eleks.Gmail.wrappers.wrapper2;
 
+import org.Eleks.Gmail.factories.DriverFactory;
+import org.Eleks.Gmail.po.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Coordinates;
+import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -9,10 +12,10 @@ import org.testng.Assert;
 import java.time.Duration;
 import java.util.List;
 
-//define all default WebElement for using in the child class CustomWebElementWraperImpl, also a couple custom methods
+//implement all methods WebElement for using, include standard methods
 public class ElementImpl implements Element {
     protected WebElement webElement;
-    protected WebDriver webDriver;
+
 
     //
 //
@@ -21,18 +24,20 @@ public class ElementImpl implements Element {
         this.webElement = webElement;
     }
 
-    public void fillTheField(String text) {
-        wait(webElement, 10).sendKeys(text);
-    }
 
     public void clickButton() {
         wait(webElement, 10).click();
     }
 
     protected WebElement wait(WebElement element, int waitTime) {
-        return new WebDriverWait(webDriver, Duration.ofSeconds(waitTime))
+        return new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(waitTime))
                 .ignoring(StaleElementReferenceException.class, TimeoutException.class)
                 .until(ExpectedConditions.visibilityOf(element));
+    }
+
+    @Override
+    public void waitWrap(WebElement element, int waitTime) {
+
     }
 
     public void killAllHuman() {
@@ -40,7 +45,6 @@ public class ElementImpl implements Element {
         Assert.assertFalse(webElement.isDisplayed(), "IT's alive!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@_@");
 
     }
-
 
     public void clickWrap() {
 //        webElement.click();
@@ -53,10 +57,13 @@ public class ElementImpl implements Element {
         System.out.println("Custom submit1");
     }
 
-
-    public void sendKeysWrap(CharSequence... keysToSend) {
-        System.out.println("Custom sendKeys1");
-//        webElement.sendKeys(keysToSend);
+    //todo ??????????? implycity wait dosent work properly
+    public void sendAndConfirmKeys(String keysToSend) {
+        new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(5))
+                .ignoring(StaleElementReferenceException.class, TimeoutException.class)
+                .until(ExpectedConditions.visibilityOf(webElement));
+        webElement.sendKeys(keysToSend);
+        webElement.sendKeys(Keys.ENTER);
     }
 
 
@@ -77,67 +84,68 @@ public class ElementImpl implements Element {
 
     @Override
     public void clear() {
-
+        webElement.clear();
     }
 
     @Override
     public String getTagName() {
-        return null;
+        return webElement.getTagName();
     }
 
     @Override
     public String getAttribute(String name) {
-        return null;
+
+        return webElement.getAttribute(name);
     }
 
     @Override
     public boolean isSelected() {
-        return false;
+        return webElement.isSelected();
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return webElement.isDisplayed();
     }
 
     @Override
     public String getText() {
-        return null;
+        return webElement.getText();
     }
 
     @Override
     public List<WebElement> findElements(By by) {
-        return null;
+        return webElement.findElements(by);
     }
 
     @Override
     public WebElement findElement(By by) {
-        return null;
+        return webElement.findElement(by);
     }
 
     @Override
     public boolean isDisplayed() {
-        return false;
+        return webElement.isDisplayed();
     }
 
     @Override
     public Point getLocation() {
-        return null;
+        return webElement.getLocation();
     }
 
     @Override
     public Dimension getSize() {
-        return null;
+        return webElement.getSize();
     }
 
     @Override
     public Rectangle getRect() {
-        return null;
+        return webElement.getRect();
     }
 
     @Override
     public String getCssValue(String propertyName) {
-        return null;
+        return webElement.getCssValue(propertyName);
     }
 
     @Override
@@ -147,11 +155,11 @@ public class ElementImpl implements Element {
 
     @Override
     public WebElement getWrappedElement() {
-        return null;
+        return webElement;
     }
 
     @Override
     public Coordinates getCoordinates() {
-        return null;
+        return ((Locatable) webElement).getCoordinates();
     }
 }

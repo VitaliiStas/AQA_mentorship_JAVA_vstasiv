@@ -5,11 +5,14 @@ import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.wrappers.wrapper1.WebElementWraper;
 import org.Eleks.Gmail.wrappers.wrapper1.ElementFactory;
+import org.Eleks.Gmail.wrappers.wrapper2.CustomFieldDecorator;
 import org.Eleks.Gmail.wrappers.wrapper2.ElementFactory2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -40,10 +43,9 @@ public class BasePage {
     //    @FindBy(xpath = "//*/button/figure/img")
     @FindBy(xpath = "(//*/button/figure/img)[last()]")
     private WebElement profileImageForCheck;
-//    todo delete
-    @FindBy(xpath = "")
+
     private WebElement test;
-//todo wrapp element
+//todo wrapp element method
     public WebElementWraper wrapWebElement(WebElement webElement){
         return new WebElementWraper(webElement);
     }
@@ -63,7 +65,8 @@ public class BasePage {
         this.webDriver = DriverFactory.getWebDriver();
 //        PageFactory.initElements(this.webDriver, this);
 //        ElementFactory.initElements(this.webDriver, this);
-        ElementFactory2.initElements(this.webDriver, this);
+//        ElementFactory2.initElements(this.webDriver, this);
+        PageFactory.initElements(new CustomFieldDecorator(new DefaultElementLocatorFactory(this.webDriver)),this);
     }
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
@@ -102,7 +105,6 @@ public class BasePage {
         //if "menu" button is present on the current - that's true
         Assert.assertTrue(menu.isDisplayed(), "!!!!!!!'MENU' unavailable on the page: " + getClass());
     }
-//todo протестити коли фейлиться коли нема елемента + протестити чи падає на асерті
     private void checkIfTheSelectedElementIsPresent(WebElement element) {
         //if "menu" button is present on the current - that's true
 

@@ -30,7 +30,6 @@ public class MailSendPage extends BasePage {
 
     @FindBy(xpath = "//input [@name='subjectbox' and @placeholder='Subject']")
     private WebElement subjectOfMessage;
-//todo delete
     @FindBy(xpath = "//div[@class='dC']//*[@role='button']")
     private WebElement sendButton;
 

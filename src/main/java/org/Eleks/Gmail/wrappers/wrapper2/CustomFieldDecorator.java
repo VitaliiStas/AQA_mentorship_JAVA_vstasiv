@@ -6,7 +6,6 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
         if (List.class.isAssignableFrom(field.getType())) {
             return proxyForListLocator(loader, locator);
         } else if (Element.class.isAssignableFrom(field.getType())) {
-            return proxySelectForLocator(loader, locator);
+            return customProxyForLocator(loader, locator);
         } else if (WebElement.class.isAssignableFrom(field.getType())) {
             return proxyForLocator(loader, locator);
         } else {
@@ -41,12 +40,8 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
         }
     }
 
-    protected Element proxySelectForLocator(ClassLoader loader, ElementLocator locator) {
-        InvocationHandler handler = new SelectElementWrapperHandler(locator);
-
-        Element proxy;
-        proxy = (Element) Proxy.newProxyInstance(
-                loader, new Class[]{Element.class}, handler);
-        return proxy;
+    protected Element customProxyForLocator(ClassLoader loader, ElementLocator locator) {
+        return (Element) Proxy.newProxyInstance(
+                loader, new Class[]{Element.class}, new ElementWrapperHandler(locator));
     }
 }

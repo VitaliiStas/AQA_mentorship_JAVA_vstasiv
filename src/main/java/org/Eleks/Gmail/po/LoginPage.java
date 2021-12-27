@@ -3,7 +3,6 @@ package org.Eleks.Gmail.po;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.bo.LoginBO;
 import org.Eleks.Gmail.wrappers.wrapper2.Element;
-import org.Eleks.Gmail.wrappers.wrapper2.ElementImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -14,19 +13,20 @@ public class LoginPage extends BasePage {
 
 
     @FindBy(xpath = "//*[@id='identifierId']")
-    private WebElement emailField;
-
-    @FindBy(xpath = "//*[@id='identifierId']")
-    private Element emailField2;
+//    private WebElement emailField;
+    private Element emailField;
 
     @FindBy(xpath = "//input[@type ='password']")
-    private WebElement passwordField;
+//    private WebElement passwordField;
+    private Element passwordField;
 
     @FindBy(xpath = "//div[@jsname='B34EJ']")
-    private WebElement incorrectEmailMessage;
+//    private WebElement incorrectEmailMessage;
+    private Element incorrectEmailMessage;
 
     @FindBy(xpath = "//div[@jsname='B34EJ']/span[@jsslot]")
-    private WebElement incorrectPasswordMessage;
+//    private WebElement incorrectPasswordMessage;
+    private Element incorrectPasswordMessage;
 
     private static final Logger LOGGER = LogManager.getLogger(LoginBO.class);
 
@@ -40,27 +40,24 @@ public class LoginPage extends BasePage {
         field.sendKeys(nameOrPassword);
         field.sendKeys(Keys.ENTER);
     }
+
 //todo working wraper
     @Step("Type user name")
     public LoginPage typeUsername(String userName) {
-        emailField2.clickWrap();
-        emailField2.sendKeysWrap("asd");
-//        emailField2.killAllHuman();
-//        emailField2.click();
-//        emailField2.clickButton();
-        inputData(emailField, userName);
+//        inputData(emailField, userName);
+        emailField.sendAndConfirmKeys(userName);
         return this;
     }
-
+//todo doesn't work, didn't find password fild?
     @Step("Type user password")
     public LoginPage typePassword(String password) {
-        inputData(passwordField, password);
+//        inputData(passwordField, password);
+        passwordField.sendAndConfirmKeys(password);
         return this;
     }
 
     public HomePage login(String userName, String password) {
-        typeUsername(userName);
-        typePassword(password);
+        typeUsername(userName).typePassword(password);
         return new HomePage();
     }
 

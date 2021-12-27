@@ -7,10 +7,10 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class SelectElementWrapperHandler implements InvocationHandler {
+public class ElementWrapperHandler implements InvocationHandler {
     private final ElementLocator locator;
 
-    public SelectElementWrapperHandler(ElementLocator locator) {
+    public ElementWrapperHandler(ElementLocator locator) {
         this.locator = locator;
     }
 
