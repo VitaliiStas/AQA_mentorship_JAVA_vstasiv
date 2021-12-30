@@ -2,6 +2,8 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.bo.LoginBO;
+import org.Eleks.Gmail.wrappers.wraper3.ElementRealisation;
+import org.Eleks.Gmail.wrappers.wrapper1.WebElementWraperIn;
 import org.Eleks.Gmail.wrappers.wrapper2.Element;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,19 +16,23 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='identifierId']")
 //    private WebElement emailField;
-    private Element emailField;
+    private ElementRealisation emailField;
+//    private WebElementWraperIn emailField;
 
     @FindBy(xpath = "//input[@type ='password']")
 //    private WebElement passwordField;
-    private Element passwordField;
+    private ElementRealisation passwordField;
+//    private WebElementWraperIn passwordField;
 
     @FindBy(xpath = "//div[@jsname='B34EJ']")
 //    private WebElement incorrectEmailMessage;
-    private Element incorrectEmailMessage;
+    private ElementRealisation incorrectEmailMessage;
+//    private WebElementWraperIn incorrectEmailMessage;
 
     @FindBy(xpath = "//div[@jsname='B34EJ']/span[@jsslot]")
 //    private WebElement incorrectPasswordMessage;
-    private Element incorrectPasswordMessage;
+    private ElementRealisation incorrectPasswordMessage;
+//    private WebElementWraperIn incorrectPasswordMessage;
 
     private static final Logger LOGGER = LogManager.getLogger(LoginBO.class);
 

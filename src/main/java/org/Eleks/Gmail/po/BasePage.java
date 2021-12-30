@@ -3,6 +3,7 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
+import org.Eleks.Gmail.wrappers.wraper3.CustomDecorator;
 import org.Eleks.Gmail.wrappers.wrapper1.WebElementWraper;
 import org.Eleks.Gmail.wrappers.wrapper1.ElementFactory;
 import org.Eleks.Gmail.wrappers.wrapper2.CustomFieldDecorator;
@@ -12,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -63,10 +65,12 @@ public class BasePage {
     public BasePage() {
 //        init using @FindBy
         this.webDriver = DriverFactory.getWebDriver();
-//        PageFactory.initElements(this.webDriver, this);
+        //        PageFactory.initElements(this.webDriver, this);
 //        ElementFactory.initElements(this.webDriver, this);
 //        ElementFactory2.initElements(this.webDriver, this);
-        PageFactory.initElements(new CustomFieldDecorator(new DefaultElementLocatorFactory(this.webDriver)),this);
+//        PageFactory.initElements(new CustomFieldDecorator(new DefaultElementLocatorFactory(this.webDriver)),this);
+//        PageFactory.initElements(new CustomFieldDecorator(new DefaultElementLocatorFactory(this.webDriver)),this);
+        PageFactory.initElements(new CustomDecorator(this.webDriver), this);
     }
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
