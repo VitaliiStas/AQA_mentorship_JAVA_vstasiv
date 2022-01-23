@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 public class LoginBO {
     private static final Logger LOGGER = LogManager.getLogger(LoginBO.class);
 
-    // todo return homepageBO
     //Sing in  with correct credentials
 //    public static HomePageBO login() {
     public static HomePageBO login() {

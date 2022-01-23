@@ -1,11 +1,8 @@
 package org.Eleks.Gmail.listeners;
-// todo з малої букви _
 import io.qameta.allure.Attachment;
 import org.Eleks.Gmail.factories.DriverFactory;
-import org.Eleks.Gmail.po.BasePage;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.IRetryAnalyzer;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 

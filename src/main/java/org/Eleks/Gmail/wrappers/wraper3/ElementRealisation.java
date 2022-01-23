@@ -10,11 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ElementRealisation extends Element{
+public class ElementRealisation extends Element {
 
     public ElementRealisation(WebElement webElement) {
         super(webElement);
     }
+
     public void setChecked(boolean value) {
         if (value != isChecked()) {
             webElement.click();
@@ -24,6 +25,7 @@ public class ElementRealisation extends Element{
     public boolean isChecked() {
         return webElement.isSelected();
     }
+
     public void sendAndConfirmKeys(String keysToSend) {
         new WebDriverWait(DriverFactory.getWebDriver(), Duration.ofSeconds(5))
                 .ignoring(StaleElementReferenceException.class, TimeoutException.class)

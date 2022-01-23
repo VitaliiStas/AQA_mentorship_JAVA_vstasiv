@@ -4,10 +4,7 @@ package org.Eleks.Gmail.po;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
 import org.Eleks.Gmail.wrappers.wraper3.CustomDecorator;
-import org.Eleks.Gmail.wrappers.wrapper1.WebElementWraper;
-import org.Eleks.Gmail.wrappers.wrapper1.ElementFactory;
-import org.Eleks.Gmail.wrappers.wrapper2.CustomFieldDecorator;
-import org.Eleks.Gmail.wrappers.wrapper2.ElementFactory2;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -47,29 +44,16 @@ public class BasePage {
     private WebElement profileImageForCheck;
 
     private WebElement test;
-//todo wrapp element method
-    public WebElementWraper wrapWebElement(WebElement webElement){
-        return new WebElementWraper(webElement);
-    }
+
 
 
     public void clickOnMailIcon() {
         clickOnElement(mailIcon);
     }
-//
-//    public static WebElement getMailIconFrame() {
-//        return mailIconFrame;
-//    }
 
-//todo fix
     public BasePage() {
-//        init using @FindBy
         this.webDriver = DriverFactory.getWebDriver();
         //        PageFactory.initElements(this.webDriver, this);
-//        ElementFactory.initElements(this.webDriver, this);
-//        ElementFactory2.initElements(this.webDriver, this);
-//        PageFactory.initElements(new CustomFieldDecorator(new DefaultElementLocatorFactory(this.webDriver)),this);
-//        PageFactory.initElements(new CustomFieldDecorator(new DefaultElementLocatorFactory(this.webDriver)),this);
         PageFactory.initElements(new CustomDecorator(this.webDriver), this);
     }
 
@@ -162,7 +146,10 @@ public class BasePage {
 
     @Step("Check if error message is displayed on the page")
     public void checkErrorMessageIsDisplayed(WebElement element) {
-        Assert.assertTrue(element.isDisplayed(), "Error message is not displayed : " + element.getText());
+        Assert.assertTrue(
+                new WebDriverWait(webDriver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class,
+                        TimeoutException.class).until(ExpectedConditions.visibilityOf(element)).isDisplayed()
+                , "Error message is not displayed : " + element.getText());
     }
 
 }

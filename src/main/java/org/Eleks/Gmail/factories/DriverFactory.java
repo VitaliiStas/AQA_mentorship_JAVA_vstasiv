@@ -26,6 +26,7 @@ public class DriverFactory  {
         CHROME {
             public WebDriver create() {
                 ChromeOptions options = new ChromeOptions();
+//                start browser with options
 //                options.addArguments("--user-data-dir=c:\\Users\\vitalii.stasiv\\AppData\\Local\\Google\\Chrome\\User Data\\");
 //                options.addArguments("--user-data-dir=C:\\Users\\vitalii.stasiv\\Desktop\\AQA_mentorship\\User Data\\");
 //                options.addArguments("--incognito");

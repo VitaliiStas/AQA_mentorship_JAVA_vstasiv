@@ -15,82 +15,82 @@ public class Element implements WebElement, WrapsElement, Locatable {
 
     @Override
     public void click() {
-
+        webElement.click();
     }
 
     @Override
     public void submit() {
-
+        webElement.submit();
     }
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {
-
+        webElement.sendKeys(keysToSend);
     }
 
     @Override
     public void clear() {
-
+        webElement.clear();
     }
 
     @Override
     public String getTagName() {
-        return null;
+        return webElement.getTagName();
     }
 
     @Override
     public String getAttribute(String name) {
-        return null;
+        return webElement.getAttribute(name);
     }
 
     @Override
     public boolean isSelected() {
-        return false;
+        return webElement.isSelected();
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return webElement.isSelected();
     }
 
     @Override
     public String getText() {
-        return null;
+        return webElement.getText();
     }
 
     @Override
     public List<WebElement> findElements(By by) {
-        return null;
+        return webElement.findElements(by);
     }
 
     @Override
     public WebElement findElement(By by) {
-        return null;
+        return webElement.findElement(by);
     }
 
     @Override
     public boolean isDisplayed() {
-        return false;
+        return webElement.isDisplayed();
     }
 
     @Override
     public Point getLocation() {
-        return null;
+        return webElement.getLocation();
     }
 
     @Override
     public Dimension getSize() {
-        return null;
+        return webElement.getSize();
     }
 
     @Override
     public Rectangle getRect() {
-        return null;
+        return webElement.getRect();
     }
 
     @Override
     public String getCssValue(String propertyName) {
-        return null;
+        return webElement.getCssValue(propertyName);
     }
 
     @Override
@@ -100,11 +100,11 @@ public class Element implements WebElement, WrapsElement, Locatable {
 
     @Override
     public WebElement getWrappedElement() {
-        return null;
+        return webElement;
     }
 
     @Override
     public Coordinates getCoordinates() {
-        return null;
+        return ((Locatable) webElement).getCoordinates();
     }
 }
