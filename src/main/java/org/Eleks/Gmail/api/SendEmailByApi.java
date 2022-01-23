@@ -1,5 +1,7 @@
 package org.Eleks.Gmail.api;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -15,6 +17,12 @@ public class SendEmailByApi {
     private String password = "Passw0rd1234";
     private String sendFrom = "emat23024@gmail.com";
     private String smtp = "smtp.gmail.com";
+
+    protected static List<String> sendToListOrCC = Arrays.asList(
+            "tt8397519@gmail.com"
+            , "tt8397519+1@gmail.com"
+            , "tt8397519+2@gmail.com"
+            , "tt8397519+3@gmail.com");
 
     // Get system properties
     private Properties properties = System.getProperties();
@@ -43,7 +51,6 @@ public class SendEmailByApi {
     public MimeMessage getMessage() {
         return message;
     }
-
 
 
     public String getSmtp() {
@@ -81,6 +88,14 @@ public class SendEmailByApi {
 
             // Set To: header field of the header.
             getMessage().addRecipient(Message.RecipientType.TO, new InternetAddress(sendTo));
+            sendToListOrCC.stream().forEach(e -> {
+                try {
+                    getMessage().addRecipient(Message.RecipientType.CC, new InternetAddress(e));
+                } catch (MessagingException messagingException) {
+                    messagingException.printStackTrace();
+                }
+            });
+
 
             // Set Subject: header field
             getMessage().setSubject(emailSubject);

@@ -20,10 +20,7 @@ import java.util.Set;
 public class EmailPage extends MailSendPage {
     //Current Received Email Page
 
-    @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
-    private WebElement receivedEmailBody;
-    @FindBy(xpath = "//div[@class='ha']/h2")
-    private WebElement receivedSubjectBody;
+
 
 
 
@@ -36,19 +33,13 @@ public class EmailPage extends MailSendPage {
 
     private final String sendToOrCCXpaths = "//span[@translate ]/span[@email and @class='g2']";
 
-    public WebElement getReceivedSubjectBody() {
-        return receivedSubjectBody;
-    }
-    public WebElement getReceivedEmailBody() {
-        return receivedEmailBody;
-    }
-
-
-
-
+//    @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
+//    private WebElement receivedEmailBody;
+    @FindBy(xpath = "//div[@class='ha']/h2")
+    private WebElement receivedSubjectBody;
 
     public List<String> getListOfSendToOrCC() {
-        waitForElement(getReceivedSubjectBody(), 10);
+        waitForElement(receivedSubjectBody, 10);
         ArrayList<String> listOfSendToOrCC = new ArrayList<>();
         List<WebElement> listOfSendToOrCCWebElements = webDriver.findElements(By.xpath(sendToOrCCXpaths));
         for (WebElement cc : listOfSendToOrCCWebElements) {

@@ -3,12 +3,15 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
-import org.Eleks.Gmail.listeners.TestListener;
+import org.Eleks.Gmail.wrappers.wraper3.CustomDecorator;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -25,51 +28,34 @@ public class BasePage {
     private static final Logger LOGGER = LogManager.getLogger(BasePage.class);
 
     @FindBy(xpath = "//*[@id='gbwa']/div/a")
-    private static WebElement menu;
+    private WebElement menu;
 
     @FindBy(xpath = "//a[contains(@href,'https://mail.google.com/mail/')]")
-    private static WebElement mailIcon;
+    private WebElement mailIcon;
 
     @FindBy(xpath = "//iframe[contains(@src,'https://ogs.google.com/u/0/')]")
-    private static WebElement mailIconFrame;
+    private WebElement mailIconFrame;
 
     @FindBy(xpath = "//iframe[contains(@src,'https://hangouts.google.com/webchat/u')]")
-    private static WebElement sideBarFrame;
+    private WebElement sideBarFrame;
 
-    @FindBy(xpath = "//*/button/figure/img")
-    private static WebElement profileImageForCheck;
+    //    @FindBy(xpath = "//*/button/figure/img")
+    @FindBy(xpath = "(//*/button/figure/img)[last()]")
+    private WebElement profileImageForCheck;
 
-    public static WebElement getProfileImageForCheck() {
-        return profileImageForCheck;
+    private WebElement test;
+
+
+
+    public void clickOnMailIcon() {
+        clickOnElement(mailIcon);
     }
-
-    public static WebElement getMenu() {
-        return menu;
-    }
-
-    public static WebElement getMailIcon() {
-        return mailIcon;
-    }
-
-    public static WebElement getMailIconFrame() {
-        return mailIconFrame;
-    }
-
-    public static WebElement getSideBarFrame() {
-        return sideBarFrame;
-    }
-
 
     public BasePage() {
         this.webDriver = DriverFactory.getWebDriver();
-        PageFactory.initElements(this.webDriver, this);
+        //        PageFactory.initElements(this.webDriver, this);
+        PageFactory.initElements(new CustomDecorator(this.webDriver), this);
     }
-
-    public WebElement getWebElementByXpath(String elementXpath) {
-        waitForElement(webDriver.findElement(By.xpath("/html/body")), 10);
-        return webDriver.findElement(By.xpath(elementXpath));
-    }
-
 
     public void waitForElement(WebElement webElement, Integer timeForWaitInSec) {
         new WebDriverWait(webDriver, Duration.ofSeconds(timeForWaitInSec)).ignoring(StaleElementReferenceException.class,
@@ -101,39 +87,42 @@ public class BasePage {
 
     }
 
-    private void checkElementOnPage() {
+
+    @Step("Check if the 'MENU' present on the page")
+    private void checkIfMenuPresent() {
         //if "menu" button is present on the current - that's true
-        if (!(menu.isDisplayed())) {
-            LOGGER.warn("!!!!!!!Element unavailable on the page: " + getClass());
-        } else {
-            LOGGER.warn("Element is present on the page: " + getClass());
+        Assert.assertTrue(menu.isDisplayed(), "!!!!!!!'MENU' unavailable on the page: " + getClass());
+    }
+    private void checkIfTheSelectedElementIsPresent(WebElement element) {
+        //if "menu" button is present on the current - that's true
+
+        try {
+
+            new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                    .ignoring(StaleElementReferenceException.class, TimeoutException.class)
+                    .until(ExpectedConditions.visibilityOf(element));
+        } catch (NullPointerException | TimeoutException e) {
+            Assert.fail("!!!!!!!'Element:'" + element + " unavailable on the page: " + getClass());
         }
     }
 
-    private void checkElementOnPage(WebElement element) {
-        //if "menu" button is present on the current - that's true
-        if (!(element.isDisplayed())) {
-            LOGGER.warn("!!!!!!!Element unavailable on the page: " + getClass());
-        } else {
-            LOGGER.info("Element is present on the page: " + getClass());
-        }
-    }
-
-    public void verifyIsOpen() {
-        checkUrl();
-        checkElementOnPage();
-    }
 
     @Step("Check if correct page is opened")
-    public void verifyIsOpen(WebElement elementForCheck) {
+    public void verifyIsOpen() {
         checkUrl();
-        checkElementOnPage(elementForCheck);
+        checkIfMenuPresent();
         LOGGER.info("Correct page for class: " + getClass() + " opened");
     }
 
+    @Step("Check if profile image isDisplayed on home page")
+    public void checkIfProfileImageIsPresent() {
+        checkIfTheSelectedElementIsPresent(profileImageForCheck);
+//        checkIfTheSelectedElementIsPresent(test);
+    }
+
+
     public void clickOnElement(WebElement element) {
         waitForElement(element, 2);
-//        pauseSec(5);
         element.click();
     }
 
@@ -145,35 +134,23 @@ public class BasePage {
         }
     }
 
-    public void goToServicesMenu(WebElement servicesMenuFrame) {
+    public void goToServicesMenu() {
         //navigate to the gmail services menu which located in the frame
-        webDriver.switchTo().frame(servicesMenuFrame);
-    }
-
-    public void goToSideBarMenu() {
-        //navigate to the gmail sidebar
-        webDriver.switchTo().frame(getSideBarFrame());
-//        getSideBarFrame().click();
+        webDriver.switchTo().frame(mailIconFrame);
     }
 
     public void switchToTab(Integer tabNum) {
-        pauseSec(2);
         ArrayList<String> openedTabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(openedTabs.get(tabNum));
     }
 
     @Step("Check if error message is displayed on the page")
     public void checkErrorMessageIsDisplayed(WebElement element) {
-//        Assert.assertNotNull(element,"Error message: " +element.getText() + " is absent on the: "+this.webDriver.getTitle() + " page");
-        if (!element.isDisplayed()) {
-            LOGGER.warn("Error message is not displayed : " + element.getText());
-            TestListener testListener = new TestListener();
-            testListener.saveScreenshot();
-        } else if (element.isDisplayed())
-            LOGGER.info("Proper massage is displayed : " + element.getText());
+        Assert.assertTrue(
+                new WebDriverWait(webDriver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class,
+                        TimeoutException.class).until(ExpectedConditions.visibilityOf(element)).isDisplayed()
+                , "Error message is not displayed : " + element.getText());
     }
-
-
 
 }
 

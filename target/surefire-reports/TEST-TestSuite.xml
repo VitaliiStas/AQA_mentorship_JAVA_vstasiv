@@ -1,217 +1,290 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="27.9" tests="3" errors="0" skipped="0" failures="3">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="83.853" tests="7" errors="0" skipped="3" failures="1">
   <properties>
     <property name="java.specification.version" value="15"/>
+    <property name="webdriver.chrome.driver" value="C:\Users\vitalii.stasiv\.cache\selenium\chromedriver\win32\96.0.4664.45\chromedriver.exe"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
-    <property name="java.class.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
+    <property name="java.class.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project\target\test-classes;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project\target\classes;C:\Users\vitalii.stasiv\.m2\repository\io\github\bonigarcia\webdrivermanager\4.4.3\webdrivermanager-4.4.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\vitalii.stasiv\.m2\repository\commons-io\commons-io\2.8.0\commons-io-2.8.0.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\code\gson\gson\2.8.6\gson-2.8.6.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.0.3\httpclient5-5.0.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.0.2\httpcore5-5.0.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.0.2\httpcore5-h2-5.0.2.jar;C:\Users\vitalii.stasiv\.m2\repository\commons-codec\commons-codec\1.13\commons-codec-1.13.jar;C:\Users\vitalii.stasiv\.m2\repository\org\rauschig\jarchivelib\1.1.0\jarchivelib-1.1.0.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\commons\commons-compress\1.20\commons-compress-1.20.jar;C:\Users\vitalii.stasiv\.m2\repository\org\jsoup\jsoup\1.13.1\jsoup-1.13.1.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-java\4.0.0-beta-3\selenium-java-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-api\4.0.0-beta-3\selenium-api-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.0.0-beta-3\selenium-chrome-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\auto\service\auto-service-annotations\1.0-rc7\auto-service-annotations-1.0-rc7.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\auto\service\auto-service\1.0-rc7\auto-service-1.0-rc7.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\auto\auto-common\0.10\auto-common-0.10.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\guava\guava\30.1-jre\guava-30.1-jre.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\guava\failureaccess\1.0.1\failureaccess-1.0.1.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\checkerframework\checker-qual\3.5.0\checker-qual-3.5.0.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\errorprone\error_prone_annotations\2.3.4\error_prone_annotations-2.3.4.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\j2objc\j2objc-annotations\1.3\j2objc-annotations-1.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.0.0-beta-3\selenium-chromium-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools\4.0.0-beta-3\selenium-devtools-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-http\4.0.0-beta-3\selenium-http-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-json\4.0.0-beta-3\selenium-json-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.0.0-beta-3\selenium-devtools-v85-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v88\4.0.0-beta-3\selenium-devtools-v88-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v89\4.0.0-beta-3\selenium-devtools-v89-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v90\4.0.0-beta-3\selenium-devtools-v90-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v91\4.0.0-beta-3\selenium-devtools-v91-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.0.0-beta-3\selenium-edge-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.0.0-beta-3\selenium-firefox-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-firefox-xpi-driver\4.0.0-beta-3\selenium-firefox-xpi-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.0.0-beta-3\selenium-ie-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\4.0.0-beta-3\selenium-opera-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.0.0-beta-3\selenium-remote-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-buffer\4.1.58.Final\netty-buffer-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-codec-http\4.1.58.Final\netty-codec-http-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-codec\4.1.58.Final\netty-codec-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-handler\4.1.58.Final\netty-handler-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-common\4.1.58.Final\netty-common-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-epoll\4.1.58.Final\netty-transport-native-epoll-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-kqueue\4.1.58.Final\netty-transport-native-kqueue-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.58.Final\netty-transport-native-unix-common-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport\4.1.58.Final\netty-transport-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-resolver\4.1.58.Final\netty-resolver-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-api\1.0.0\opentelemetry-api-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-context\1.0.0\opentelemetry-context-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.0.0\opentelemetry-exporter-logging-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.0.0-alpha\opentelemetry-sdk-metrics-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.0.0\opentelemetry-sdk-common-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.0.0-alpha\opentelemetry-sdk-extension-autoconfigure-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.0.0\opentelemetry-sdk-trace-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-api-metrics\1.0.0-alpha\opentelemetry-api-metrics-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.0.0\opentelemetry-sdk-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-semconv\1.0.0-alpha\opentelemetry-semconv-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\net\bytebuddy\byte-buddy\1.10.19\byte-buddy-1.10.19.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\asynchttpclient\async-http-client\2.12.2\async-http-client-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\asynchttpclient\async-http-client-netty-utils\2.12.2\async-http-client-netty-utils-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-codec-socks\4.1.53.Final\netty-codec-socks-4.1.53.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-handler-proxy\4.1.53.Final\netty-handler-proxy-4.1.53.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-epoll\4.1.53.Final\netty-transport-native-epoll-4.1.53.Final-linux-x86_64.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-kqueue\4.1.53.Final\netty-transport-native-kqueue-4.1.53.Final-osx-x86_64.jar;C:\Users\vitalii.stasiv\.m2\repository\com\typesafe\netty\netty-reactive-streams\2.0.4\netty-reactive-streams-2.0.4.jar;C:\Users\vitalii.stasiv\.m2\repository\com\sun\activation\jakarta.activation\1.2.2\jakarta.activation-1.2.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.0.0-beta-3\selenium-safari-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-support\4.0.0-beta-3\selenium-support-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\testng\testng\7.4.0\testng-7.4.0.jar;C:\Users\vitalii.stasiv\.m2\repository\com\beust\jcommander\1.78\jcommander-1.78.jar;C:\Users\vitalii.stasiv\.m2\repository\org\webjars\jquery\3.5.1\jquery-3.5.1.jar;C:\Users\vitalii.stasiv\.m2\repository\ru\yandex\qatools\ashot\ashot\1.5.4\ashot-1.5.4.jar;C:\Users\vitalii.stasiv\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-testng\2.13.9\allure-testng-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-java-commons\2.13.9\allure-java-commons-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-model\2.13.9\allure-model-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.12.2\jackson-databind-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.12.2\jackson-annotations-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.12.2\jackson-core-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\tika\tika-core\1.25\tika-core-1.25.jar;C:\Users\vitalii.stasiv\.m2\repository\org\jooq\joor-java-8\0.9.13\joor-java-8-0.9.13.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-test-filter\2.13.9\allure-test-filter-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\logging\log4j\log4j-core\2.14.1\log4j-core-2.14.1.jar;C:\Users\vitalii.stasiv\.m2\repository\com\aventstack\extentreports\5.0.8\extentreports-5.0.8.jar;C:\Users\vitalii.stasiv\.m2\repository\io\reactivex\rxjava3\rxjava\3.0.4\rxjava-3.0.4.jar;C:\Users\vitalii.stasiv\.m2\repository\org\reactivestreams\reactive-streams\1.0.3\reactive-streams-1.0.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\freemarker\freemarker\2.3.30\freemarker-2.3.30.jar;C:\Users\vitalii.stasiv\.m2\repository\org\projectlombok\lombok\1.18.12\lombok-1.18.12.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\logging\log4j\log4j-api\2.14.1\log4j-api-2.14.1.jar;C:\Users\vitalii.stasiv\.m2\repository\com\sun\mail\javax.mail\1.6.2\javax.mail-1.6.2.jar;C:\Users\vitalii.stasiv\.m2\repository\javax\activation\activation\1.1\activation-1.1.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
+    <property name="mail.smtp.ssl.enable" value="true"/>
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Europe/Kiev"/>
     <property name="user.country.format" value="UA"/>
-    <property name="maven.conf" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\../conf"/>
-    <property name="java.vm.specification.version" value="15"/>
     <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="15"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
+    <property name="sun.java.command" value="C:\Users\vitalii.stasiv\AppData\Local\Temp\surefire15247816404212389332\surefirebooter10814362031692541748.jar C:\Users\vitalii.stasiv\AppData\Local\Temp\surefire15247816404212389332 2021-11-30T19-45-31_111-jvmRun1 surefire16516684071724873350tmp surefire_012213780581299810314tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="maven.home" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\.."/>
+    <property name="surefire.test.class.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project\target\test-classes;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project\target\classes;C:\Users\vitalii.stasiv\.m2\repository\io\github\bonigarcia\webdrivermanager\4.4.3\webdrivermanager-4.4.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\vitalii.stasiv\.m2\repository\commons-io\commons-io\2.8.0\commons-io-2.8.0.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\code\gson\gson\2.8.6\gson-2.8.6.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.0.3\httpclient5-5.0.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.0.2\httpcore5-5.0.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.0.2\httpcore5-h2-5.0.2.jar;C:\Users\vitalii.stasiv\.m2\repository\commons-codec\commons-codec\1.13\commons-codec-1.13.jar;C:\Users\vitalii.stasiv\.m2\repository\org\rauschig\jarchivelib\1.1.0\jarchivelib-1.1.0.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\commons\commons-compress\1.20\commons-compress-1.20.jar;C:\Users\vitalii.stasiv\.m2\repository\org\jsoup\jsoup\1.13.1\jsoup-1.13.1.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-java\4.0.0-beta-3\selenium-java-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-api\4.0.0-beta-3\selenium-api-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.0.0-beta-3\selenium-chrome-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\auto\service\auto-service-annotations\1.0-rc7\auto-service-annotations-1.0-rc7.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\auto\service\auto-service\1.0-rc7\auto-service-1.0-rc7.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\auto\auto-common\0.10\auto-common-0.10.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\guava\guava\30.1-jre\guava-30.1-jre.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\guava\failureaccess\1.0.1\failureaccess-1.0.1.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\checkerframework\checker-qual\3.5.0\checker-qual-3.5.0.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\errorprone\error_prone_annotations\2.3.4\error_prone_annotations-2.3.4.jar;C:\Users\vitalii.stasiv\.m2\repository\com\google\j2objc\j2objc-annotations\1.3\j2objc-annotations-1.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.0.0-beta-3\selenium-chromium-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools\4.0.0-beta-3\selenium-devtools-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-http\4.0.0-beta-3\selenium-http-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-json\4.0.0-beta-3\selenium-json-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.0.0-beta-3\selenium-devtools-v85-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v88\4.0.0-beta-3\selenium-devtools-v88-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v89\4.0.0-beta-3\selenium-devtools-v89-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v90\4.0.0-beta-3\selenium-devtools-v90-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v91\4.0.0-beta-3\selenium-devtools-v91-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.0.0-beta-3\selenium-edge-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.0.0-beta-3\selenium-firefox-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-firefox-xpi-driver\4.0.0-beta-3\selenium-firefox-xpi-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.0.0-beta-3\selenium-ie-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\4.0.0-beta-3\selenium-opera-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.0.0-beta-3\selenium-remote-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-buffer\4.1.58.Final\netty-buffer-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-codec-http\4.1.58.Final\netty-codec-http-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-codec\4.1.58.Final\netty-codec-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-handler\4.1.58.Final\netty-handler-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-common\4.1.58.Final\netty-common-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-epoll\4.1.58.Final\netty-transport-native-epoll-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-kqueue\4.1.58.Final\netty-transport-native-kqueue-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.58.Final\netty-transport-native-unix-common-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport\4.1.58.Final\netty-transport-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-resolver\4.1.58.Final\netty-resolver-4.1.58.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-api\1.0.0\opentelemetry-api-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-context\1.0.0\opentelemetry-context-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.0.0\opentelemetry-exporter-logging-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.0.0-alpha\opentelemetry-sdk-metrics-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.0.0\opentelemetry-sdk-common-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.0.0-alpha\opentelemetry-sdk-extension-autoconfigure-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.0.0\opentelemetry-sdk-trace-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-api-metrics\1.0.0-alpha\opentelemetry-api-metrics-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.0.0\opentelemetry-sdk-1.0.0.jar;C:\Users\vitalii.stasiv\.m2\repository\io\opentelemetry\opentelemetry-semconv\1.0.0-alpha\opentelemetry-semconv-1.0.0-alpha.jar;C:\Users\vitalii.stasiv\.m2\repository\net\bytebuddy\byte-buddy\1.10.19\byte-buddy-1.10.19.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\asynchttpclient\async-http-client\2.12.2\async-http-client-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\asynchttpclient\async-http-client-netty-utils\2.12.2\async-http-client-netty-utils-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-codec-socks\4.1.53.Final\netty-codec-socks-4.1.53.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-handler-proxy\4.1.53.Final\netty-handler-proxy-4.1.53.Final.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-epoll\4.1.53.Final\netty-transport-native-epoll-4.1.53.Final-linux-x86_64.jar;C:\Users\vitalii.stasiv\.m2\repository\io\netty\netty-transport-native-kqueue\4.1.53.Final\netty-transport-native-kqueue-4.1.53.Final-osx-x86_64.jar;C:\Users\vitalii.stasiv\.m2\repository\com\typesafe\netty\netty-reactive-streams\2.0.4\netty-reactive-streams-2.0.4.jar;C:\Users\vitalii.stasiv\.m2\repository\com\sun\activation\jakarta.activation\1.2.2\jakarta.activation-1.2.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.0.0-beta-3\selenium-safari-driver-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\seleniumhq\selenium\selenium-support\4.0.0-beta-3\selenium-support-4.0.0-beta-3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\testng\testng\7.4.0\testng-7.4.0.jar;C:\Users\vitalii.stasiv\.m2\repository\com\beust\jcommander\1.78\jcommander-1.78.jar;C:\Users\vitalii.stasiv\.m2\repository\org\webjars\jquery\3.5.1\jquery-3.5.1.jar;C:\Users\vitalii.stasiv\.m2\repository\ru\yandex\qatools\ashot\ashot\1.5.4\ashot-1.5.4.jar;C:\Users\vitalii.stasiv\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-testng\2.13.9\allure-testng-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-java-commons\2.13.9\allure-java-commons-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-model\2.13.9\allure-model-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.12.2\jackson-databind-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.12.2\jackson-annotations-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.12.2\jackson-core-2.12.2.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\tika\tika-core\1.25\tika-core-1.25.jar;C:\Users\vitalii.stasiv\.m2\repository\org\jooq\joor-java-8\0.9.13\joor-java-8-0.9.13.jar;C:\Users\vitalii.stasiv\.m2\repository\io\qameta\allure\allure-test-filter\2.13.9\allure-test-filter-2.13.9.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\logging\log4j\log4j-core\2.14.1\log4j-core-2.14.1.jar;C:\Users\vitalii.stasiv\.m2\repository\com\aventstack\extentreports\5.0.8\extentreports-5.0.8.jar;C:\Users\vitalii.stasiv\.m2\repository\io\reactivex\rxjava3\rxjava\3.0.4\rxjava-3.0.4.jar;C:\Users\vitalii.stasiv\.m2\repository\org\reactivestreams\reactive-streams\1.0.3\reactive-streams-1.0.3.jar;C:\Users\vitalii.stasiv\.m2\repository\org\freemarker\freemarker\2.3.30\freemarker-2.3.30.jar;C:\Users\vitalii.stasiv\.m2\repository\org\projectlombok\lombok\1.18.12\lombok-1.18.12.jar;C:\Users\vitalii.stasiv\.m2\repository\org\apache\logging\log4j\log4j-api\2.14.1\log4j-api-2.14.1.jar;C:\Users\vitalii.stasiv\.m2\repository\com\sun\mail\javax.mail\1.6.2\javax.mail-1.6.2.jar;C:\Users\vitalii.stasiv\.m2\repository\javax\activation\activation\1.1\activation-1.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\vitalii.stasiv"/>
     <property name="user.language" value="en"/>
-    <property name="sun.stderr.encoding" value="cp866"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2020-09-15"/>
     <property name="java.home" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15"/>
+    <property name="mail.smtp.auth" value="true"/>
+    <property name="mail.smtp.host" value="smtp.gmail.com"/>
     <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="sun.stdout.encoding" value="cp866"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\vitalii.stasiv\AppData\Local\Temp\surefire15247816404212389332\surefirebooter10814362031692541748.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="15+36-1562"/>
     <property name="user.name" value="vitalii.stasiv"/>
+    <property name="mail.smtp.port" value="465"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="Cp1251"/>
-    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="sun.nio.ch.bugLevel" value=""/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\vitalii.stasiv\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\VITALI~1.STA\AppData\Local\Temp\"/>
     <property name="java.version" value="15"/>
     <property name="user.dir" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project"/>
     <property name="os.arch" value="amd64"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\Project"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.language.format" value="uk"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\Program Files\Git\cmd;C:\Users\vitalii.stasiv\scoop\shims;C:\Users\vitalii.stasiv\AppData\Local\Microsoft\WindowsApps;C:\Users\vitalii.stasiv\DesktopAQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\bin;;;."/>
+    <property name="java.library.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin;C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\Program Files\Git\cmd;C:\Users\vitalii.stasiv\scoop\shims;C:\Users\vitalii.stasiv\AppData\Local\Microsoft\WindowsApps;C:\Users\vitalii.stasiv\DesktopAQA_mentorship\OpenJdk\openjdk-15_windows-x64_bin\jdk-15\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\bin;;;C:\Users\vitalii.stasiv\AppData\Local\Programs\Microsoft VS Code\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="java.vm.version" value="15+36-1562"/>
-    <property name="classworlds.conf" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\..\bin\m2.conf"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="library.jansi.path" value="C:\Users\vitalii.stasiv\Desktop\AQA_mentorship\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin\..\lib\jansi-native"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="singIn" classname="org.eleks.gmail.vstasiv.Tests" time="2.945">
-    <failure message="Expecting a stackmap frame at branch target 57&#10;Exception Details:&#10;  Location:&#10;    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic&#10;  Reason:&#10;    Expected stackmap frame at this location.&#10;  Bytecode:&#10;    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052&#10;    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a&#10;    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00&#10;    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600&#10;    0000040: 562c bfb8 004e b600 59b1               &#10;  Exception Handler Table:&#10;    bci [9, 57] =&gt; handler: 57&#10;" type="java.lang.VerifyError">java.lang.VerifyError: 
-Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-
-	at org.eleks.gmail.vstasiv.Tests.singIn(Tests.java:11)
-</failure>
-    <system-out><![CDATA[[INFO ] 2021-08-30 22:07:47.952 [main] BaseTest - Browser is opened
+  <testcase name="goToMailPageTest" classname="org.eleks.gmail.vstasiv.Tests2" time="8.389">
+    <system-out><![CDATA[[INFO ] 2021-11-30 19:45:47.415 [main] BaseTest - Browser is opened
+[INFO ] 2021-11-30 19:45:55.922 [main] BasePage - Element is present on the page: class org.Eleks.Gmail.po.HomePage
+[INFO ] 2021-11-30 19:45:55.923 [main] BasePage - Correct page for class: class org.Eleks.Gmail.po.HomePage opened
+[INFO ] 2021-11-30 19:45:55.924 [main] LoginBO - Login successfully
+test pass
 ]]></system-out>
     <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-[DelegatingClassLoader@54ffa561] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@54ffa561] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@1416ff46] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@1416ff46] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@5ba1b62e] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@5ba1b62e] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@2baf72d5] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@2baf72d5] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@5b742bc8] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@5b742bc8] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@935d3f9] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@935d3f9] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@38856d6e] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@38856d6e] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@72406594] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@72406594] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 48478
+Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 31478
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-серп. 30, 2021 10:07:47 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+лист. 30, 2021 7:45:47 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
-[DelegatingClassLoader@4946f93b] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@4946f93b] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-серп. 30, 2021 10:07:47 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-WARNING: Unable to find an exact match for CDP version 92, so returning the closest version found: 91
-серп. 30, 2021 10:07:47 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-INFO: Found CDP implementation for version 92 of 91
-[DelegatingClassLoader@5aa7bb86] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@5aa7bb86] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-AspectJ Internal Error: unable to add stackmap attributes. null
+лист. 30, 2021 7:45:47 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: a no-op implementation
+лист. 30, 2021 7:45:47 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 96.
+лист. 30, 2021 7:45:47 ПП org.openqa.selenium.chromium.ChromiumDriver lambda$new$2
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.0.0-beta-3` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
   </testcase>
-  <testcase name="goToMailPage" classname="org.eleks.gmail.vstasiv.Tests" time="2.597">
-    <failure message="Expecting a stackmap frame at branch target 57&#10;Exception Details:&#10;  Location:&#10;    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic&#10;  Reason:&#10;    Expected stackmap frame at this location.&#10;  Bytecode:&#10;    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052&#10;    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a&#10;    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00&#10;    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600&#10;    0000040: 562c bfb8 004e b600 59b1               &#10;  Exception Handler Table:&#10;    bci [9, 57] =&gt; handler: 57&#10;" type="java.lang.VerifyError">java.lang.VerifyError: 
-Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
+  <testcase name="sendEmailApiTest" classname="org.eleks.gmail.vstasiv.Tests2" time="3.481">
+    <system-out><![CDATA[[INFO ] 2021-11-30 19:45:59.128 [main] BaseTest - Browser is closed
+[INFO ] 2021-11-30 19:46:00.934 [main] BaseTest - Browser is opened
+DEBUG: setDebug: JavaMail version 1.6.2
+sending...
+DEBUG: getProvider() returning javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle]
+DEBUG SMTP: need username and password for authentication
+DEBUG SMTP: protocolConnect returning false, host=smtp.gmail.com, user=vitalii.stasiv, password=<null>
+DEBUG SMTP: useEhlo true, useAuth true
+DEBUG SMTP: trying to connect to host "smtp.gmail.com", port 465, isSSL true
+220 smtp.gmail.com ESMTP m1sm2908927wme.39 - gsmtp
+DEBUG SMTP: connected to host "smtp.gmail.com", port: 465
+EHLO WS-LV-CP3316.eleks-software.local
+250-smtp.gmail.com at your service, [109.207.113.147]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+DEBUG SMTP: Found extension "SIZE", arg "35882577"
+DEBUG SMTP: Found extension "8BITMIME", arg ""
+DEBUG SMTP: Found extension "AUTH", arg "LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+DEBUG SMTP: Found extension "ENHANCEDSTATUSCODES", arg ""
+DEBUG SMTP: Found extension "PIPELINING", arg ""
+DEBUG SMTP: Found extension "CHUNKING", arg ""
+DEBUG SMTP: Found extension "SMTPUTF8", arg ""
+DEBUG SMTP: protocolConnect login, host=smtp.gmail.com, user=emat23024@gmail.com, password=<non-null>
+DEBUG SMTP: Attempt to authenticate using mechanisms: LOGIN PLAIN DIGEST-MD5 NTLM XOAUTH2 
+DEBUG SMTP: Using mechanism LOGIN
+DEBUG SMTP: AUTH LOGIN command trace suppressed
+DEBUG SMTP: AUTH LOGIN succeeded
+DEBUG SMTP: use8bit false
+MAIL FROM:<emat23024@gmail.com>
+250 2.1.0 OK m1sm2908927wme.39 - gsmtp
+RCPT TO:<tt8397519+1@gmail.com>
+250 2.1.5 OK m1sm2908927wme.39 - gsmtp
+RCPT TO:<tt8397519@gmail.com>
+250 2.1.5 OK m1sm2908927wme.39 - gsmtp
+RCPT TO:<tt8397519+1@gmail.com>
+250 2.1.5 OK, duplicate recipients will be consolidated. m1sm2908927wme.39 - gsmtp
+RCPT TO:<tt8397519+2@gmail.com>
+250 2.1.5 OK m1sm2908927wme.39 - gsmtp
+RCPT TO:<tt8397519+3@gmail.com>
+250 2.1.5 OK m1sm2908927wme.39 - gsmtp
+DEBUG SMTP: Verified Addresses
+DEBUG SMTP:   tt8397519+1@gmail.com
+DEBUG SMTP:   tt8397519@gmail.com
+DEBUG SMTP:   tt8397519+1@gmail.com
+DEBUG SMTP:   tt8397519+2@gmail.com
+DEBUG SMTP:   tt8397519+3@gmail.com
+DATA
+354  Go ahead m1sm2908927wme.39 - gsmtp
+Date: Tue, 30 Nov 2021 19:46:02 +0200 (EET)
+From: emat23024@gmail.com
+To: tt8397519+1@gmail.com
+Cc: tt8397519@gmail.com, tt8397519+1@gmail.com, tt8397519+2@gmail.com,
+	tt8397519+3@gmail.com
+Message-ID: <1037000742.0.1638294362946@WS-LV-CP3316.eleks-software.local>
+Subject: API_Subject_builder mrrOmAzFNNAD
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-	at org.eleks.gmail.vstasiv.Tests.goToMailPage(Tests.java:16)
-</failure>
-    <system-out><![CDATA[[INFO ] 2021-08-30 22:07:53.597 [main] BaseTest - Browser is closed
-[INFO ] 2021-08-30 22:07:55.187 [main] BaseTest - Browser is opened
+API_Body_buildercnhiaotRNdZV
+.
+250 2.0.0 OK  1638294365 m1sm2908927wme.39 - gsmtp
+DEBUG SMTP: message successfully delivered to mail server
+QUIT
+221 2.0.0 closing connection m1sm2908927wme.39 - gsmtp
+Sent message successfully....
+test pass
 ]]></system-out>
-    <system-err><![CDATA[серп. 30, 2021 10:07:52 ПП org.openqa.selenium.remote.http.WebSocket$Listener onError
-WARNING: Connection reset
-java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
-	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
-	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:253)
-	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
-	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350)
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:832)
-
-Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 37927
+    <system-err><![CDATA[Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 37715
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-серп. 30, 2021 10:07:55 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+лист. 30, 2021 7:46:00 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
-серп. 30, 2021 10:07:55 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-WARNING: Unable to find an exact match for CDP version 92, so returning the closest version found: 91
-серп. 30, 2021 10:07:55 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-INFO: Found CDP implementation for version 92 of 91
-[DelegatingClassLoader@2e962cec] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@2e962cec] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@5bd11ad6] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@5bd11ad6] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+лист. 30, 2021 7:46:00 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: a no-op implementation
+лист. 30, 2021 7:46:00 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 96.
+лист. 30, 2021 7:46:00 ПП org.openqa.selenium.chromium.ChromiumDriver lambda$new$2
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.0.0-beta-3` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
   </testcase>
-  <testcase name="sendAndCheckEmailTest" classname="org.eleks.gmail.vstasiv.Tests" time="2.82">
-    <failure message="Expecting a stackmap frame at branch target 57&#10;Exception Details:&#10;  Location:&#10;    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic&#10;  Reason:&#10;    Expected stackmap frame at this location.&#10;  Bytecode:&#10;    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052&#10;    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a&#10;    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00&#10;    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600&#10;    0000040: 562c bfb8 004e b600 59b1               &#10;  Exception Handler Table:&#10;    bci [9, 57] =&gt; handler: 57&#10;" type="java.lang.VerifyError">java.lang.VerifyError: 
-Expecting a stackmap frame at branch target 57
-Exception Details:
-  Location:
-    org/Eleks/Gmail/po/HomePage.goToMailSendPage()V @9: invokestatic
-  Reason:
-    Expected stackmap frame at this location.
-  Bytecode:
-    0000000: b200 4201 01b8 0048 4cb8 004e 2bb6 0052
-    0000010: bb00 1059 b700 154b 2ab8 0016 b600 1a2a
-    0000020: b800 1eb6 0021 2a04 b800 24b6 002a bb00
-    0000030: 2e59 b700 3057 a700 0d4d b800 4e2c b600
-    0000040: 562c bfb8 004e b600 59b1               
-  Exception Handler Table:
-    bci [9, 57] => handler: 57
-
-	at org.eleks.gmail.vstasiv.Tests.sendAndCheckEmailTest(Tests.java:22)
-</failure>
-    <system-out><![CDATA[[INFO ] 2021-08-30 22:07:59.962 [main] BaseTest - Browser is closed
-[INFO ] 2021-08-30 22:08:01.550 [main] BaseTest - Browser is opened
+  <testcase name="singInFailedTest" classname="org.eleks.gmail.vstasiv.Tests2" time="4.265">
+    <system-out><![CDATA[[INFO ] 2021-11-30 19:46:06.533 [main] BaseTest - Browser is closed
+[INFO ] 2021-11-30 19:46:08.273 [main] BaseTest - Browser is opened
+[INFO ] 2021-11-30 19:46:11.176 [main] BasePage - Proper massage is displayed : Введіть дійсні електронну адресу або номер телефону
+[INFO ] 2021-11-30 19:46:14.226 [main] BasePage - Proper massage is displayed : Неправильний пароль. Повторіть спробу або натисніть "Забули пароль?", щоб скинути його.
+test pass
 ]]></system-out>
-    <system-err><![CDATA[Starting ChromeDriver 92.0.4515.107 (87a818b10553a07434ea9e2b6dccf3cbe7895134-refs/branch-heads/4515@{#1634}) on port 42552
+    <system-err><![CDATA[Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 13980
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-серп. 30, 2021 10:08:01 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+лист. 30, 2021 7:46:08 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
-серп. 30, 2021 10:08:01 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-WARNING: Unable to find an exact match for CDP version 92, so returning the closest version found: 91
-серп. 30, 2021 10:08:01 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-INFO: Found CDP implementation for version 92 of 91
-[DelegatingClassLoader@7798de95] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@7798de95] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@474f69d] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@474f69d] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@649a76c1] error at io\qameta\allure\aspects\StepsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
-[DelegatingClassLoader@649a76c1] error at io\qameta\allure\aspects\AttachmentsAspects.java::0 the @annotation pointcut expression is only supported at Java 5 compliance level or above
+лист. 30, 2021 7:46:08 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: a no-op implementation
+лист. 30, 2021 7:46:08 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 96.
+лист. 30, 2021 7:46:08 ПП org.openqa.selenium.chromium.ChromiumDriver lambda$new$2
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.0.0-beta-3` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+  </testcase>
+  <testcase name="singInTest" classname="org.eleks.gmail.vstasiv.Tests2" time="0">
+    <skipped message="null"/>
+    <system-out><![CDATA[[INFO ] 2021-11-30 19:46:15.068 [main] BaseTest - Browser is closed
+[INFO ] 2021-11-30 19:46:16.786 [main] BaseTest - Browser is opened
+[INFO ] 2021-11-30 19:46:25.519 [main] BasePage - Element is present on the page: class org.Eleks.Gmail.po.HomePage
+[INFO ] 2021-11-30 19:46:25.520 [main] BasePage - Correct page for class: class org.Eleks.Gmail.po.HomePage opened
+[INFO ] 2021-11-30 19:46:25.520 [main] LoginBO - Login successfully
+]]></system-out>
+    <system-err><![CDATA[Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 40339
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+лист. 30, 2021 7:46:16 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+лист. 30, 2021 7:46:16 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: a no-op implementation
+лист. 30, 2021 7:46:16 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 96.
+лист. 30, 2021 7:46:16 ПП org.openqa.selenium.chromium.ChromiumDriver lambda$new$2
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.0.0-beta-3` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+  </testcase>
+  <testcase name="singInTest" classname="org.eleks.gmail.vstasiv.Tests2" time="0">
+    <skipped message="null"/>
+    <system-out><![CDATA[[INFO ] 2021-11-30 19:46:26.273 [main] BaseTest - Browser is closed
+[INFO ] 2021-11-30 19:46:27.982 [main] BaseTest - Browser is opened
+[INFO ] 2021-11-30 19:46:36.242 [main] BasePage - Element is present on the page: class org.Eleks.Gmail.po.HomePage
+[INFO ] 2021-11-30 19:46:36.242 [main] BasePage - Correct page for class: class org.Eleks.Gmail.po.HomePage opened
+[INFO ] 2021-11-30 19:46:36.243 [main] LoginBO - Login successfully
+]]></system-out>
+    <system-err><![CDATA[Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 11881
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+лист. 30, 2021 7:46:27 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+лист. 30, 2021 7:46:27 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: a no-op implementation
+лист. 30, 2021 7:46:27 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 96.
+лист. 30, 2021 7:46:27 ПП org.openqa.selenium.chromium.ChromiumDriver lambda$new$2
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.0.0-beta-3` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+  </testcase>
+  <testcase name="singInTest" classname="org.eleks.gmail.vstasiv.Tests2" time="0">
+    <skipped message="null"/>
+    <system-out><![CDATA[[INFO ] 2021-11-30 19:46:36.984 [main] BaseTest - Browser is closed
+[INFO ] 2021-11-30 19:46:38.680 [main] BaseTest - Browser is opened
+[INFO ] 2021-11-30 19:46:47.176 [main] BasePage - Element is present on the page: class org.Eleks.Gmail.po.HomePage
+[INFO ] 2021-11-30 19:46:47.176 [main] BasePage - Correct page for class: class org.Eleks.Gmail.po.HomePage opened
+[INFO ] 2021-11-30 19:46:47.177 [main] LoginBO - Login successfully
+]]></system-out>
+    <system-err><![CDATA[Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 47907
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+лист. 30, 2021 7:46:38 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+лист. 30, 2021 7:46:38 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: a no-op implementation
+лист. 30, 2021 7:46:38 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 96.
+лист. 30, 2021 7:46:38 ПП org.openqa.selenium.chromium.ChromiumDriver lambda$new$2
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.0.0-beta-3` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+  </testcase>
+  <testcase name="singInTest" classname="org.eleks.gmail.vstasiv.Tests2" time="7.864">
+    <failure message="null" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: null
+	at org.eleks.gmail.vstasiv.Tests2.singInTest(Tests2.java:18)
+]]></failure>
+    <system-out><![CDATA[[INFO ] 2021-11-30 19:46:47.918 [main] BaseTest - Browser is closed
+[INFO ] 2021-11-30 19:46:49.594 [main] BaseTest - Browser is opened
+[INFO ] 2021-11-30 19:46:58.644 [main] BasePage - Element is present on the page: class org.Eleks.Gmail.po.HomePage
+[INFO ] 2021-11-30 19:46:58.644 [main] BasePage - Correct page for class: class org.Eleks.Gmail.po.HomePage opened
+[INFO ] 2021-11-30 19:46:58.645 [main] LoginBO - Login successfully
+Failed
+]]></system-out>
+    <system-err><![CDATA[Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 28558
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+лист. 30, 2021 7:46:49 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+лист. 30, 2021 7:46:49 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: a no-op implementation
+лист. 30, 2021 7:46:49 ПП org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 96.
+лист. 30, 2021 7:46:49 ПП org.openqa.selenium.chromium.ChromiumDriver lambda$new$2
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.0.0-beta-3` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
   </testcase>
 </testsuite>
