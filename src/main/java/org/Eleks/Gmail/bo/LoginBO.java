@@ -1,7 +1,6 @@
 package org.Eleks.Gmail.bo;
 
 import org.Eleks.Gmail.factories.UserFactory;
-import org.Eleks.Gmail.po.BasePage;
 import org.Eleks.Gmail.po.HomePage;
 import org.Eleks.Gmail.po.LoginPage;
 import org.Eleks.Gmail.models.User;

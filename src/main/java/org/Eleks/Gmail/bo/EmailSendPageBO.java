@@ -3,7 +3,6 @@ package org.Eleks.Gmail.bo;
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.api.SendEmailByApi;
 import org.Eleks.Gmail.factories.DriverFactory;
-import org.Eleks.Gmail.factories.UserFactory;
 import org.Eleks.Gmail.po.DateTimeHelper;
 import org.Eleks.Gmail.po.EmailPage;
 import org.Eleks.Gmail.po.MailSendPage;

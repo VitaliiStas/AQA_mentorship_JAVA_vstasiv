@@ -1,13 +1,10 @@
 package tasksjava;
 
 import com.google.common.primitives.Chars;
-import org.Eleks.Gmail.api.SendEmailByApi;
-import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class Tasks {
     //Method witch take the string and re
