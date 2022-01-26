@@ -3,6 +3,7 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.factories.DriverFactory;
+import org.Eleks.Gmail.utils.DateTimeHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -171,7 +172,7 @@ public class MailSendPage extends BasePage {
                 .until(ExpectedConditions
                         .presenceOfElementLocated(By.xpath("//*[@class='bog']/*[text()='" + subject + "']")));
     }
-    protected WebElement getEmailForDelete(int emailNumForDelete) {
+    public WebElement getEmailForDelete(int emailNumForDelete) {
         //use the selected email num for delete proper email
         return new WebDriverWait(webDriver,Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(

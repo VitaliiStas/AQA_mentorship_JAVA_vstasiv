@@ -1,7 +1,7 @@
 package org.Eleks.Gmail.api;
 
-import java.util.Arrays;
-import java.util.List;
+import org.Eleks.Gmail.bo.EmailSendPageBO;
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -18,11 +18,6 @@ public class SendEmailByApi {
     private String sendFrom = "emat23024@gmail.com";
     private String smtp = "smtp.gmail.com";
 
-    protected static List<String> sendToListOrCC = Arrays.asList(
-            "tt8397519@gmail.com"
-            , "tt8397519+1@gmail.com"
-            , "tt8397519+2@gmail.com"
-            , "tt8397519+3@gmail.com");
 
     // Get system properties
     private Properties properties = System.getProperties();
@@ -88,7 +83,7 @@ public class SendEmailByApi {
 
             // Set To: header field of the header.
             getMessage().addRecipient(Message.RecipientType.TO, new InternetAddress(sendTo));
-            sendToListOrCC.stream().forEach(e -> {
+            EmailSendPageBO.SEND_TO_LIST_OR_CC.stream().forEach(e -> {
                 try {
                     getMessage().addRecipient(Message.RecipientType.CC, new InternetAddress(e));
                 } catch (MessagingException messagingException) {

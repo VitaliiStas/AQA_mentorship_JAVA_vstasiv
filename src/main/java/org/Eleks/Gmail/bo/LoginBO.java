@@ -23,9 +23,9 @@ public class LoginBO {
     }
 
     //Sing in  with incorrect credentials
-    public static void loginFailed() {
+    public static void loginFailed(String userName,String password) {
         User user = UserFactory.getUser();
         LoginPage loginPage = new LoginPage();
-        HomePage homePage = loginPage.loginFailed(user.getUserName(), user.getPassword());
+        HomePage homePage = loginPage.loginFailed(userName, password);
     }
 }

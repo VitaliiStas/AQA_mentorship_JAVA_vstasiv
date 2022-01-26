@@ -11,10 +11,6 @@ import java.util.List;
 public class EmailPage extends MailSendPage {
     //Current Received Email Page
 
-
-
-
-
     @FindBy(xpath = "//div[@role='button' and @aria-label='Show details']")
     private WebElement showDetails;
 
@@ -22,7 +18,7 @@ public class EmailPage extends MailSendPage {
     private WebElement frameCC;
 
 
-    private final String sendToOrCCXpaths = "//span[@translate ]/span[@email and @class='g2']";
+    private static final String SEND_TO_OR_CC_XPATHS = "//span[@translate ]/span[@email and @class='g2']";
 
 //    @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
 //    private WebElement receivedEmailBody;
@@ -32,7 +28,7 @@ public class EmailPage extends MailSendPage {
     public List<String> getListOfSendToOrCC() {
         waitForElement(receivedSubjectBody, 10);
         ArrayList<String> listOfSendToOrCC = new ArrayList<>();
-        List<WebElement> listOfSendToOrCCWebElements = webDriver.findElements(By.xpath(sendToOrCCXpaths));
+        List<WebElement> listOfSendToOrCCWebElements = webDriver.findElements(By.xpath(SEND_TO_OR_CC_XPATHS));
         for (WebElement cc : listOfSendToOrCCWebElements) {
             listOfSendToOrCC.add(cc.getAttribute("email"));
                     }
