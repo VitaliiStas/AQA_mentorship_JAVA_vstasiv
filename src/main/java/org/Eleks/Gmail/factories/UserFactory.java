@@ -1,12 +1,7 @@
 package org.Eleks.Gmail.factories;
 
 import org.Eleks.Gmail.models.User;
-import org.Eleks.Gmail.po.MailSendPage;
 import org.Eleks.Gmail.utils.PropertyUtils;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 public class UserFactory {
 

@@ -1,28 +1,15 @@
 package org.Eleks.Gmail.po;
 
-import io.qameta.allure.Step;
-import org.Eleks.Gmail.bo.EmailSendPageBO;
-import org.Eleks.Gmail.factories.DriverFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class EmailPage extends MailSendPage {
     //Current Received Email Page
-
-
-
-
 
     @FindBy(xpath = "//div[@role='button' and @aria-label='Show details']")
     private WebElement showDetails;
@@ -31,7 +18,7 @@ public class EmailPage extends MailSendPage {
     private WebElement frameCC;
 
 
-    private final String sendToOrCCXpaths = "//span[@translate ]/span[@email and @class='g2']";
+    private static final String SEND_TO_OR_CC_XPATHS = "//span[@translate ]/span[@email and @class='g2']";
 
 //    @FindBy(xpath = "//*[@class='a3s aiL ']/div[1]")
 //    private WebElement receivedEmailBody;
@@ -41,7 +28,7 @@ public class EmailPage extends MailSendPage {
     public List<String> getListOfSendToOrCC() {
         waitForElement(receivedSubjectBody, 10);
         ArrayList<String> listOfSendToOrCC = new ArrayList<>();
-        List<WebElement> listOfSendToOrCCWebElements = webDriver.findElements(By.xpath(sendToOrCCXpaths));
+        List<WebElement> listOfSendToOrCCWebElements = webDriver.findElements(By.xpath(SEND_TO_OR_CC_XPATHS));
         for (WebElement cc : listOfSendToOrCCWebElements) {
             listOfSendToOrCC.add(cc.getAttribute("email"));
                     }

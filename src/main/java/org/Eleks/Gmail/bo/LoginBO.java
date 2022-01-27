@@ -1,7 +1,6 @@
 package org.Eleks.Gmail.bo;
 
 import org.Eleks.Gmail.factories.UserFactory;
-import org.Eleks.Gmail.po.BasePage;
 import org.Eleks.Gmail.po.HomePage;
 import org.Eleks.Gmail.po.LoginPage;
 import org.Eleks.Gmail.models.User;
@@ -24,9 +23,9 @@ public class LoginBO {
     }
 
     //Sing in  with incorrect credentials
-    public static void loginFailed() {
+    public static void loginFailed(String userName,String password) {
         User user = UserFactory.getUser();
         LoginPage loginPage = new LoginPage();
-        HomePage homePage = loginPage.loginFailed(user.getUserName(), user.getPassword());
+        HomePage homePage = loginPage.loginFailed(userName, password);
     }
 }

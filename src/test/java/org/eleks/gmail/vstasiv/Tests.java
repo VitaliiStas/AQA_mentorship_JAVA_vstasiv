@@ -3,22 +3,34 @@ package org.eleks.gmail.vstasiv;
 
 import org.Eleks.Gmail.bo.LoginBO;
 import org.Eleks.Gmail.bo.EmailSendPageBO;
+import org.Eleks.Gmail.data_provider.CustomDataProvider;
 import org.Eleks.Gmail.listeners.TestListener;
+
+import org.Eleks.Gmail.models.User;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+
+
 @Listeners(TestListener.class)
 public class Tests extends BaseTest {
+
+
 
     @Test
     public void singInTest() {
         LoginBO.login();
     }
 
-    @Test
-    public void singInFailedTest() {
-        LoginBO.loginFailed();
+    @Test(dataProvider = "false_Credentials",dataProviderClass = CustomDataProvider.class)
+    public void singInFailedTest(User user) {
+        LoginBO.loginFailed(user.getUserName(), user.getPassword());
     }
+//    @Test(dataProvider = "false_Credentials",dataProviderClass = CustomDataProvider.class)
+//    public void singInFailedTest(String email,String password) {
+//        LoginBO.loginFailed(email,password);
+//    }
+
 
     @Test
     public void goToMailPageTest() {
@@ -32,7 +44,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create()
+                .createFullEmail()
                 .sendAndCheckEmail();
     }
 
@@ -41,7 +53,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create()
+                .createFullEmail()
                 .sendAndCheckEmailWithBuilder();
     }
 
@@ -58,7 +70,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create()
+                .createFullEmail()
                 .checkEmailDeleting();
     }
 
@@ -67,16 +79,31 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create()
+                .createFullEmail()
                 .checkEmailDeletingWithSubject();
 
     }
 
     @Test
     public void sendEmailApiTest() {
-        EmailSendPageBO.create().sendAndCheckEmailApi();
+        EmailSendPageBO.createFullEmail().sendAndCheckEmailApi();
     }
 
+    @Test
+    public void sendEmptyEmailText(){
+        LoginBO
+                .login()
+                .goToMailSendPage()
+                .createEmptyEmail()
+                .sendAndCheckEmptyEmail();
+    }
+    @Test
+    public void send1000SizeEmailText(){
+        LoginBO
+                .login()
+                .goToMailSendPage()
+                .create1000EmailText().sendAndCheck1000SizeEmail();
+    }
 
 
 }

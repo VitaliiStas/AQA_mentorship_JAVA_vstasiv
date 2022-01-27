@@ -2,6 +2,8 @@ package org.Eleks.Gmail.po;
 
 import io.qameta.allure.Step;
 import org.Eleks.Gmail.bo.LoginBO;
+import org.Eleks.Gmail.factories.UserFactory;
+import org.Eleks.Gmail.models.User;
 import org.Eleks.Gmail.wrappers.wraper3.ElementRealisation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,14 +43,13 @@ public class LoginPage extends BasePage {
         field.sendKeys(Keys.ENTER);
     }
 
-//todo working wraper
     @Step("Type user name")
     public LoginPage typeUsername(String userName) {
 //        inputData(emailField, userName);
         emailField.sendAndConfirmKeys(userName);
         return this;
     }
-//todo doesn't work, didn't find password fild?
+
     @Step("Type user password")
     public LoginPage typePassword(String password) {
 //        inputData(passwordField, password);
@@ -62,19 +63,19 @@ public class LoginPage extends BasePage {
 
     }
 
-
+//todo use data provider for the false test data
     @Step("Type false user name")
     public LoginPage typeFalseUsername(String userName) {
-        typeUsername("incorrectEmailMessage");
+        typeUsername(userName);
         checkErrorMessageIsDisplayed(incorrectEmailMessage);
         emailField.clear();
-        emailField.sendAndConfirmKeys(userName);
+        emailField.sendAndConfirmKeys(UserFactory.getUser().getUserName());
         return this;
     }
 
     @Step("Type false password name")
     public LoginPage typeFalsePassword(String password) {
-        typePassword("incorrectEmailMessage");
+        typePassword(password);
         checkErrorMessageIsDisplayed(incorrectPasswordMessage);
         return this;
     }
