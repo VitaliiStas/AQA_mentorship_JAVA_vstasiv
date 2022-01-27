@@ -17,9 +17,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.io.*;
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -54,7 +51,7 @@ public class EmailSendPageBO {
     public void sendAndCheckEmail() {
         mailSendPage
                 .setExpectedUrl(PropertyUtils.getProperties("expectedUrlMailSendPage"));
-        sendEmailWith_Subject_EmailText_AttachFile(SEND_TO_LIST_OR_CC);
+        sendEmailWithSubjectEmailTextAttachFile(SEND_TO_LIST_OR_CC);
         mailSendPage
                 .goToEmailPage(testEmailSubject);
         mailSendPage
@@ -183,8 +180,8 @@ public class EmailSendPageBO {
 
     @Step("Send test email with adding attached file, subject, email text,attachment")
     //send email with random body and subject and CC
-    private void sendEmailWith_Subject_EmailText_AttachFile(List<String> sendToOrCC) {
-        sendEmail(sendToOrCC);
+    private void sendEmailWithSubjectEmailTextAttachFile(List<String> sendToOrCC) {
+        openSendEmailAndInputRecipients(sendToOrCC);
         addEmailSubject(testEmailSubject);
         addEmailText(testEmailText);
         attachFile("src/main/resources/testImage.jpg");
@@ -193,7 +190,7 @@ public class EmailSendPageBO {
 
 
     private void sendEmailWith1000EmailText(List<String> sendToOrCC) {
-        sendEmail(sendToOrCC);
+        openSendEmailAndInputRecipients(sendToOrCC);
         addEmailSubject(testEmailSubject);
         addEmailText(testEmailText);
         mailSendPage.clickSendButton();
@@ -201,16 +198,16 @@ public class EmailSendPageBO {
 
 
 
-//todo don't working ask dialog not confirmed
 @Step("Send empty email")
     private void sendEmptyEmail(List<String> sendToOrCC) {
-        sendEmail(sendToOrCC);
+        openSendEmailAndInputRecipients(sendToOrCC);
+    mailSendPage.clickSendButton();
              DriverFactory.getWebDriver().switchTo().alert().accept();
-        mailSendPage.clickSendButton();
+
 
     }
 
-    private void sendEmail(List<String> sendToOrCC){
+    private void openSendEmailAndInputRecipients(List<String> sendToOrCC){
         mailSendPage.goToEmailSendForm();
 //        mailSendPage.waitForElement(mailSendPage.typeSendTo(), 10);
         for (String emails : sendToOrCC) {
@@ -281,7 +278,7 @@ public class EmailSendPageBO {
     }
 
 
-    public static EmailSendPageBO create_Full_Email() {
+    public static EmailSendPageBO createFullEmail() {
         return new Builder()
                 .setSendToOrCC(SEND_TO_LIST_OR_CC)
                 .setPathToFile("src/main/resources/testImage.jpg")
@@ -292,7 +289,7 @@ public class EmailSendPageBO {
                 .build();
     }
 
-    public static EmailSendPageBO create_1000_Email_Text() {
+    public static EmailSendPageBO create1000EmailText() {
         return new Builder()
                 .setSendToOrCC(SEND_TO_LIST_OR_CC)
                 .setTestEmailText("Body_builder " + generateRandomString(1000))
@@ -300,7 +297,7 @@ public class EmailSendPageBO {
                 .build();
     }
 
-    public static EmailSendPageBO create_Empty_Email() {
+    public static EmailSendPageBO createEmptyEmail() {
         return new Builder()
                 .setSendToOrCC(SEND_TO_LIST_OR_CC)
                 .build();

@@ -29,7 +29,7 @@ public class Tests2 extends BaseTest {
 
     @Test
     public void sendEmailApiTest() {
-        EmailSendPageBO.create_Full_Email().sendAndCheckEmailApi();
+        EmailSendPageBO.createFullEmail().sendAndCheckEmailApi();
     }
 
 }

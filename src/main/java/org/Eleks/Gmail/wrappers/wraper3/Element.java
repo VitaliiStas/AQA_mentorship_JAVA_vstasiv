@@ -95,7 +95,7 @@ public class Element implements WebElement, WrapsElement, Locatable {
 
     @Override
     public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
-        return null;
+        return webElement.getScreenshotAs(target);
     }
 
     @Override

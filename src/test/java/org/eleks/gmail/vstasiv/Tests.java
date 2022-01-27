@@ -6,6 +6,7 @@ import org.Eleks.Gmail.bo.EmailSendPageBO;
 import org.Eleks.Gmail.data_provider.CustomDataProvider;
 import org.Eleks.Gmail.listeners.TestListener;
 
+import org.Eleks.Gmail.models.User;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -22,9 +23,14 @@ public class Tests extends BaseTest {
     }
 
     @Test(dataProvider = "false_Credentials",dataProviderClass = CustomDataProvider.class)
-    public void singInFailedTest(String email,String password) {
-        LoginBO.loginFailed(email,password);
+    public void singInFailedTest(User user) {
+        LoginBO.loginFailed(user.getUserName(), user.getPassword());
     }
+//    @Test(dataProvider = "false_Credentials",dataProviderClass = CustomDataProvider.class)
+//    public void singInFailedTest(String email,String password) {
+//        LoginBO.loginFailed(email,password);
+//    }
+
 
     @Test
     public void goToMailPageTest() {
@@ -38,7 +44,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create_Full_Email()
+                .createFullEmail()
                 .sendAndCheckEmail();
     }
 
@@ -47,7 +53,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create_Full_Email()
+                .createFullEmail()
                 .sendAndCheckEmailWithBuilder();
     }
 
@@ -64,7 +70,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create_Full_Email()
+                .createFullEmail()
                 .checkEmailDeleting();
     }
 
@@ -73,14 +79,14 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create_Full_Email()
+                .createFullEmail()
                 .checkEmailDeletingWithSubject();
 
     }
 
     @Test
     public void sendEmailApiTest() {
-        EmailSendPageBO.create_Full_Email().sendAndCheckEmailApi();
+        EmailSendPageBO.createFullEmail().sendAndCheckEmailApi();
     }
 
     @Test
@@ -88,7 +94,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create_Empty_Email()
+                .createEmptyEmail()
                 .sendAndCheckEmptyEmail();
     }
     @Test
@@ -96,7 +102,7 @@ public class Tests extends BaseTest {
         LoginBO
                 .login()
                 .goToMailSendPage()
-                .create_1000_Email_Text().sendAndCheck1000SizeEmail();
+                .create1000EmailText().sendAndCheck1000SizeEmail();
     }
 
 
